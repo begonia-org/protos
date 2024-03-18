@@ -8,7 +8,7 @@ import "google/api/httpbody.proto";
 
 message UploadFileAPIRequest {
 	string filename = 1;
-	google.api.HttpBody content = 2;
+	bytes content = 2;
 }
 // 上传完成后的响应
 message UploadAPIResponse {

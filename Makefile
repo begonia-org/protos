@@ -44,3 +44,7 @@ go: $(GO_PROTO_FILES) | common
 	protoc-go-inject-tag -input="$(OUTPUT_DIR)/*.pb.go"
 	@$(MAKE) clean
 
+ts: $(TS_PROTO_FILES) $(COMMON_FILES) | common
+	$(PROTOC) -I=$(PROTO_DIR) -I=./common $(TS_ARGS) $?
+	@$(MAKE) clean
+
