@@ -1,0 +1,148 @@
+syntax = "proto3";
+package begonia.org.begonia;
+option go_package = "github.com/begonia-org/begonia/api/v1";
+import "google/protobuf/descriptor.proto";
+import "google/api/annotations.proto";
+import "common/options.proto";
+
+
+enum FileSvrStatus{
+	FILE_UNKONW = 0;
+    FILE_UPLOAD_NOT_INITIATE_ERR=6101[(.begonia.org.begonia.common.api.v1.msg) = "File upload task is not initialized"];
+	FILE_SHA256_NOT_MATCH_ERR=6102[(.begonia.org.begonia.common.api.v1.msg) = "File sha256 not match error"];
+	FILE_UPLOADID_MISSING_ERR=6103[(.begonia.org.begonia.common.api.v1.msg) = "File uploadId missing error"];
+	FILE_PARTNUMBER_MISSING_ERR=6104[(.begonia.org.begonia.common.api.v1.msg) = "File partNumber missing error"];
+	FILE_NOT_FOUND_UPLOADID_ERR=6105[(.begonia.org.begonia.common.api.v1.msg) = "File not found uploadId error"];
+	FILE_INVAILDATE_KEY_ERR=6106[(.begonia.org.begonia.common.api.v1.msg) = "File invaildate key error"];
+
+
+}
+message InitiateMultipartUploadRequest {
+	// @gotags: validate:"required,startsnotwith=/" doc:"文件名,仅支持相对路径，例如test/a.txt,不支持/开头的绝对路径"
+	string key = 1;
+}
+message InitiateMultipartUploadResponse {
+// upload_id 标识本次分块上传的 ID，使用 Initiate Multipart Upload 接口初始化分块上传时得到的 UploadId。
+// @gotags: validate:"required" doc:"标识本次分块上传的 ID，使用 Initiate Multipart Upload 接口初始化分块上传时得到的 UploadId"
+string upload_id = 1[json_name="upload_id"];
+}
+message UploadMultipartFileRequest {
+	// @gotags: validate:"required" doc:"文件名,仅支持相对路径，例如test/a.txt,不支持/开头的绝对路径"
+	string key = 1;
+	bytes content = 2;
+	// uploadId 标识本次分块上传的 ID，使用 Initiate Multipart Upload 接口初始化分块上传时得到的 UploadId。
+// @gotags: validate:"required" doc:"标识本次分块上传的 ID，使用 Initiate Multipart Upload 接口初始化分块上传时得到的 UploadId"
+	string uploadId = 3[json_name="upload_id"];
+	// @gotags: validate:"required,gt=0,lte=100000" doc:"分块编号,从1开始"
+	int64 partNumber = 4[json_name="part_number"];
+	// @gotags: validate:"required,sha256" doc:"文件sha256"
+	string sha256 = 5;
+}
+message UploadMultipartFileResponse {
+	// @gotags: validate:"required" doc:"文件名,仅支持相对路径，例如test/a.txt,不支持/开头的绝对路径"
+	string uri = 1 [json_name="uri"];
+}
+message UploadFileRequest {
+	// @gotags: validate:"required" doc:"文件名,仅支持相对路径，例如test/a.txt,不支持/开头的绝对路径"
+	string key = 1;
+	bytes content = 2;
+	string contentType = 3[json_name="content_type"];
+	// @gotags: validate:"required,sha256" doc:"文件sha256"
+	string sha256 = 4;
+}
+message UploadFileResponse {
+	string uri = 1 [json_name="uri"];
+
+}
+message CompleteMultipartUploadRequest {
+    // upload_id 标识本次分块上传的 ID，使用 Initiate Multipart Upload 接口初始化分块上传时得到的 UploadId。
+    // @gotags: validate:"required" doc:"标识本次分块上传的 ID，使用 Initiate Multipart Upload 接口初始化分块上传时得到的 UploadId"
+	string upload_id = 1[json_name="upload_id"];
+	// @gotags: validate:"required" doc:"文件名,仅支持相对路径，例如test/a.txt,不支持/开头的绝对路径"
+	string key = 2;
+	string contentType = 3[json_name="content_type"];
+	// @gotags: validate:"required,sha256" doc:"文件sha256"
+	string sha256 = 4;
+
+
+}
+message CompleteMultipartUploadResponse {
+	string uri = 1 [json_name="uri"];
+
+	string sha256 = 2;
+}
+message AbortMultipartUploadRequest{
+	// upload_id 标识本次分块上传的 ID，使用 Initiate Multipart Upload 接口初始化分块上传时得到的 UploadId。
+	string upload_id = 1[json_name="upload_id"];
+
+}
+message AbortMultipartUploadResponse{
+}
+// 上传完成后的响应
+message UploadAPIResponse {
+	string uri = 1 [json_name="uri"];
+	string sha256 = 2;
+	
+}
+
+message DownloadRequest {
+	// @gotags: validate:"required" doc:"文件名,仅支持相对路径，例如test/a.txt,不支持/开头的绝对路径"
+	string key = 1;
+}
+message DownloadResponse {
+	bytes content = 1;
+	int64 part_number = 2[json_name="part_number"];
+}
+message DeleteRequest {
+	// @gotags: validate:"required" doc:"文件名,仅支持相对路径，例如test/a.txt,不支持/开头的绝对路径"
+	string key = 1;
+}
+message DeleteResponse {
+
+}
+service FileService {
+	rpc Upload(UploadFileRequest) returns (UploadFileResponse){
+		option (google.api.http) = {
+			put: "/api/v1/file"
+			body: "*"
+		  };
+	};
+	rpc UploadMultipartFile(UploadMultipartFileRequest) returns (UploadMultipartFileResponse){
+		option (google.api.http) = {
+			put: "/api/v1/file/part"
+			body: "*"
+		  };
+	};
+	rpc InitiateMultipartUpload(InitiateMultipartUploadRequest) returns (InitiateMultipartUploadResponse){
+		option (google.api.http) = {
+			post: "/api/v1/file/part/init"
+			body: "*"
+		  };
+	};
+	rpc CompleteMultipartUpload(CompleteMultipartUploadRequest) returns (CompleteMultipartUploadResponse){
+		option (google.api.http) = {
+			post: "/api/v1/file/part/complete"
+			body: "*"
+		  };
+	};
+	rpc AbortMultipartUpload(AbortMultipartUploadRequest) returns (AbortMultipartUploadResponse){
+		option (google.api.http) = {
+			post: "/api/v1/file/part/abort"
+			body: "*"
+		  };
+	};
+	rpc Download(DownloadRequest) returns (stream DownloadResponse){
+		option (google.api.http) = {
+			get: "/api/v1/file"
+		  };
+	};
+	rpc Delete(DeleteRequest) returns (DeleteResponse){
+		option (google.api.http) = {
+			delete: "/api/v1/file"
+		  };
+	};
+}
+
+
+
+
