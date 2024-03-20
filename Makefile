@@ -30,6 +30,7 @@ TS_ARGS = --plugin="protoc-gen-ts=$(TS_PROTO_PLUGIN)" \
 
 
 common:
+	@rm -rf $(OUTPUT_DIR)
 	@mkdir -p $(OUTPUT_DIR)
 .PHONY: make_dir generate go python ts common
 clean:

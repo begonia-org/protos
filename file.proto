@@ -32,9 +32,9 @@ message UploadMultipartFileRequest {
 	bytes content = 2;
 	// uploadId 标识本次分块上传的 ID，使用 Initiate Multipart Upload 接口初始化分块上传时得到的 UploadId。
 // @gotags: validate:"required" doc:"标识本次分块上传的 ID，使用 Initiate Multipart Upload 接口初始化分块上传时得到的 UploadId"
-	string uploadId = 3[json_name="upload_id"];
+	string upload_id = 3[json_name="upload_id"];
 	// @gotags: validate:"required,gt=0,lte=100000" doc:"分块编号,从1开始"
-	int64 partNumber = 4[json_name="part_number"];
+	int64 part_number = 4[json_name="part_number"];
 	// @gotags: validate:"required,sha256" doc:"文件sha256"
 	string sha256 = 5;
 }
@@ -46,7 +46,7 @@ message UploadFileRequest {
 	// @gotags: validate:"required" doc:"文件名,仅支持相对路径，例如test/a.txt,不支持/开头的绝对路径"
 	string key = 1;
 	bytes content = 2;
-	string contentType = 3[json_name="content_type"];
+	string content_type = 3[json_name="content_type"];
 	// @gotags: validate:"required,sha256" doc:"文件sha256"
 	string sha256 = 4;
 }
@@ -60,7 +60,7 @@ message CompleteMultipartUploadRequest {
 	string upload_id = 1[json_name="upload_id"];
 	// @gotags: validate:"required" doc:"文件名,仅支持相对路径，例如test/a.txt,不支持/开头的绝对路径"
 	string key = 2;
-	string contentType = 3[json_name="content_type"];
+	string content_type = 3[json_name="content_type"];
 	// @gotags: validate:"required,sha256" doc:"文件sha256"
 	string sha256 = 4;
 
