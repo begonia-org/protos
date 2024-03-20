@@ -27,6 +27,11 @@ message APIResponse {
     string response_type=3 [json_name="response_type"];
     bytes data=4;
 }
+message HttpResponse{
+  string message=1;
+  double code =2;
+  google.protobuf.Any data = 3;
+}
 message EventStreamResponse {
     string event=1;
     string data =2;
