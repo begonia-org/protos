@@ -50,7 +50,7 @@ message AuthSeed{
 // 加密种子
 message AuthLogAPIResponse{
 	string msg=1;
-	string timestamp=3;
+	string timestamp=2;
 }
 service AuthService{
 rpc Login (LoginAPIRequest) returns (LoginAPIResponse) {
