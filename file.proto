@@ -3,6 +3,7 @@ package begonia.org.begonia;
 option go_package = "github.com/begonia-org/begonia/api/v1";
 import "google/protobuf/descriptor.proto";
 import "google/api/annotations.proto";
+import "google/api/httpbody.proto";
 import "common/options.proto";
 
 
@@ -134,7 +135,7 @@ service FileService {
 			body: "*"
 		  };
 	};
-	rpc Download(DownloadRequest) returns (stream DownloadResponse){
+	rpc Download(DownloadRequest) returns (google.api.HttpBody){
 		option (google.api.http) = {
 			get: "/api/v1/file"
 		  };

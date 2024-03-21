@@ -38,7 +38,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": ""
+      "http_response": "begonia.org.begonia.common.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.begonia.AppsService/CreateApp": [
@@ -77,7 +77,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": ""
+      "http_response": "begonia.org.begonia.common.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.begonia.AppsService/GetApps": [
@@ -116,7 +116,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": ""
+      "http_response": "begonia.org.begonia.common.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.begonia.AuthService/Account": [
@@ -508,7 +508,8 @@
         "Template": "/api/v1/file/part/abort",
         "Verb": "",
         "Version": 1
-      }
+      },
+      "http_response": "begonia.org.begonia.common.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.begonia.FileService/CompleteMultipartUpload": [
@@ -549,7 +550,8 @@
         "Template": "/api/v1/file/part/complete",
         "Verb": "",
         "Version": 1
-      }
+      },
+      "http_response": "begonia.org.begonia.common.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.begonia.FileService/Delete": [
@@ -584,7 +586,8 @@
         "Template": "/api/v1/file",
         "Verb": "",
         "Version": 1
-      }
+      },
+      "http_response": "begonia.org.begonia.common.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.begonia.FileService/Download": [
@@ -595,9 +598,9 @@
       "InName": "DownloadRequest",
       "InPkg": "begonia.org.begonia",
       "IsClientStream": false,
-      "IsServerStream": true,
-      "OutName": "DownloadResponse",
-      "OutPkg": "begonia.org.begonia",
+      "IsServerStream": false,
+      "OutName": "HttpBody",
+      "OutPkg": "google.api",
       "PathParams": [],
       "Pattern": {},
       "Pkg": "begonia.org.begonia",
@@ -619,7 +622,8 @@
         "Template": "/api/v1/file",
         "Verb": "",
         "Version": 1
-      }
+      },
+      "http_response": "begonia.org.begonia.common.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.begonia.FileService/InitiateMultipartUpload": [
@@ -660,7 +664,8 @@
         "Template": "/api/v1/file/part/init",
         "Verb": "",
         "Version": 1
-      }
+      },
+      "http_response": "begonia.org.begonia.common.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.begonia.FileService/Upload": [
@@ -695,7 +700,8 @@
         "Template": "/api/v1/file",
         "Verb": "",
         "Version": 1
-      }
+      },
+      "http_response": "begonia.org.begonia.common.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.begonia.FileService/UploadMultipartFile": [
@@ -733,7 +739,8 @@
         "Template": "/api/v1/file/part",
         "Verb": "",
         "Version": 1
-      }
+      },
+      "http_response": "begonia.org.begonia.common.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.begonia.SystemService/GetInfo": [
