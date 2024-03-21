@@ -622,8 +622,7 @@
         "Template": "/api/v1/file",
         "Verb": "",
         "Version": 1
-      },
-      "http_response": "begonia.org.begonia.common.api.v1.HttpResponse"
+      }
     }
   ],
   "/begonia.org.begonia.FileService/InitiateMultipartUpload": [
