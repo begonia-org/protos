@@ -3,6 +3,7 @@ package begonia.org.begonia.common.api.v1;
 option go_package = "github.com/begonia-org/begonia/common/api/v1";
 import "google/protobuf/descriptor.proto";
 import "google/protobuf/any.proto";
+import "google/protobuf/struct.proto";
 extend google.protobuf.EnumValueOptions {
 	optional string description = 50031;
   optional int32 http_code = 50032;
@@ -30,7 +31,7 @@ message APIResponse {
 message HttpResponse{
   string message=1;
   int32 code =2;
-  google.protobuf.Any data = 3;
+  google.protobuf.Struct data = 3;
 }
 message EventStreamResponse {
     string event=1;
