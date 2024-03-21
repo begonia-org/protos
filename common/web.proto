@@ -29,7 +29,7 @@ message APIResponse {
 }
 message HttpResponse{
   string message=1;
-  double code =2;
+  int32 code =2;
   google.protobuf.Any data = 3;
 }
 message EventStreamResponse {

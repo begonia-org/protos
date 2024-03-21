@@ -5,6 +5,7 @@ import "google/api/annotations.proto";
 import "google/protobuf/descriptor.proto";
 import "common/web.proto";
 import "user.proto";
+import "common/options.proto";
 message LoginAPIRequest{
   string auth=1;
   int64 seed=2;
@@ -53,6 +54,7 @@ message AuthLogAPIResponse{
 	string timestamp=2;
 }
 service AuthService{
+	option (.begonia.org.begonia.common.api.v1.http_response)="begonia.org.begonia.common.api.v1.HttpResponse";
 rpc Login (LoginAPIRequest) returns (LoginAPIResponse) {
 	option (google.api.http) = {
    post: "/api/v1/auth/login"
@@ -76,6 +78,7 @@ rpc Login (LoginAPIRequest) returns (LoginAPIResponse) {
 	option (google.api.http) = {
    post: "/api/v1/auth/log"
    body: "*"
+
  };
  }
  rpc Regsiter(RegsiterAPIRequest)returns(RegsiterAPIResponse){

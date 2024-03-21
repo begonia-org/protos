@@ -24,3 +24,6 @@ extend google.protobuf.EnumValueOptions {
 extend google.protobuf.FileOptions {
   string go_mod_pkg = 50037;
 }
+extend google.protobuf.ServiceOptions {
+  optional string http_response = 50038;
+}
