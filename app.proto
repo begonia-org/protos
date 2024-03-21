@@ -100,6 +100,8 @@ message AppsListResponse{
 }
 service AppsService {
 	option (.begonia.org.begonia.common.api.v1.auth_reqiured)=true;
+	option (.begonia.org.begonia.common.api.v1.http_response)="begonia.org.begonia.common.api.v1.HttpResponse";
+
 	// @gotags: doc:"添加app服务"
 	rpc AddApps(AddAppsRequest) returns (.begonia.org.begonia.common.api.v1.APIResponse){
 		option (google.api.http) = {

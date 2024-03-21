@@ -101,6 +101,9 @@ message DeleteResponse {
 
 }
 service FileService {
+	option (.begonia.org.begonia.common.api.v1.http_response)="begonia.org.begonia.common.api.v1.HttpResponse";
+	option (.begonia.org.begonia.common.api.v1.auth_reqiured)=true;
+
 	rpc Upload(UploadFileRequest) returns (UploadFileResponse){
 		option (google.api.http) = {
 			put: "/api/v1/file"
