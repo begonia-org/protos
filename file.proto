@@ -15,6 +15,7 @@ enum FileSvrStatus{
 	FILE_PARTNUMBER_MISSING_ERR=6104[(.begonia.org.begonia.common.api.v1.msg) = "File partNumber missing error"];
 	FILE_NOT_FOUND_UPLOADID_ERR=6105[(.begonia.org.begonia.common.api.v1.msg) = "File not found uploadId error"];
 	FILE_INVAILDATE_KEY_ERR=6106[(.begonia.org.begonia.common.api.v1.msg) = "File invaildate key error"];
+	FILE_INVAILDATE_RANGE_ERR=6107[(.begonia.org.begonia.common.api.v1.msg) = "Invaildate Range"];
 
 
 }
@@ -101,6 +102,25 @@ message DeleteRequest {
 message DeleteResponse {
 
 }
+message FileMetadataRequest {
+	// @gotags: validate:"required" doc:"文件名,仅支持相对路径，例如test/a.txt,不支持/开头的绝对路径"
+	string key = 1;
+}
+message FileMetadataResponse {
+	// @gotags: validate:"required" doc:"文件名,仅支持相对路径，例如test/a.txt,不支持/开头的绝对路径"
+	string key = 1;
+	// @gotags: validate:"required" doc:"文件大小"
+	int64 size = 2;
+	// @gotags: validate:"required" doc:"文件sha256"
+	string sha256 = 3;
+	// @gotags: json:"content_type" validate:"required" doc:"文件类型"
+	string content_type = 4;
+	// @gotags: json:"etag" validate:"required" doc:"文件创建时间"
+	string etag = 5;
+	// @gotags: json:"modify_time" validate:"required" doc:"文件修改时间"
+	int64 modify_time = 6;
+	string name = 7;
+}
 service FileService {
 	option (.begonia.org.begonia.common.api.v1.http_response)="begonia.org.begonia.common.api.v1.HttpResponse";
 	option (.begonia.org.begonia.common.api.v1.auth_reqiured)=true;
@@ -143,6 +163,14 @@ service FileService {
 	rpc Delete(DeleteRequest) returns (DeleteResponse){
 		option (google.api.http) = {
 			delete: "/api/v1/file"
+		  };
+	};
+	rpc Metadata(FileMetadataRequest) returns (FileMetadataResponse){
+		option (google.api.http) = {
+			custom: {
+				kind: "HEAD"
+				path: "/api/v1/file/metadata"
+			  }
 		  };
 	};
 }
