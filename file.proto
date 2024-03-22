@@ -165,6 +165,11 @@ service FileService {
 			delete: "/api/v1/file"
 		  };
 	};
+	rpc DownloadForRange(DownloadRequest) returns (google.api.HttpBody){
+		option (google.api.http) = {
+			get: "/api/v1/file/part"
+		  };
+	};
 	rpc Metadata(FileMetadataRequest) returns (FileMetadataResponse){
 		option (google.api.http) = {
 			custom: {
