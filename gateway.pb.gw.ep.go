@@ -7,7 +7,7 @@ package main
 
 import (
 	"context"
-	"github.com/begonia-org/begonia-go-sdk/api/v1"
+	"github.com/begonia-org/go-sdk/api/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/begonia-org/begonia/endpoint"
 	"google.golang.org/grpc"
