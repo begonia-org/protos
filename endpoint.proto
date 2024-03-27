@@ -6,12 +6,15 @@ import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/field_mask.proto";
 
-import "common/web.proto";
 import "common/options.proto";
 
 enum EndpointStatus{
     ENABLED = 0;
     DISABLED = 1;
+}
+enum EndpointSvrStatus{
+ENDPOINT_UNKNOW = 0;
+NOT_SUPPORT_BALANCE = 1[(.begonia.org.begonia.common.api.v1.msg) = "Not support balance"];
 }
 message EndpointMeta {
     // @gotags: json:"addr" gorm:"column:addr;type:varchar(128);comment:服务地址"
@@ -24,62 +27,127 @@ message Endpoints{
     int64 id=1;
     // @gotags: json:"name" gorm:"column:name;type:varchar(128);unique;comment:服务名称"
     string name=2;
+    // @gotags: json:"unique_key" gorm:"column:unique_key;type:varchar(128);unique;comment:服务key"
+    string unique_key=3;
     // @gotags: json:"service_name" gorm:"column:service_name;type:varchar(128);unique;comment:proto服务名称"
-    string service_name=3 [json_name="service_name"];
+    string service_name=4 [json_name="service_name"];
     // @gotags: json:"service_name" gorm:"column:service_name;type:text;comment:proto服务描述"
-    string description=4;
+    string description=5;
     // @gotags: json:"go_package" gorm:"column:go_package;type:varchar(512);comment:proto服务对应的go mod 包名"
-    string go_package=5 [json_name="go_package"];
+    string go_package=6 [json_name="go_package"];
     // @gotags: json:"proto_path" gorm:"column:proto_path;type:varchar(512);comment:proto文件路径"
-    string proto_path=6 [json_name="proto_path"];
+    string proto_path=7 [json_name="proto_path"];
     // @gotags: json:"endpoint" gorm:"column:endpoint;type:json;comment:proto服务对应的endpoint 服务地址"
-    repeated EndpointMeta endpoint=7;
+    repeated EndpointMeta endpoint=8;
     // @gotags: json:"status" gorm:"column:status;type:tinyint;comment:proto服务状态"
-    EndpointStatus status=8 [json_name="status"];
+    EndpointStatus status=9 [json_name="status"];
     // @gotags: json:"is_deleted" gorm:"column:is_deleted;type:tinyint;comment:proto服务是否删除"
-    bool is_deleted=9 [json_name="is_deleted"];
+    bool is_deleted=10 [json_name="is_deleted"];
     // @gotags: json:"balance" gorm:"column:balance;type:varchar(32);comment:负载均衡策略"
-    string balance=10;
+    string balance=11;
     // @gotags: json:"version" gorm:"column:version;type:varchar(32);comment:版本号"
-    string version=11;
+    string version=12;
+    // @gotags: json:"tags" gorm:"column:tags;type:json;comment:标签"
+    repeated string tags=15;
     // @gotags: doc:"完成时间" gorm:"column:completed_at;type:datetime;serializer:timepb;comment:定时任务的最近一次完成时间"
-    google.protobuf.Timestamp created_at = 12;
+    google.protobuf.Timestamp created_at = 13;
     // @gotags: doc:"更新时间" gorm:"autoUpdateTime;column:updated_at;type:datetime;serializer:timepb;comment:定时任务的更新时间"
-    google.protobuf.Timestamp updated_at = 13;
+    google.protobuf.Timestamp updated_at = 14;
 	// @gotags: gorm:"-" json:"update_mask"
     google.protobuf.FieldMask update_mask = 18;
     
 
 }
-message EndpointRequest{
-   repeated Endpoints endpoints=1;
+message AddEndpointRequest{
+    // Endpoints endpoints=1;
+    // @gotags: json:"name" gorm:"column:name;type:varchar(128);unique;comment:服务名称"
+    string name=1;
+    // @gotags: json:"service_name" gorm:"column:service_name;type:varchar(128);unique;comment:proto服务名称"
+    string service_name=2 [json_name="service_name"];
+    string description=3;
+    string proto_path=4 [json_name="proto_path"];
+    repeated EndpointMeta endpoints=5;
+    string balance=6;
+    repeated string tags=7;
+    string proto_version=8 [json_name="proto_version"];
 }
+message UpdateEndpointRequest{
+    // Endpoints endpoints=1;
+    // @gotags: json:"name" gorm:"column:name;type:varchar(128);unique;comment:服务名称"
+    string name=1;
+    // @gotags: json:"service_name" gorm:"column:service_name;type:varchar(128);unique;comment:proto服务名称"
+    string service_name=2 [json_name="service_name"];
+    string description=3;
+    string proto_path=4 [json_name="proto_path"];
+    repeated EndpointMeta endpoint=5;
+    string balance=6;
+    string unique_key = 7[json_name="unique_key"];
+    EndpointStatus status=9 [json_name="status"];
+    // @gotags: json:"is_deleted" gorm:"column:is_deleted;type:tinyint;comment:proto服务是否删除"
+    bool is_deleted=10 [json_name="is_deleted"];
+    repeated string tags=11;
+    string version=12;
+}
+message UpdateEndpointResponse{
 
+}
+message AddEndpointResponse{
+    string unique_key=1 [json_name="unique_key"];
+}
+message DeleteEndpointRequest{
+    // @gotags: json:"unique_key" gorm:"column:unique_key;type:varchar(128);unique;comment:服务key"
+    string unique_key=1;
+}
+message DeleteEndpointResponse{
+    
+}
+message ListEndpointRequest{
+    repeated string tags=1;
+    repeated string service_name=2 [json_name="service_name"];
+    repeated string name=3;
+    repeated EndpointStatus status=4 [json_name="status"];
+    repeated string unique_key=5 [json_name="unique_key"];
+    repeated string balance=6;
+
+}
+message ListEndpointResponse{
+    repeated Endpoints endpoints=1;
+}
+message DetailsEndpointRequest{
+    // @gotags: json:"unique_key" gorm:"column:unique_key;type:varchar(128);unique;comment:服务key"
+    string unique_key=1;
+}
+message DetailsEndpointResponse{
+    Endpoints endpoints=1;
+}
 service EndpointService{
     option (.begonia.org.begonia.common.api.v1.auth_reqiured)=true;
-    rpc Create(EndpointRequest) returns (.begonia.org.begonia.common.api.v1.APIResponse){
+    rpc Create(AddEndpointRequest) returns (AddEndpointResponse){
         option (google.api.http) = {
-            post: "/api/v1/endpoint/create"
+            post: "/api/v1/endpoint"
             body: "*"
           };
           
     };
-    rpc Update(EndpointRequest) returns (.begonia.org.begonia.common.api.v1.APIResponse){
+    rpc Update(UpdateEndpointRequest) returns (UpdateEndpointResponse){
         option (google.api.http) = {
-            post: "/api/v1/endpoint/update"
+            patch: "/api/v1/endpoint"
             body: "*"
           };
     };
-    rpc Delete(EndpointRequest) returns (.begonia.org.begonia.common.api.v1.APIResponse){
+    rpc Delete(DeleteEndpointRequest) returns (DeleteEndpointResponse){
         option (google.api.http) = {
-            post: "/api/v1/endpoint/delete"
-            body: "*"
+            delete: "/api/v1/endpoint/{unique_key}"
           };
     };
-    rpc List(EndpointRequest) returns (.begonia.org.begonia.common.api.v1.APIResponse){
+    rpc List(ListEndpointRequest) returns (ListEndpointResponse){
         option (google.api.http) = {
-            post: "/api/v1/endpoint/list"
-            body: "*"
+            get: "/api/v1/endpoint"
+          };
+    };
+    rpc Details(DetailsEndpointRequest) returns (DetailsEndpointResponse){
+        option (google.api.http) = {
+            get: "/api/v1/endpoint/deltails/{unique_key}"
           };
     };
 }

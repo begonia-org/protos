@@ -51,9 +51,11 @@ message UploadFileRequest {
 	string content_type = 3[json_name="content_type"];
 	// @gotags: validate:"required,sha256" doc:"文件sha256"
 	string sha256 = 4;
+	bool use_version = 5[json_name="use_version"];
 }
 message UploadFileResponse {
 	string uri = 1 [json_name="uri"];
+	string version = 2;
 
 }
 message CompleteMultipartUploadRequest {
@@ -65,6 +67,7 @@ message CompleteMultipartUploadRequest {
 	string content_type = 3[json_name="content_type"];
 	// @gotags: validate:"required,sha256" doc:"文件sha256"
 	string sha256 = 4;
+	bool use_version = 5[json_name="use_version"];
 
 
 }
@@ -72,6 +75,7 @@ message CompleteMultipartUploadResponse {
 	string uri = 1 [json_name="uri"];
 
 	string sha256 = 2;
+	string version = 3;
 }
 message AbortMultipartUploadRequest{
 	// upload_id 标识本次分块上传的 ID，使用 Initiate Multipart Upload 接口初始化分块上传时得到的 UploadId。
@@ -90,6 +94,7 @@ message UploadAPIResponse {
 message DownloadRequest {
 	// @gotags: validate:"required" doc:"文件名,仅支持相对路径，例如test/a.txt,不支持/开头的绝对路径"
 	string key = 1;
+	string version=2;
 }
 message DownloadResponse {
 	bytes content = 1;
@@ -105,6 +110,7 @@ message DeleteResponse {
 message FileMetadataRequest {
 	// @gotags: validate:"required" doc:"文件名,仅支持相对路径，例如test/a.txt,不支持/开头的绝对路径"
 	string key = 1;
+	string version=2;
 }
 message FileMetadataResponse {
 	// @gotags: validate:"required" doc:"文件名,仅支持相对路径，例如test/a.txt,不支持/开头的绝对路径"
@@ -120,6 +126,7 @@ message FileMetadataResponse {
 	// @gotags: json:"modify_time" validate:"required" doc:"文件修改时间"
 	int64 modify_time = 6;
 	string name = 7;
+	string version = 8;
 }
 service FileService {
 	option (.begonia.org.begonia.common.api.v1.http_response)="begonia.org.begonia.common.api.v1.HttpResponse";

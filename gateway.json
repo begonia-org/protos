@@ -625,6 +625,44 @@
       }
     }
   ],
+  "/begonia.org.begonia.FileService/DownloadForRange": [
+    {
+      "FullMethodName": "/begonia.org.begonia.FileService/DownloadForRange",
+      "HttpMethod": "GET",
+      "HttpUri": "/api/v1/file/part",
+      "InName": "DownloadRequest",
+      "InPkg": "begonia.org.begonia",
+      "IsClientStream": false,
+      "IsServerStream": false,
+      "OutName": "HttpBody",
+      "OutPkg": "google.api",
+      "PathParams": [],
+      "Pattern": {},
+      "Pkg": "begonia.org.begonia",
+      "Template": {
+        "Fields": null,
+        "OpCodes": [
+          2,
+          0,
+          2,
+          1,
+          2,
+          2,
+          2,
+          3
+        ],
+        "Pool": [
+          "api",
+          "v1",
+          "file",
+          "part"
+        ],
+        "Template": "/api/v1/file/part",
+        "Verb": "",
+        "Version": 1
+      }
+    }
+  ],
   "/begonia.org.begonia.FileService/InitiateMultipartUpload": [
     {
       "FullMethodName": "/begonia.org.begonia.FileService/InitiateMultipartUpload",
@@ -661,6 +699,45 @@
           "init"
         ],
         "Template": "/api/v1/file/part/init",
+        "Verb": "",
+        "Version": 1
+      },
+      "http_response": "begonia.org.begonia.common.api.v1.HttpResponse"
+    }
+  ],
+  "/begonia.org.begonia.FileService/Metadata": [
+    {
+      "FullMethodName": "/begonia.org.begonia.FileService/Metadata",
+      "HttpMethod": "HEAD",
+      "HttpUri": "/api/v1/file/metadata",
+      "InName": "FileMetadataRequest",
+      "InPkg": "begonia.org.begonia",
+      "IsClientStream": false,
+      "IsServerStream": false,
+      "OutName": "FileMetadataResponse",
+      "OutPkg": "begonia.org.begonia",
+      "PathParams": [],
+      "Pattern": {},
+      "Pkg": "begonia.org.begonia",
+      "Template": {
+        "Fields": null,
+        "OpCodes": [
+          2,
+          0,
+          2,
+          1,
+          2,
+          2,
+          2,
+          3
+        ],
+        "Pool": [
+          "api",
+          "v1",
+          "file",
+          "metadata"
+        ],
+        "Template": "/api/v1/file/metadata",
         "Verb": "",
         "Version": 1
       },

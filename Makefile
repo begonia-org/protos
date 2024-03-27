@@ -8,6 +8,7 @@ TS_PROTO_PLUGIN = $(shell which protoc-gen-ts_proto)
 # 目标文件夹
 PROTO_DIR = .
 OUTPUT_DIR = ../api/v1
+COMMON_PROTOS_DIR= ./common
 
 # 文件列表
 GO_PROTO_FILES = $(wildcard $(PROTO_DIR)/*.proto)
@@ -30,7 +31,6 @@ TS_ARGS = --plugin="protoc-gen-ts=$(TS_PROTO_PLUGIN)" \
 
 
 common:
-	@rm -rf $(OUTPUT_DIR)
 	@mkdir -p $(OUTPUT_DIR)
 .PHONY: make_dir generate go python ts common
 clean:
