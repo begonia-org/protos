@@ -1,6 +1,6 @@
 syntax = "proto3";
-package begonia.org.begonia;
-option go_package = "github.com/begonia-org/begonia/api/v1";
+package begonia.org.sdk;
+option go_package = "github.com/begonia-org/go-sdk/api/v1";
 import "google/protobuf/descriptor.proto";
 import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
@@ -14,7 +14,7 @@ enum EndpointStatus{
 }
 enum EndpointSvrStatus{
 ENDPOINT_UNKNOW = 0;
-NOT_SUPPORT_BALANCE = 1[(.begonia.org.begonia.common.api.v1.msg) = "Not support balance"];
+NOT_SUPPORT_BALANCE = 1[(.begonia.org.sdk.common.msg) = "Not support balance"];
 }
 message EndpointMeta {
     // @gotags: json:"addr" gorm:"column:addr;type:varchar(128);comment:服务地址"
@@ -121,7 +121,8 @@ message DetailsEndpointResponse{
     Endpoints endpoints=1;
 }
 service EndpointService{
-    option (.begonia.org.begonia.common.api.v1.auth_reqiured)=true;
+    option (.begonia.org.sdk.common.auth_reqiured)=true;
+    option (.begonia.org.sdk.common.http_response)="begonia.org.sdk.common.HttpResponse";
     rpc Create(AddEndpointRequest) returns (AddEndpointResponse){
         option (google.api.http) = {
             post: "/api/v1/endpoint"

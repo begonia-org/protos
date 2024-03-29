@@ -1,18 +1,18 @@
 {
-  "/begonia.org.begonia.AppsService/AddApps": [
+  "/begonia.org.sdk.AppsService/AddApps": [
     {
-      "FullMethodName": "/begonia.org.begonia.AppsService/AddApps",
+      "FullMethodName": "/begonia.org.sdk.AppsService/AddApps",
       "HttpMethod": "POST",
       "HttpUri": "/api/v1/app/create/batch",
       "InName": "AddAppsRequest",
-      "InPkg": "begonia.org.begonia",
+      "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
       "IsServerStream": false,
       "OutName": "APIResponse",
-      "OutPkg": "begonia.org.begonia.common.api.v1",
+      "OutPkg": "begonia.org.sdk.common",
       "PathParams": [],
       "Pattern": {},
-      "Pkg": "begonia.org.begonia",
+      "Pkg": "begonia.org.sdk",
       "Template": {
         "Fields": null,
         "OpCodes": [
@@ -38,23 +38,23 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.begonia.common.api.v1.HttpResponse"
+      "http_response": "begonia.org.sdk.common.HttpResponse"
     }
   ],
-  "/begonia.org.begonia.AppsService/CreateApp": [
+  "/begonia.org.sdk.AppsService/CreateApp": [
     {
-      "FullMethodName": "/begonia.org.begonia.AppsService/CreateApp",
+      "FullMethodName": "/begonia.org.sdk.AppsService/CreateApp",
       "HttpMethod": "POST",
       "HttpUri": "/api/v1/app/create",
       "InName": "CreateAppRequest",
-      "InPkg": "begonia.org.begonia",
+      "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
       "IsServerStream": false,
       "OutName": "CreateAppResponse",
-      "OutPkg": "begonia.org.begonia",
+      "OutPkg": "begonia.org.sdk",
       "PathParams": [],
       "Pattern": {},
-      "Pkg": "begonia.org.begonia",
+      "Pkg": "begonia.org.sdk",
       "Template": {
         "Fields": null,
         "OpCodes": [
@@ -77,23 +77,23 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.begonia.common.api.v1.HttpResponse"
+      "http_response": "begonia.org.sdk.common.HttpResponse"
     }
   ],
-  "/begonia.org.begonia.AppsService/GetApps": [
+  "/begonia.org.sdk.AppsService/GetApps": [
     {
-      "FullMethodName": "/begonia.org.begonia.AppsService/GetApps",
+      "FullMethodName": "/begonia.org.sdk.AppsService/GetApps",
       "HttpMethod": "GET",
       "HttpUri": "/api/v1/app/list",
       "InName": "AppsListRequest",
-      "InPkg": "begonia.org.begonia",
+      "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
       "IsServerStream": false,
       "OutName": "APIResponse",
-      "OutPkg": "begonia.org.begonia.common.api.v1",
+      "OutPkg": "begonia.org.sdk.common",
       "PathParams": [],
       "Pattern": {},
-      "Pkg": "begonia.org.begonia",
+      "Pkg": "begonia.org.sdk",
       "Template": {
         "Fields": null,
         "OpCodes": [
@@ -116,23 +116,23 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.begonia.common.api.v1.HttpResponse"
+      "http_response": "begonia.org.sdk.common.HttpResponse"
     }
   ],
-  "/begonia.org.begonia.AuthService/Account": [
+  "/begonia.org.sdk.AuthService/Account": [
     {
-      "FullMethodName": "/begonia.org.begonia.AuthService/Account",
+      "FullMethodName": "/begonia.org.sdk.AuthService/Account",
       "HttpMethod": "POST",
       "HttpUri": "/api/v1/auth/account",
       "InName": "AccountAPIRequest",
-      "InPkg": "begonia.org.begonia",
+      "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
       "IsServerStream": false,
       "OutName": "AccountAPIResponse",
-      "OutPkg": "begonia.org.begonia",
+      "OutPkg": "begonia.org.sdk",
       "PathParams": [],
       "Pattern": {},
-      "Pkg": "begonia.org.begonia",
+      "Pkg": "begonia.org.sdk",
       "Template": {
         "Fields": null,
         "OpCodes": [
@@ -155,23 +155,23 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.begonia.common.api.v1.HttpResponse"
+      "http_response": "begonia.org.sdk.common.HttpResponse"
     }
   ],
-  "/begonia.org.begonia.AuthService/AuthSeed": [
+  "/begonia.org.sdk.AuthService/AuthSeed": [
     {
-      "FullMethodName": "/begonia.org.begonia.AuthService/AuthSeed",
+      "FullMethodName": "/begonia.org.sdk.AuthService/AuthSeed",
       "HttpMethod": "POST",
       "HttpUri": "/api/v1/auth/log",
       "InName": "AuthLogAPIRequest",
-      "InPkg": "begonia.org.begonia",
+      "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
       "IsServerStream": false,
       "OutName": "AuthLogAPIResponse",
-      "OutPkg": "begonia.org.begonia",
+      "OutPkg": "begonia.org.sdk",
       "PathParams": [],
       "Pattern": {},
-      "Pkg": "begonia.org.begonia",
+      "Pkg": "begonia.org.sdk",
       "Template": {
         "Fields": null,
         "OpCodes": [
@@ -194,23 +194,23 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.begonia.common.api.v1.HttpResponse"
+      "http_response": "begonia.org.sdk.common.HttpResponse"
     }
   ],
-  "/begonia.org.begonia.AuthService/Login": [
+  "/begonia.org.sdk.AuthService/Login": [
     {
-      "FullMethodName": "/begonia.org.begonia.AuthService/Login",
+      "FullMethodName": "/begonia.org.sdk.AuthService/Login",
       "HttpMethod": "POST",
       "HttpUri": "/api/v1/auth/login",
       "InName": "LoginAPIRequest",
-      "InPkg": "begonia.org.begonia",
+      "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
       "IsServerStream": false,
       "OutName": "LoginAPIResponse",
-      "OutPkg": "begonia.org.begonia",
+      "OutPkg": "begonia.org.sdk",
       "PathParams": [],
       "Pattern": {},
-      "Pkg": "begonia.org.begonia",
+      "Pkg": "begonia.org.sdk",
       "Template": {
         "Fields": null,
         "OpCodes": [
@@ -233,23 +233,23 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.begonia.common.api.v1.HttpResponse"
+      "http_response": "begonia.org.sdk.common.HttpResponse"
     }
   ],
-  "/begonia.org.begonia.AuthService/Logout": [
+  "/begonia.org.sdk.AuthService/Logout": [
     {
-      "FullMethodName": "/begonia.org.begonia.AuthService/Logout",
+      "FullMethodName": "/begonia.org.sdk.AuthService/Logout",
       "HttpMethod": "GET",
       "HttpUri": "/api/v1/auth/logout",
       "InName": "LogoutAPIRequest",
-      "InPkg": "begonia.org.begonia",
+      "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
       "IsServerStream": false,
       "OutName": "LogoutAPIResponse",
-      "OutPkg": "begonia.org.begonia",
+      "OutPkg": "begonia.org.sdk",
       "PathParams": [],
       "Pattern": {},
-      "Pkg": "begonia.org.begonia",
+      "Pkg": "begonia.org.sdk",
       "Template": {
         "Fields": null,
         "OpCodes": [
@@ -272,23 +272,23 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.begonia.common.api.v1.HttpResponse"
+      "http_response": "begonia.org.sdk.common.HttpResponse"
     }
   ],
-  "/begonia.org.begonia.AuthService/Regsiter": [
+  "/begonia.org.sdk.AuthService/Regsiter": [
     {
-      "FullMethodName": "/begonia.org.begonia.AuthService/Regsiter",
+      "FullMethodName": "/begonia.org.sdk.AuthService/Regsiter",
       "HttpMethod": "POST",
       "HttpUri": "/api/v1/auth/regsiter",
       "InName": "RegsiterAPIRequest",
-      "InPkg": "begonia.org.begonia",
+      "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
       "IsServerStream": false,
       "OutName": "RegsiterAPIResponse",
-      "OutPkg": "begonia.org.begonia",
+      "OutPkg": "begonia.org.sdk",
       "PathParams": [],
       "Pattern": {},
-      "Pkg": "begonia.org.begonia",
+      "Pkg": "begonia.org.sdk",
       "Template": {
         "Fields": null,
         "OpCodes": [
@@ -311,23 +311,23 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.begonia.common.api.v1.HttpResponse"
+      "http_response": "begonia.org.sdk.common.HttpResponse"
     }
   ],
-  "/begonia.org.begonia.EndpointService/Create": [
+  "/begonia.org.sdk.EndpointService/Create": [
     {
-      "FullMethodName": "/begonia.org.begonia.EndpointService/Create",
+      "FullMethodName": "/begonia.org.sdk.EndpointService/Create",
       "HttpMethod": "POST",
-      "HttpUri": "/api/v1/endpoint/create",
-      "InName": "EndpointRequest",
-      "InPkg": "begonia.org.begonia",
+      "HttpUri": "/api/v1/endpoint",
+      "InName": "AddEndpointRequest",
+      "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
       "IsServerStream": false,
-      "OutName": "APIResponse",
-      "OutPkg": "begonia.org.begonia.common.api.v1",
+      "OutName": "AddEndpointResponse",
+      "OutPkg": "begonia.org.sdk",
       "PathParams": [],
       "Pattern": {},
-      "Pkg": "begonia.org.begonia",
+      "Pkg": "begonia.org.sdk",
       "Template": {
         "Fields": null,
         "OpCodes": [
@@ -336,39 +336,87 @@
           2,
           1,
           2,
+          2
+        ],
+        "Pool": [
+          "api",
+          "v1",
+          "endpoint"
+        ],
+        "Template": "/api/v1/endpoint",
+        "Verb": "",
+        "Version": 1
+      },
+      "http_response": "begonia.org.sdk.common.HttpResponse"
+    }
+  ],
+  "/begonia.org.sdk.EndpointService/Delete": [
+    {
+      "FullMethodName": "/begonia.org.sdk.EndpointService/Delete",
+      "HttpMethod": "DELETE",
+      "HttpUri": "/api/v1/endpoint/{unique_key}",
+      "InName": "DeleteEndpointRequest",
+      "InPkg": "begonia.org.sdk",
+      "IsClientStream": false,
+      "IsServerStream": false,
+      "OutName": "DeleteEndpointResponse",
+      "OutPkg": "begonia.org.sdk",
+      "PathParams": [
+        "unique_key"
+      ],
+      "Pattern": {},
+      "Pkg": "begonia.org.sdk",
+      "Template": {
+        "Fields": [
+          "unique_key"
+        ],
+        "OpCodes": [
+          2,
+          0,
+          2,
+          1,
           2,
           2,
+          1,
+          0,
+          4,
+          1,
+          5,
           3
         ],
         "Pool": [
           "api",
           "v1",
           "endpoint",
-          "create"
+          "unique_key"
         ],
-        "Template": "/api/v1/endpoint/create",
+        "Template": "/api/v1/endpoint/{unique_key}",
         "Verb": "",
         "Version": 1
       },
-      "http_response": ""
+      "http_response": "begonia.org.sdk.common.HttpResponse"
     }
   ],
-  "/begonia.org.begonia.EndpointService/Delete": [
+  "/begonia.org.sdk.EndpointService/Details": [
     {
-      "FullMethodName": "/begonia.org.begonia.EndpointService/Delete",
-      "HttpMethod": "POST",
-      "HttpUri": "/api/v1/endpoint/delete",
-      "InName": "EndpointRequest",
-      "InPkg": "begonia.org.begonia",
+      "FullMethodName": "/begonia.org.sdk.EndpointService/Details",
+      "HttpMethod": "GET",
+      "HttpUri": "/api/v1/endpoint/deltails/{unique_key}",
+      "InName": "DetailsEndpointRequest",
+      "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
       "IsServerStream": false,
-      "OutName": "APIResponse",
-      "OutPkg": "begonia.org.begonia.common.api.v1",
-      "PathParams": [],
+      "OutName": "DetailsEndpointResponse",
+      "OutPkg": "begonia.org.sdk",
+      "PathParams": [
+        "unique_key"
+      ],
       "Pattern": {},
-      "Pkg": "begonia.org.begonia",
+      "Pkg": "begonia.org.sdk",
       "Template": {
-        "Fields": null,
+        "Fields": [
+          "unique_key"
+        ],
         "OpCodes": [
           2,
           0,
@@ -377,35 +425,42 @@
           2,
           2,
           2,
-          3
+          3,
+          1,
+          0,
+          4,
+          1,
+          5,
+          4
         ],
         "Pool": [
           "api",
           "v1",
           "endpoint",
-          "delete"
+          "deltails",
+          "unique_key"
         ],
-        "Template": "/api/v1/endpoint/delete",
+        "Template": "/api/v1/endpoint/deltails/{unique_key}",
         "Verb": "",
         "Version": 1
       },
-      "http_response": ""
+      "http_response": "begonia.org.sdk.common.HttpResponse"
     }
   ],
-  "/begonia.org.begonia.EndpointService/List": [
+  "/begonia.org.sdk.EndpointService/List": [
     {
-      "FullMethodName": "/begonia.org.begonia.EndpointService/List",
-      "HttpMethod": "POST",
-      "HttpUri": "/api/v1/endpoint/list",
-      "InName": "EndpointRequest",
-      "InPkg": "begonia.org.begonia",
+      "FullMethodName": "/begonia.org.sdk.EndpointService/List",
+      "HttpMethod": "GET",
+      "HttpUri": "/api/v1/endpoint",
+      "InName": "ListEndpointRequest",
+      "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
       "IsServerStream": false,
-      "OutName": "APIResponse",
-      "OutPkg": "begonia.org.begonia.common.api.v1",
+      "OutName": "ListEndpointResponse",
+      "OutPkg": "begonia.org.sdk",
       "PathParams": [],
       "Pattern": {},
-      "Pkg": "begonia.org.begonia",
+      "Pkg": "begonia.org.sdk",
       "Template": {
         "Fields": null,
         "OpCodes": [
@@ -414,37 +469,34 @@
           2,
           1,
           2,
-          2,
-          2,
-          3
+          2
         ],
         "Pool": [
           "api",
           "v1",
-          "endpoint",
-          "list"
+          "endpoint"
         ],
-        "Template": "/api/v1/endpoint/list",
+        "Template": "/api/v1/endpoint",
         "Verb": "",
         "Version": 1
       },
-      "http_response": ""
+      "http_response": "begonia.org.sdk.common.HttpResponse"
     }
   ],
-  "/begonia.org.begonia.EndpointService/Update": [
+  "/begonia.org.sdk.EndpointService/Update": [
     {
-      "FullMethodName": "/begonia.org.begonia.EndpointService/Update",
-      "HttpMethod": "POST",
-      "HttpUri": "/api/v1/endpoint/update",
-      "InName": "EndpointRequest",
-      "InPkg": "begonia.org.begonia",
+      "FullMethodName": "/begonia.org.sdk.EndpointService/Update",
+      "HttpMethod": "PATCH",
+      "HttpUri": "/api/v1/endpoint",
+      "InName": "UpdateEndpointRequest",
+      "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
       "IsServerStream": false,
-      "OutName": "APIResponse",
-      "OutPkg": "begonia.org.begonia.common.api.v1",
+      "OutName": "UpdateEndpointResponse",
+      "OutPkg": "begonia.org.sdk",
       "PathParams": [],
       "Pattern": {},
-      "Pkg": "begonia.org.begonia",
+      "Pkg": "begonia.org.sdk",
       "Template": {
         "Fields": null,
         "OpCodes": [
@@ -453,37 +505,34 @@
           2,
           1,
           2,
-          2,
-          2,
-          3
+          2
         ],
         "Pool": [
           "api",
           "v1",
-          "endpoint",
-          "update"
+          "endpoint"
         ],
-        "Template": "/api/v1/endpoint/update",
+        "Template": "/api/v1/endpoint",
         "Verb": "",
         "Version": 1
       },
-      "http_response": ""
+      "http_response": "begonia.org.sdk.common.HttpResponse"
     }
   ],
-  "/begonia.org.begonia.FileService/AbortMultipartUpload": [
+  "/begonia.org.sdk.FileService/AbortMultipartUpload": [
     {
-      "FullMethodName": "/begonia.org.begonia.FileService/AbortMultipartUpload",
+      "FullMethodName": "/begonia.org.sdk.FileService/AbortMultipartUpload",
       "HttpMethod": "POST",
       "HttpUri": "/api/v1/file/part/abort",
       "InName": "AbortMultipartUploadRequest",
-      "InPkg": "begonia.org.begonia",
+      "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
       "IsServerStream": false,
       "OutName": "AbortMultipartUploadResponse",
-      "OutPkg": "begonia.org.begonia",
+      "OutPkg": "begonia.org.sdk",
       "PathParams": [],
       "Pattern": {},
-      "Pkg": "begonia.org.begonia",
+      "Pkg": "begonia.org.sdk",
       "Template": {
         "Fields": null,
         "OpCodes": [
@@ -509,23 +558,23 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.begonia.common.api.v1.HttpResponse"
+      "http_response": "begonia.org.sdk.common.HttpResponse"
     }
   ],
-  "/begonia.org.begonia.FileService/CompleteMultipartUpload": [
+  "/begonia.org.sdk.FileService/CompleteMultipartUpload": [
     {
-      "FullMethodName": "/begonia.org.begonia.FileService/CompleteMultipartUpload",
+      "FullMethodName": "/begonia.org.sdk.FileService/CompleteMultipartUpload",
       "HttpMethod": "POST",
       "HttpUri": "/api/v1/file/part/complete",
       "InName": "CompleteMultipartUploadRequest",
-      "InPkg": "begonia.org.begonia",
+      "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
       "IsServerStream": false,
       "OutName": "CompleteMultipartUploadResponse",
-      "OutPkg": "begonia.org.begonia",
+      "OutPkg": "begonia.org.sdk",
       "PathParams": [],
       "Pattern": {},
-      "Pkg": "begonia.org.begonia",
+      "Pkg": "begonia.org.sdk",
       "Template": {
         "Fields": null,
         "OpCodes": [
@@ -551,23 +600,23 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.begonia.common.api.v1.HttpResponse"
+      "http_response": "begonia.org.sdk.common.HttpResponse"
     }
   ],
-  "/begonia.org.begonia.FileService/Delete": [
+  "/begonia.org.sdk.FileService/Delete": [
     {
-      "FullMethodName": "/begonia.org.begonia.FileService/Delete",
+      "FullMethodName": "/begonia.org.sdk.FileService/Delete",
       "HttpMethod": "DELETE",
       "HttpUri": "/api/v1/file",
       "InName": "DeleteRequest",
-      "InPkg": "begonia.org.begonia",
+      "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
       "IsServerStream": false,
       "OutName": "DeleteResponse",
-      "OutPkg": "begonia.org.begonia",
+      "OutPkg": "begonia.org.sdk",
       "PathParams": [],
       "Pattern": {},
-      "Pkg": "begonia.org.begonia",
+      "Pkg": "begonia.org.sdk",
       "Template": {
         "Fields": null,
         "OpCodes": [
@@ -587,23 +636,23 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.begonia.common.api.v1.HttpResponse"
+      "http_response": "begonia.org.sdk.common.HttpResponse"
     }
   ],
-  "/begonia.org.begonia.FileService/Download": [
+  "/begonia.org.sdk.FileService/Download": [
     {
-      "FullMethodName": "/begonia.org.begonia.FileService/Download",
+      "FullMethodName": "/begonia.org.sdk.FileService/Download",
       "HttpMethod": "GET",
       "HttpUri": "/api/v1/file",
       "InName": "DownloadRequest",
-      "InPkg": "begonia.org.begonia",
+      "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
       "IsServerStream": false,
       "OutName": "HttpBody",
       "OutPkg": "google.api",
       "PathParams": [],
       "Pattern": {},
-      "Pkg": "begonia.org.begonia",
+      "Pkg": "begonia.org.sdk",
       "Template": {
         "Fields": null,
         "OpCodes": [
@@ -625,20 +674,20 @@
       }
     }
   ],
-  "/begonia.org.begonia.FileService/DownloadForRange": [
+  "/begonia.org.sdk.FileService/DownloadForRange": [
     {
-      "FullMethodName": "/begonia.org.begonia.FileService/DownloadForRange",
+      "FullMethodName": "/begonia.org.sdk.FileService/DownloadForRange",
       "HttpMethod": "GET",
       "HttpUri": "/api/v1/file/part",
       "InName": "DownloadRequest",
-      "InPkg": "begonia.org.begonia",
+      "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
       "IsServerStream": false,
       "OutName": "HttpBody",
       "OutPkg": "google.api",
       "PathParams": [],
       "Pattern": {},
-      "Pkg": "begonia.org.begonia",
+      "Pkg": "begonia.org.sdk",
       "Template": {
         "Fields": null,
         "OpCodes": [
@@ -663,20 +712,20 @@
       }
     }
   ],
-  "/begonia.org.begonia.FileService/InitiateMultipartUpload": [
+  "/begonia.org.sdk.FileService/InitiateMultipartUpload": [
     {
-      "FullMethodName": "/begonia.org.begonia.FileService/InitiateMultipartUpload",
+      "FullMethodName": "/begonia.org.sdk.FileService/InitiateMultipartUpload",
       "HttpMethod": "POST",
       "HttpUri": "/api/v1/file/part/init",
       "InName": "InitiateMultipartUploadRequest",
-      "InPkg": "begonia.org.begonia",
+      "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
       "IsServerStream": false,
       "OutName": "InitiateMultipartUploadResponse",
-      "OutPkg": "begonia.org.begonia",
+      "OutPkg": "begonia.org.sdk",
       "PathParams": [],
       "Pattern": {},
-      "Pkg": "begonia.org.begonia",
+      "Pkg": "begonia.org.sdk",
       "Template": {
         "Fields": null,
         "OpCodes": [
@@ -702,23 +751,23 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.begonia.common.api.v1.HttpResponse"
+      "http_response": "begonia.org.sdk.common.HttpResponse"
     }
   ],
-  "/begonia.org.begonia.FileService/Metadata": [
+  "/begonia.org.sdk.FileService/Metadata": [
     {
-      "FullMethodName": "/begonia.org.begonia.FileService/Metadata",
+      "FullMethodName": "/begonia.org.sdk.FileService/Metadata",
       "HttpMethod": "HEAD",
       "HttpUri": "/api/v1/file/metadata",
       "InName": "FileMetadataRequest",
-      "InPkg": "begonia.org.begonia",
+      "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
       "IsServerStream": false,
       "OutName": "FileMetadataResponse",
-      "OutPkg": "begonia.org.begonia",
+      "OutPkg": "begonia.org.sdk",
       "PathParams": [],
       "Pattern": {},
-      "Pkg": "begonia.org.begonia",
+      "Pkg": "begonia.org.sdk",
       "Template": {
         "Fields": null,
         "OpCodes": [
@@ -741,23 +790,23 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.begonia.common.api.v1.HttpResponse"
+      "http_response": "begonia.org.sdk.common.HttpResponse"
     }
   ],
-  "/begonia.org.begonia.FileService/Upload": [
+  "/begonia.org.sdk.FileService/Upload": [
     {
-      "FullMethodName": "/begonia.org.begonia.FileService/Upload",
+      "FullMethodName": "/begonia.org.sdk.FileService/Upload",
       "HttpMethod": "PUT",
       "HttpUri": "/api/v1/file",
       "InName": "UploadFileRequest",
-      "InPkg": "begonia.org.begonia",
+      "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
       "IsServerStream": false,
       "OutName": "UploadFileResponse",
-      "OutPkg": "begonia.org.begonia",
+      "OutPkg": "begonia.org.sdk",
       "PathParams": [],
       "Pattern": {},
-      "Pkg": "begonia.org.begonia",
+      "Pkg": "begonia.org.sdk",
       "Template": {
         "Fields": null,
         "OpCodes": [
@@ -777,23 +826,23 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.begonia.common.api.v1.HttpResponse"
+      "http_response": "begonia.org.sdk.common.HttpResponse"
     }
   ],
-  "/begonia.org.begonia.FileService/UploadMultipartFile": [
+  "/begonia.org.sdk.FileService/UploadMultipartFile": [
     {
-      "FullMethodName": "/begonia.org.begonia.FileService/UploadMultipartFile",
+      "FullMethodName": "/begonia.org.sdk.FileService/UploadMultipartFile",
       "HttpMethod": "PUT",
       "HttpUri": "/api/v1/file/part",
       "InName": "UploadMultipartFileRequest",
-      "InPkg": "begonia.org.begonia",
+      "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
       "IsServerStream": false,
       "OutName": "UploadMultipartFileResponse",
-      "OutPkg": "begonia.org.begonia",
+      "OutPkg": "begonia.org.sdk",
       "PathParams": [],
       "Pattern": {},
-      "Pkg": "begonia.org.begonia",
+      "Pkg": "begonia.org.sdk",
       "Template": {
         "Fields": null,
         "OpCodes": [
@@ -816,23 +865,23 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.begonia.common.api.v1.HttpResponse"
+      "http_response": "begonia.org.sdk.common.HttpResponse"
     }
   ],
-  "/begonia.org.begonia.SystemService/GetInfo": [
+  "/begonia.org.sdk.SystemService/GetInfo": [
     {
-      "FullMethodName": "/begonia.org.begonia.SystemService/GetInfo",
+      "FullMethodName": "/begonia.org.sdk.SystemService/GetInfo",
       "HttpMethod": "GET",
       "HttpUri": "/v1/gateway/info",
       "InName": "InfoRequest",
-      "InPkg": "begonia.org.begonia",
+      "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
       "IsServerStream": false,
       "OutName": "InfoResponse",
-      "OutPkg": "begonia.org.begonia",
+      "OutPkg": "begonia.org.sdk",
       "PathParams": [],
       "Pattern": {},
-      "Pkg": "begonia.org.begonia",
+      "Pkg": "begonia.org.sdk",
       "Template": {
         "Fields": null,
         "OpCodes": [

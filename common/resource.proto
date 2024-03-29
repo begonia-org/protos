@@ -1,6 +1,6 @@
 syntax = "proto3";
-package begonia.org.begonia.common.api.v1;
-option go_package = "github.com/begonia-org/begonia/common/api/v1";
+package begonia.org.sdk.common;
+option go_package = "github.com/begonia-org/go-sdk/common/api/v1";
 import "google/protobuf/timestamp.proto";
 
 // 权限资源表 (Resources)
