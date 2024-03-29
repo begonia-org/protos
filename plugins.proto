@@ -1,0 +1,36 @@
+syntax = "proto3";
+package begonia.org.sdk;
+option go_package = "github.com/begonia-org/go-sdk/api/v1";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/any.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+message PluginRequest {
+	google.protobuf.Any request = 1;
+	string full_method_name = 2;
+}
+message PluginResponse {
+	google.protobuf.Any response = 1;
+	map<string, string> metadata = 2;
+}
+message PluginInfo{
+	string name = 1;
+	string description = 2;
+	string version = 3;
+	string commit = 4;
+}
+
+service PluginService {
+	rpc Call(PluginRequest) returns (PluginResponse) {
+		option (google.api.http) = {
+			post: "/v1/plugin/call"
+			body: "*"
+		};
+	}
+	rpc GetPluginInfo(google.protobuf.Empty) returns (PluginInfo) {
+		option (google.api.http) = {
+			get: "/v1/plugin/info"
+		};
+	}
+}
