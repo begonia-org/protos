@@ -70,3 +70,10 @@ message Headers {
     string filename=3;
     string token=4;
 }
+
+message EventStream {
+  string event=1;
+  string data =2;
+  int64 id=3 ;
+  int32 retry=4;
+}

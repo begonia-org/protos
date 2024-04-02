@@ -30,6 +30,7 @@ enum UserSvrCode{
     USER_NOT_FOUND_ERR=4113[(.begonia.org.sdk.common.msg) = "username or password error"];
     USER_AUTH_MISSING_ERR=4115[(.begonia.org.sdk.common.msg) = "authorization header missing"];
     USER_IDENTITY_MISSING_ERR=4116[(.begonia.org.sdk.common.msg) = "identity missing"];
+    USER_APIKEY_NOT_MATCH_ERR=4117[(.begonia.org.sdk.common.msg) = "apikey not match"];
 
 }
 message Users {

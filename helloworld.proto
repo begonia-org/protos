@@ -1,17 +1,15 @@
 syntax = "proto3";
 
-option go_package = "github.com/begonia-org/go-sdk/example/api/v1";
+option go_package = "github.com/begonia-org/begonia/example/api/v1";
 option java_multiple_files = true;
 option java_package = "io.grpc.examples.helloworld";
 option java_outer_classname = "HelloWorldProto";
 option objc_class_prefix = "HLW";
 
-package begonia.org.sdk;
+package helloworld;
 
 import "google/api/annotations.proto";
 import "google/protobuf/descriptor.proto";
-import "common/web.proto";
-import "common/options.proto";
 
 // The greeting service definition.
 // The greeting service definition.
@@ -58,4 +56,23 @@ message HelloRequest {
 // The response message containing the greetings
 message HelloReply {
   string message = 1;
+}
+enum EnumAllow {
+  ALLOW = 0;
+  DENY = 1;
+}
+message ExampleMessage {
+  string message = 1;
+  int32 code = 2;
+  double float_num = 3[json_name="float_num"];
+  bytes byte_data = 4[json_name="byte_data"];
+  bool bool_data = 5[json_name="bool_data"];
+  EnumAllow allow = 6;
+  repeated int64 repeated_data = 7[json_name="repeated_data"];
+  fixed64 fixed_data = 8[json_name="fixed_data"];
+  sfixed64 sfixed_data = 9[json_name="sfixed_data"];
+  sfixed32 sfixed32_data = 10[json_name="sfixed32_data"];
+  fixed32 fixed32_data = 11[json_name="fixed32_data"];
+  repeated HelloRequest repeated_msg = 12[json_name="repeated_msg"];
+  HelloRequest msg = 13;
 }

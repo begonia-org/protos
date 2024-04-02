@@ -14,7 +14,8 @@ enum EndpointStatus{
 }
 enum EndpointSvrStatus{
 ENDPOINT_UNKNOW = 0;
-NOT_SUPPORT_BALANCE = 1[(.begonia.org.sdk.common.msg) = "Not support balance"];
+NOT_SUPPORT_BALANCE = 7101[(.begonia.org.sdk.common.msg) = "Not support balance"];
+SERVICE_NAME_DUPLICATE = 7102[(.begonia.org.sdk.common.msg) = "Service name duplicate"];
 }
 message EndpointMeta {
     // @gotags: json:"addr" gorm:"column:addr;type:varchar(128);comment:服务地址"
@@ -31,14 +32,13 @@ message Endpoints{
     string unique_key=3;
     // @gotags: json:"service_name" gorm:"column:service_name;type:varchar(128);unique;comment:proto服务名称"
     string service_name=4 [json_name="service_name"];
-    // @gotags: json:"service_name" gorm:"column:service_name;type:text;comment:proto服务描述"
+    // @gotags: json:"description" gorm:"column:description;type:text;comment:proto服务描述"
     string description=5;
-    // @gotags: json:"go_package" gorm:"column:go_package;type:varchar(512);comment:proto服务对应的go mod 包名"
-    string go_package=6 [json_name="go_package"];
+
     // @gotags: json:"proto_path" gorm:"column:proto_path;type:varchar(512);comment:proto文件路径"
     string proto_path=7 [json_name="proto_path"];
-    // @gotags: json:"endpoint" gorm:"column:endpoint;type:json;comment:proto服务对应的endpoint 服务地址"
-    repeated EndpointMeta endpoint=8;
+    // @gotags: json:"endpoints" gorm:"column:endpoint;type:json;comment:proto服务对应的endpoint 服务地址"
+    repeated EndpointMeta endpoints=8[json_name="endpoints"];
     // @gotags: json:"status" gorm:"column:status;type:tinyint;comment:proto服务状态"
     EndpointStatus status=9 [json_name="status"];
     // @gotags: json:"is_deleted" gorm:"column:is_deleted;type:tinyint;comment:proto服务是否删除"
@@ -47,12 +47,14 @@ message Endpoints{
     string balance=11;
     // @gotags: json:"version" gorm:"column:version;type:varchar(32);comment:版本号"
     string version=12;
-    // @gotags: json:"tags" gorm:"column:tags;type:json;comment:标签"
+    // @gotags: json:"descriptor_set" gorm:"-"
+    bytes descriptor_set=16 [json_name="descriptor_set"];
+
     repeated string tags=15;
     // @gotags: doc:"完成时间" gorm:"column:completed_at;type:datetime;serializer:timepb;comment:定时任务的最近一次完成时间"
-    google.protobuf.Timestamp created_at = 13;
+    string created_at = 13;
     // @gotags: doc:"更新时间" gorm:"autoUpdateTime;column:updated_at;type:datetime;serializer:timepb;comment:定时任务的更新时间"
-    google.protobuf.Timestamp updated_at = 14;
+    string updated_at = 14;
 	// @gotags: gorm:"-" json:"update_mask"
     google.protobuf.FieldMask update_mask = 18;
     
@@ -120,6 +122,16 @@ message DetailsEndpointRequest{
 message DetailsEndpointResponse{
     Endpoints endpoints=1;
 }
+message EndpointSrvConfig {
+    bytes descriptor_set=1 [json_name="descriptor_set"];
+    string name=2;
+    // @gotags: json:"service_name" gorm:"column:service_name;type:varchar(128);unique;comment:proto服务名称"
+    string service_name=3 [json_name="service_name"];
+    string description=4;
+    repeated EndpointMeta endpoints=6;
+    string balance=7;
+    repeated string tags=8;
+}
 service EndpointService{
     option (.begonia.org.sdk.common.auth_reqiured)=true;
     option (.begonia.org.sdk.common.http_response)="begonia.org.sdk.common.HttpResponse";
@@ -129,6 +141,12 @@ service EndpointService{
             body: "*"
           };
           
+    };
+    rpc Config(EndpointSrvConfig) returns (AddEndpointResponse){
+        option (google.api.http) = {
+            post: "/api/v1/endpoint/config"
+            body: "*"
+          };
     };
     rpc Update(UpdateEndpointRequest) returns (UpdateEndpointResponse){
         option (google.api.http) = {

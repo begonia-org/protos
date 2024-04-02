@@ -11,7 +11,7 @@ message PluginRequest {
 	string full_method_name = 2;
 }
 message PluginResponse {
-	google.protobuf.Any response = 1;
+	google.protobuf.Any new_request = 1;
 	map<string, string> metadata = 2;
 }
 message PluginInfo{
