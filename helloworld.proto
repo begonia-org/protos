@@ -9,6 +9,7 @@ option objc_class_prefix = "HLW";
 package helloworld;
 
 import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
 import "google/protobuf/descriptor.proto";
 
 // The greeting service definition.
@@ -75,4 +76,5 @@ message ExampleMessage {
   fixed32 fixed32_data = 11[json_name="fixed32_data"];
   repeated HelloRequest repeated_msg = 12[json_name="repeated_msg"];
   HelloRequest msg = 13;
+  google.protobuf.FieldMask mask = 18;
 }

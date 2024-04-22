@@ -16,6 +16,7 @@ enum EndpointSvrStatus{
 ENDPOINT_UNKNOW = 0;
 NOT_SUPPORT_BALANCE = 7101[(.begonia.org.sdk.common.msg) = "Not support balance"];
 SERVICE_NAME_DUPLICATE = 7102[(.begonia.org.sdk.common.msg) = "Service name duplicate"];
+ENDPOINT_NOT_FOUND = 7103[(.begonia.org.sdk.common.msg) = "Endpoint not found"];
 }
 message EndpointMeta {
     // @gotags: json:"addr" gorm:"column:addr;type:varchar(128);comment:服务地址"
@@ -90,33 +91,30 @@ message UpdateEndpointRequest{
     repeated string tags=11;
     string version=12;
 }
-message UpdateEndpointResponse{
+// message UpdateEndpointResponse{
 
-}
+// }
 message AddEndpointResponse{
     string unique_key=1 [json_name="unique_key"];
 }
 message DeleteEndpointRequest{
     // @gotags: json:"unique_key" gorm:"column:unique_key;type:varchar(128);unique;comment:服务key"
-    string unique_key=1;
+    string unique_key=1[json_name="unique_key"];
 }
 message DeleteEndpointResponse{
     
 }
 message ListEndpointRequest{
     repeated string tags=1;
-    repeated string service_name=2 [json_name="service_name"];
-    repeated string name=3;
-    repeated EndpointStatus status=4 [json_name="status"];
-    repeated string unique_key=5 [json_name="unique_key"];
-    repeated string balance=6;
+
+    repeated string unique_keys=2 [json_name="unique_keys"];
 
 }
 message ListEndpointResponse{
     repeated Endpoints endpoints=1;
 }
 message DetailsEndpointRequest{
-    // @gotags: json:"unique_key" gorm:"column:unique_key;type:varchar(128);unique;comment:服务key"
+    // @gotags: validate:"required" json:"unique_key" gorm:"column:unique_key;type:varchar(128);unique;comment:服务key"
     string unique_key=1;
 }
 message DetailsEndpointResponse{
@@ -124,31 +122,60 @@ message DetailsEndpointResponse{
 }
 message EndpointSrvConfig {
     bytes descriptor_set=1 [json_name="descriptor_set"];
-    string name=2;
-    // @gotags: json:"service_name" gorm:"column:service_name;type:varchar(128);unique;comment:proto服务名称"
+    // @gotags: validate:"required"
+    string name=2 ;
+    // @gotags: validate:"required" json:"service_name" gorm:"column:service_name;type:varchar(128);unique;comment:proto服务名称"
     string service_name=3 [json_name="service_name"];
     string description=4;
     repeated EndpointMeta endpoints=6;
+    // @gotags: validate:"required,oneof=RR WRR LC WLC CH SED NQ"
     string balance=7;
     repeated string tags=8;
+    
 }
+message EndpointSrvUpdateRequest{
+    string unique_key=9[json_name="unique_key"];
+    bytes descriptor_set=1 [json_name="descriptor_set"];
+    string name=2;
+    string description=4;
+    repeated EndpointMeta endpoints=6;
+    // @gotags: validate:"oneof=RR WRR LC WLC CH SED NQ"
+    string balance=7;
+    repeated string tags=8;
+    google.protobuf.FieldMask mask = 18;
+}
+message UpdateEndpointResponse{
+    string version=1;
+    google.protobuf.Timestamp updated_at=2[json_name="updated_at"];
+}
+message SrvEndpoints{
+    string unique_key=1[json_name="unique_key"];
+    repeated EndpointMeta endpoints=2;
+}
+message SrvDescriptorSet{
+    string unique_key=1[json_name="unique_key"];
+    bytes descriptor_set=2;
+}
+message SvrLoadBalance{
+    string unique_key=1[json_name="unique_key"];
+    string balance=2;
+}
+message SvrStatus{
+    string unique_key=1[json_name="unique_key"];
+    EndpointSvrStatus status=2;
+}
+
 service EndpointService{
     option (.begonia.org.sdk.common.auth_reqiured)=true;
     option (.begonia.org.sdk.common.http_response)="begonia.org.sdk.common.HttpResponse";
-    rpc Create(AddEndpointRequest) returns (AddEndpointResponse){
+
+    rpc Config(EndpointSrvConfig) returns (AddEndpointResponse){
         option (google.api.http) = {
             post: "/api/v1/endpoint"
             body: "*"
           };
-          
     };
-    rpc Config(EndpointSrvConfig) returns (AddEndpointResponse){
-        option (google.api.http) = {
-            post: "/api/v1/endpoint/config"
-            body: "*"
-          };
-    };
-    rpc Update(UpdateEndpointRequest) returns (UpdateEndpointResponse){
+    rpc Update(EndpointSrvUpdateRequest) returns (UpdateEndpointResponse){
         option (google.api.http) = {
             patch: "/api/v1/endpoint"
             body: "*"
@@ -161,12 +188,12 @@ service EndpointService{
     };
     rpc List(ListEndpointRequest) returns (ListEndpointResponse){
         option (google.api.http) = {
-            get: "/api/v1/endpoint"
+            get: "/api/v1/endpoint/batch"
           };
     };
     rpc Details(DetailsEndpointRequest) returns (DetailsEndpointResponse){
         option (google.api.http) = {
-            get: "/api/v1/endpoint/deltails/{unique_key}"
+            get: "/api/v1/endpoint/{unique_key}"
           };
     };
 }

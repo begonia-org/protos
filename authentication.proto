@@ -3,7 +3,6 @@ package begonia.org.sdk;
 option go_package = "github.com/begonia-org/go-sdk/api/v1";
 import "google/api/annotations.proto";
 import "google/protobuf/descriptor.proto";
-import "common/web.proto";
 import "user.proto";
 import "common/options.proto";
 message LoginAPIRequest{
