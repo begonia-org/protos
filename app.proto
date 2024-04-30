@@ -46,7 +46,7 @@ message Apps{
 	string key = 6 [json_name="access_key"];
 	// @gotags json:"secret" gorm:"column:secret;type:varchar(64);unique;comment:app服务secret"
 	string secret = 7;
-	// @gotags: json:"owner" gorm:"column:owner;type:varchar(64);comment:app服务拥有者"
+	// @gotags: json:"-" gorm:"column:owner;type:varchar(64);comment:app服务拥有者"
 	string owner = 8;
 	// @gotags: json:"permission" gorm:"column:permission;type:int;comment:app服务权限"
 	int32 permission = 11;
@@ -67,8 +67,6 @@ message CreateAppRequest{
 	string name = 1;
 	// @gotags: json:"description" gorm:"column:description;type:varchar(256);comment:app描述"
 	string description = 2;
-	// @gotags: json:"owner" gorm:"column:owner;type:varchar(64);comment:app服务拥有者"
-	string owner = 7;
 	// @gotags: json:"tags" gorm:"column:tags;type:json;comment:app服务标签"
 	repeated string tags = 8;
 
@@ -106,22 +104,22 @@ service AppsService {
 	option (.begonia.org.sdk.common.http_response)="begonia.org.sdk.common.HttpResponse";
 
 	// @gotags: doc:"添加app服务"
-	rpc AddApps(AddAppsRequest) returns (.begonia.org.sdk.common.APIResponse){
+	rpc Put(AddAppsRequest) returns (.begonia.org.sdk.common.APIResponse){
 		option (google.api.http) = {
-            post: "/api/v1/app/create/batch"
+            put: "/api/v1/app"
             body: "*"
           };
 	};
-	rpc CreateApp(CreateAppRequest) returns (CreateAppResponse){
+	rpc Patch(CreateAppRequest) returns (CreateAppResponse){
 		option (google.api.http) = {
-			post: "/api/v1/app/create"
+			patch: "/api/v1/app"
 			body: "*"
 		  };
 	};
 	// @gotags: doc:"获取app服务"
-	rpc GetApps(AppsListRequest) returns (.begonia.org.sdk.common.APIResponse){
+	rpc Get(AppsListRequest) returns (.begonia.org.sdk.common.APIResponse){
 		option (google.api.http) = {
-			get: "/api/v1/app/list"
+			get: "/api/v1/app"
 		  };
 	};
 }
