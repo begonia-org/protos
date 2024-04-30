@@ -1,15 +1,14 @@
-# Makefile
+# 父目录的Makefile
 
 # 定义变量
 PROTOC = protoc
 PYTHON = python3
 TS_PROTO_PLUGIN = $(shell which protoc-gen-ts_proto)
-
-# 目标文件夹
-PROTO_DIR = .
-OUTPUT_DIR = ../../api/iam/v1
-COMMON_PROTOS_DIR= ../common
-GOOGLE_PROTOS_DIR= ../
+# 默认目标文件夹和参数
+PROTO_DIR ?= .
+OUTPUT_DIR ?= ../api/v1
+COMMON_PROTOS_DIR ?= ./common
+GOOGLE_PROTOS_DIR ?= ./
 
 # 文件列表
 GO_PROTO_FILES = $(wildcard $(PROTO_DIR)/*.proto)
@@ -33,20 +32,19 @@ TS_ARGS = --plugin="protoc-gen-ts=$(TS_PROTO_PLUGIN)" \
 
 common:
 	@mkdir -p $(OUTPUT_DIR)
-.PHONY: make_dir generate go python ts common
+.PHONY: make_dir generate go python ts common clean
 clean:
 	@echo $(COMMON_PROTO_FILES) $(COMMON_FILES) “公共文件”
 	@rm -rf $(COMMON_PROTO_FILES)
 # 生成所有代码
-generate: make_dir go python ts common
+generate: make_dir go python ts common clean
 
 # 生成 Go 代码
 go: $(GO_PROTO_FILES) | common
-	$(PROTOC) -I=$(PROTO_DIR) -I=$(GOOGLE_PROTOS_DIR) -I=$(COMMON_PROTOS_DIR) $(GO_ARGS) $?
+	$(PROTOC) -I=$(PROTO_DIR) -I=$(COMMON_PROTOS_DIR) -I=$(GOOGLE_PROTOS_DIR) $(GO_ARGS) $?
 	protoc-go-inject-tag -input="$(OUTPUT_DIR)/*.pb.go"
-	@$(MAKE) clean
 
 ts: $(TS_PROTO_FILES) $(COMMON_FILES) | common
-	$(PROTOC) -I=$(PROTO_DIR) -I=./common $(TS_ARGS) $?
-	@$(MAKE) clean
+	$(PROTOC) -I=$(PROTO_DIR) -I=$(COMMON_PROTOS_DIR) -I=$(GOOGLE_PROTOS_DIR) -I=./common $(TS_ARGS) $?
+
 

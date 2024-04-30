@@ -1,6 +1,6 @@
 syntax = "proto3";
 package begonia.org.sdk;
-option go_package = "github.com/begonia-org/go-sdk/api/endpoint/v1";
+option go_package = "github.com/begonia-org/go-sdk/endpoint/api/v1";
 import "google/protobuf/descriptor.proto";
 import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
