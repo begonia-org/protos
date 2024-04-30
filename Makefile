@@ -1,4 +1,4 @@
-SUBDIRS = app example endpoint file iam plugin user
+SUBDIRS = app example endpoint file iam plugin user sys
 define make-api
 	@for dir in $(SUBDIRS); do \
 		$(MAKE) -f ./api.mk PROTO_DIR="$$dir" OUTPUT_DIR="../api/$$dir/v1" $(1); \
