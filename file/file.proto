@@ -134,7 +134,7 @@ service FileService {
 
 	rpc Upload(UploadFileRequest) returns (UploadFileResponse){
 		option (google.api.http) = {
-			put: "/api/v1/file"
+			post: "/api/v1/file"
 			body: "*"
 		  };
 	};

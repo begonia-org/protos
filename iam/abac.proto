@@ -6,6 +6,7 @@ import "google/protobuf/descriptor.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/field_mask.proto";
 import "google/api/annotations.proto";
+import "common/options.proto";
 // Resource is a resource that can be accessed by a user.
 // A resource is defined by ABAC (Attribute-Based Access Control) model.
 message Resource {
@@ -73,7 +74,21 @@ repeated string actions = 1;
 Effect effect = 3;
 repeated Condition conditions = 4;
 string principal = 5;
-string unique_key = 6;
+string unique_key = 6[json_name="unique_key"];
+}
+message PutPolicyRequest{
+// @gotags: validate:"required"
+repeated string actions = 1;
+// @gotags: validate:"required"
+ string resource = 2;
+ // @gotags: validate:"required,oneof=1 2"
+Effect effect = 3;
+
+repeated Condition conditions = 4;
+// @gotags: validate:"required"
+string principal = 5;
+google.protobuf.FieldMask mask = 18[json_name="-"];
+
 }
 message AccessEnv {
 	string ip=1;
@@ -102,45 +117,54 @@ message AccessContext {
 }
 
 message AccessResponse {
-	Effect effect = 1;
+	bool pass = 1;
 	string message = 2;
 	FailReason fail = 3;
 }
 message PolicyRequest{
-	string unique_key = 1;
+	string unique_key = 1[json_name="unique_key"];
+}
+message PutPolicyResponse{
+	string unique_key = 1[json_name="unique_key"];
+
+}
+message PatchPolicyResponse{
+
 }
 service ABACService {
+	option (.begonia.org.sdk.common.auth_reqiured)=true;
+	option (.begonia.org.sdk.common.http_response)="begonia.org.sdk.common.HttpResponse";
 	rpc Auth (AccessContext) returns (AccessResponse) {
 		option (google.api.http) = {
 			post: "/v1/abac/authz"
 			body: "*"
 		};
 	}
-	rpc Put (Policy) returns (Policy) {
+	rpc PolicyPut (PutPolicyRequest) returns (PutPolicyResponse) {
 		option (google.api.http) = {
-			put: "/v1/policy"
+			put: "/v1/abac/policy"
 			body: "*"
 		};
 	}
-	rpc Patch (Policy) returns (Policy) {
+	rpc PolicyPatch (PutPolicyRequest) returns (PatchPolicyResponse) {
 		option (google.api.http) = {
-			patch: "/v1/policy"
+			patch: "/v1/abac/policy"
 			body: "*"
 		};
 	}
-	rpc Delete (PolicyRequest) returns (Policy) {
+	rpc PolicyDelete (PolicyRequest) returns (Policy) {
 		option (google.api.http) = {
-			delete: "/v1/policy/{unique_key}"
+			delete: "/v1/abac/policy/{unique_key}"
 		};
 	}
-	rpc Get (PolicyRequest) returns (Policy) {
+	rpc PolicyGet (PolicyRequest) returns (Policy) {
 		option (google.api.http) = {
-			get: "/v1/policy/{unique_key}"
+			get: "/v1/abac/policy/{unique_key}"
 		};
 	}
-	rpc List (Policy) returns (Policy) {
+	rpc PolicyList (Policy) returns (Policy) {
 		option (google.api.http) = {
-			get: "/v1/policy/list"
+			get: "/v1/abac/policy/list"
 		};
 	}
 }

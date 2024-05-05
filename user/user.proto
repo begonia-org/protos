@@ -3,6 +3,10 @@ package begonia.org.sdk;
 option go_package = "github.com/begonia-org/go-sdk/api/user/v1";
 import "google/protobuf/timestamp.proto";
 import "common/options.proto";
+import "google/protobuf/field_mask.proto";
+import "google/api/annotations.proto";
+
+
 
 enum Role {
 
@@ -31,18 +35,23 @@ enum UserSvrCode{
     USER_AUTH_MISSING_ERR=4115[(.begonia.org.sdk.common.msg) = "authorization header missing"];
     USER_IDENTITY_MISSING_ERR=4116[(.begonia.org.sdk.common.msg) = "identity missing"];
     USER_APIKEY_NOT_MATCH_ERR=4117[(.begonia.org.sdk.common.msg) = "apikey not match"];
+    USER_USERNAME_DUPLICATE_ERR=4118[(.begonia.org.sdk.common.msg) = "username duplicate"];
 
 }
 message Users {
-    // @gotags: doc:"历史ID" gorm:"primaryKey;autoIncrement;comment:自增id"
+    // @gotags: gorm:"primaryKey;autoIncrement;comment:自增id"
     int64 ID = 1;
-    // @gotags: doc:"任务ID" json:"uid" gorm:"column:uid;type:varchar(36);unique;comment:uid"
+    // @gotags: json:"uid"  primary:"uid" gorm:"column:uid;type:varchar(36);unique;comment:uid"
     string uid = 2;
-    // @gotags: doc:"任务ID" json:"name" gorm:"column:name;type:varchar(128);unique;comment:username" aes:"true"
+    // @gotags: json:"group" owner:"owner" gorm:"column:group;type:varchar(36);comment:group"
+    string owner = 13;
+    // @gotags: json:"dept" gorm:"column:dept;type:varchar(36);comment:部门"
+    string dept = 14;
+    // @gotags: json:"name" gorm:"column:name;type:varchar(128);unique;comment:username" aes:"true"
     string name = 3;
-    // @gotags: doc:"任务ID" json:"email" gorm:"column:email;type:varchar(128);unique;comment:Users Email" aes:"true"
+    // @gotags: json:"email" gorm:"column:email;type:varchar(128);not null;unique;comment:Users Email" aes:"true"
     string email = 4;
-    // @gotags: doc:"phone number" gorm:"type:varchar(128);unique;comment:Users Phone Number" aes:"true"
+    // @gotags: doc:"phone number" gorm:"type:varchar(128);not null;unique;comment:Users Phone Number" aes:"true"
     string phone = 5;
     // @gotags: doc:"account password" gorm:"type:varchar(128);comment:Users account password" aes:"true"
     string password = 6;
@@ -52,10 +61,15 @@ message Users {
     Role role = 8;
     // @gotags: doc:"account status" gorm:"comment:Users account status"
     USER_STATUS status = 9;
-    // @gotags: doc:"完成时间" gorm:"column:completed_at;type:datetime;serializer:timepb;comment:定时任务的最近一次完成时间"
+    // @gotags: json:"is_deleted" gorm:"column:is_deleted;type:tinyint;comment:proto服务是否删除"
+    bool is_deleted=12 [json_name="is_deleted"];
+    // @gotags: doc:"完成时间" gorm:"column:created_at;type:datetime;serializer:timepb;comment:定时任务的最近一次完成时间"
     google.protobuf.Timestamp created_at = 10;
-    // @gotags: doc:"更新时间" gorm:"autoUpdateTime;column:updated_at;type:datetime;serializer:timepb;comment:定时任务的更新时间"
+    // @gotags: doc:"更新时间" gorm:"column:updated_at;type:datetime;serializer:timepb;comment:定时任务的更新时间"
     google.protobuf.Timestamp updated_at = 11;
+    // @gotags: gorm:"-" json:"-"
+    google.protobuf.FieldMask update_mask = 18;
+
 }
 
 message BasicAuth{
@@ -69,4 +83,68 @@ message BasicAuth{
     int64 issued_at = 8 [json_name="iat"];
     bool is_keep_login=9 [json_name="is_keep_login"];
     string token = 10;
+}
+message PostUserRequest{
+    string name = 1;
+    string password = 2;
+    string email = 3;
+    string phone = 4;
+    Role role = 5;
+    USER_STATUS status = 6;
+    string dept = 7;
+    string owner = 8;
+    // @gotags: doc:"account avatar" gorm:"type:varchar(512);comment:Users account avatar"
+    string avatar = 9;
+    // @gotags: gorm:"-" json:"-"
+    google.protobuf.FieldMask update_mask = 18;
+
+}
+message GetUserRequest{
+    string uid=1;
+}
+message DeleteUserRequest{
+    string uid=1;
+}
+message DeleteUserResponse{
+    string uid=1;
+}
+message PatchUserRequest{
+    string uid=1;
+    string name = 2;
+    string password = 3;
+    string email = 4;
+    string phone = 5;
+    Role role = 6;
+    USER_STATUS status = 7;
+    string dept = 8;
+    string owner = 9;
+    // @gotags: doc:"account avatar" gorm:"type:varchar(512);comment:Users account avatar"
+    string avatar = 10;
+    // @gotags: gorm:"-" json:"-"
+    google.protobuf.FieldMask update_mask = 18;
+}
+service UserService{
+	option (.begonia.org.sdk.common.http_response)="begonia.org.sdk.common.HttpResponse";
+	rpc Register(PostUserRequest) returns (Users){
+        option (google.api.http)={
+            post:"/api/v1/user"
+            body:"*"
+        };
+    };
+    rpc Update(PatchUserRequest) returns (Users){
+        option (google.api.http)={
+            patch:"/api/v1/user/{uid}"
+            body:"*"
+        };
+    };
+    rpc Get(GetUserRequest) returns (Users){
+        option (google.api.http)={
+            get:"/api/v1/user/{uid}"
+        };
+    };
+    rpc Delete(DeleteUserRequest) returns (DeleteUserResponse){
+        option (google.api.http)={
+            delete:"/api/v1/user/{uid}"
+        };
+    };
 }

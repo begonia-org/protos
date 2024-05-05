@@ -2,11 +2,8 @@ syntax = "proto3";
 package begonia.org.sdk;
 option go_package = "github.com/begonia-org/go-sdk/api/sys/v1";
 import "google/protobuf/descriptor.proto";
-import "google/protobuf/timestamp.proto";
-import "google/protobuf/field_mask.proto";
 
 import "google/api/annotations.proto";
-import "common/web.proto";
 import "common/options.proto";
 
 message InfoRequest {

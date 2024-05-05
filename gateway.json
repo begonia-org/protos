@@ -1,18 +1,148 @@
 {
-  "/begonia.org.sdk.AppsService/AddApps": [
+  "/begonia.org.go.access.control.api.v1.ABACService/Auth": [
     {
-      "FullMethodName": "/begonia.org.sdk.AppsService/AddApps",
+      "FullMethodName": "/begonia.org.go.access.control.api.v1.ABACService/Auth",
       "HttpMethod": "POST",
-      "HttpUri": "/api/v1/app/create/batch",
-      "InName": "AddAppsRequest",
-      "InPkg": "begonia.org.sdk",
+      "HttpUri": "/v1/abac/authz",
+      "InName": "AccessContext",
+      "InPkg": "begonia.org.go.access.control.api.v1",
       "IsClientStream": false,
       "IsServerStream": false,
-      "OutName": "APIResponse",
-      "OutPkg": "begonia.org.sdk.common",
+      "OutName": "AccessResponse",
+      "OutPkg": "begonia.org.go.access.control.api.v1",
       "PathParams": [],
       "Pattern": {},
-      "Pkg": "begonia.org.sdk",
+      "Pkg": "begonia.org.go.access.control.api.v1",
+      "Template": {
+        "Fields": null,
+        "OpCodes": [
+          2,
+          0,
+          2,
+          1,
+          2,
+          2
+        ],
+        "Pool": [
+          "v1",
+          "abac",
+          "authz"
+        ],
+        "Template": "/v1/abac/authz",
+        "Verb": "",
+        "Version": 1
+      },
+      "http_response": "begonia.org.sdk.common.HttpResponse"
+    }
+  ],
+  "/begonia.org.go.access.control.api.v1.ABACService/PolicyDelete": [
+    {
+      "FullMethodName": "/begonia.org.go.access.control.api.v1.ABACService/PolicyDelete",
+      "HttpMethod": "DELETE",
+      "HttpUri": "/v1/abac/policy/{unique_key}",
+      "InName": "PolicyRequest",
+      "InPkg": "begonia.org.go.access.control.api.v1",
+      "IsClientStream": false,
+      "IsServerStream": false,
+      "OutName": "Policy",
+      "OutPkg": "begonia.org.go.access.control.api.v1",
+      "PathParams": [
+        "unique_key"
+      ],
+      "Pattern": {},
+      "Pkg": "begonia.org.go.access.control.api.v1",
+      "Template": {
+        "Fields": [
+          "unique_key"
+        ],
+        "OpCodes": [
+          2,
+          0,
+          2,
+          1,
+          2,
+          2,
+          1,
+          0,
+          4,
+          1,
+          5,
+          3
+        ],
+        "Pool": [
+          "v1",
+          "abac",
+          "policy",
+          "unique_key"
+        ],
+        "Template": "/v1/abac/policy/{unique_key}",
+        "Verb": "",
+        "Version": 1
+      },
+      "http_response": "begonia.org.sdk.common.HttpResponse"
+    }
+  ],
+  "/begonia.org.go.access.control.api.v1.ABACService/PolicyGet": [
+    {
+      "FullMethodName": "/begonia.org.go.access.control.api.v1.ABACService/PolicyGet",
+      "HttpMethod": "GET",
+      "HttpUri": "/v1/abac/policy/{unique_key}",
+      "InName": "PolicyRequest",
+      "InPkg": "begonia.org.go.access.control.api.v1",
+      "IsClientStream": false,
+      "IsServerStream": false,
+      "OutName": "Policy",
+      "OutPkg": "begonia.org.go.access.control.api.v1",
+      "PathParams": [
+        "unique_key"
+      ],
+      "Pattern": {},
+      "Pkg": "begonia.org.go.access.control.api.v1",
+      "Template": {
+        "Fields": [
+          "unique_key"
+        ],
+        "OpCodes": [
+          2,
+          0,
+          2,
+          1,
+          2,
+          2,
+          1,
+          0,
+          4,
+          1,
+          5,
+          3
+        ],
+        "Pool": [
+          "v1",
+          "abac",
+          "policy",
+          "unique_key"
+        ],
+        "Template": "/v1/abac/policy/{unique_key}",
+        "Verb": "",
+        "Version": 1
+      },
+      "http_response": "begonia.org.sdk.common.HttpResponse"
+    }
+  ],
+  "/begonia.org.go.access.control.api.v1.ABACService/PolicyList": [
+    {
+      "FullMethodName": "/begonia.org.go.access.control.api.v1.ABACService/PolicyList",
+      "HttpMethod": "GET",
+      "HttpUri": "/v1/abac/policy/list",
+      "InName": "Policy",
+      "InPkg": "begonia.org.go.access.control.api.v1",
+      "IsClientStream": false,
+      "IsServerStream": false,
+      "OutName": "Policy",
+      "OutPkg": "begonia.org.go.access.control.api.v1",
+      "PathParams": [],
+      "Pattern": {},
+      "Pkg": "begonia.org.go.access.control.api.v1",
       "Template": {
         "Fields": null,
         "OpCodes": [
@@ -23,34 +153,197 @@
           2,
           2,
           2,
-          3,
-          2,
-          4
+          3
         ],
         "Pool": [
-          "api",
           "v1",
-          "app",
-          "create",
-          "batch"
+          "abac",
+          "policy",
+          "list"
         ],
-        "Template": "/api/v1/app/create/batch",
+        "Template": "/v1/abac/policy/list",
         "Verb": "",
         "Version": 1
       },
       "http_response": "begonia.org.sdk.common.HttpResponse"
     }
   ],
-  "/begonia.org.sdk.AppsService/CreateApp": [
+  "/begonia.org.go.access.control.api.v1.ABACService/PolicyPatch": [
     {
-      "FullMethodName": "/begonia.org.sdk.AppsService/CreateApp",
-      "HttpMethod": "POST",
-      "HttpUri": "/api/v1/app/create",
-      "InName": "CreateAppRequest",
+      "FullMethodName": "/begonia.org.go.access.control.api.v1.ABACService/PolicyPatch",
+      "HttpMethod": "PATCH",
+      "HttpUri": "/v1/abac/policy",
+      "InName": "PutPolicyRequest",
+      "InPkg": "begonia.org.go.access.control.api.v1",
+      "IsClientStream": false,
+      "IsServerStream": false,
+      "OutName": "PatchPolicyResponse",
+      "OutPkg": "begonia.org.go.access.control.api.v1",
+      "PathParams": [],
+      "Pattern": {},
+      "Pkg": "begonia.org.go.access.control.api.v1",
+      "Template": {
+        "Fields": null,
+        "OpCodes": [
+          2,
+          0,
+          2,
+          1,
+          2,
+          2
+        ],
+        "Pool": [
+          "v1",
+          "abac",
+          "policy"
+        ],
+        "Template": "/v1/abac/policy",
+        "Verb": "",
+        "Version": 1
+      },
+      "http_response": "begonia.org.sdk.common.HttpResponse"
+    }
+  ],
+  "/begonia.org.go.access.control.api.v1.ABACService/PolicyPut": [
+    {
+      "FullMethodName": "/begonia.org.go.access.control.api.v1.ABACService/PolicyPut",
+      "HttpMethod": "PUT",
+      "HttpUri": "/v1/abac/policy",
+      "InName": "PutPolicyRequest",
+      "InPkg": "begonia.org.go.access.control.api.v1",
+      "IsClientStream": false,
+      "IsServerStream": false,
+      "OutName": "PutPolicyResponse",
+      "OutPkg": "begonia.org.go.access.control.api.v1",
+      "PathParams": [],
+      "Pattern": {},
+      "Pkg": "begonia.org.go.access.control.api.v1",
+      "Template": {
+        "Fields": null,
+        "OpCodes": [
+          2,
+          0,
+          2,
+          1,
+          2,
+          2
+        ],
+        "Pool": [
+          "v1",
+          "abac",
+          "policy"
+        ],
+        "Template": "/v1/abac/policy",
+        "Verb": "",
+        "Version": 1
+      },
+      "http_response": "begonia.org.sdk.common.HttpResponse"
+    }
+  ],
+  "/begonia.org.sdk.AppsService/Delete": [
+    {
+      "FullMethodName": "/begonia.org.sdk.AppsService/Delete",
+      "HttpMethod": "DELETE",
+      "HttpUri": "/api/v1/app/{appid}",
+      "InName": "DeleteAppRequest",
       "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
       "IsServerStream": false,
-      "OutName": "CreateAppResponse",
+      "OutName": "DeleteAppResponse",
+      "OutPkg": "begonia.org.sdk",
+      "PathParams": [
+        "appid"
+      ],
+      "Pattern": {},
+      "Pkg": "begonia.org.sdk",
+      "Template": {
+        "Fields": [
+          "appid"
+        ],
+        "OpCodes": [
+          2,
+          0,
+          2,
+          1,
+          2,
+          2,
+          1,
+          0,
+          4,
+          1,
+          5,
+          3
+        ],
+        "Pool": [
+          "api",
+          "v1",
+          "app",
+          "appid"
+        ],
+        "Template": "/api/v1/app/{appid}",
+        "Verb": "",
+        "Version": 1
+      },
+      "http_response": "begonia.org.sdk.common.HttpResponse"
+    }
+  ],
+  "/begonia.org.sdk.AppsService/Get": [
+    {
+      "FullMethodName": "/begonia.org.sdk.AppsService/Get",
+      "HttpMethod": "GET",
+      "HttpUri": "/api/v1/app/{appid}",
+      "InName": "GetAPPRequest",
+      "InPkg": "begonia.org.sdk",
+      "IsClientStream": false,
+      "IsServerStream": false,
+      "OutName": "Apps",
+      "OutPkg": "begonia.org.sdk",
+      "PathParams": [
+        "appid"
+      ],
+      "Pattern": {},
+      "Pkg": "begonia.org.sdk",
+      "Template": {
+        "Fields": [
+          "appid"
+        ],
+        "OpCodes": [
+          2,
+          0,
+          2,
+          1,
+          2,
+          2,
+          1,
+          0,
+          4,
+          1,
+          5,
+          3
+        ],
+        "Pool": [
+          "api",
+          "v1",
+          "app",
+          "appid"
+        ],
+        "Template": "/api/v1/app/{appid}",
+        "Verb": "",
+        "Version": 1
+      },
+      "http_response": "begonia.org.sdk.common.HttpResponse"
+    }
+  ],
+  "/begonia.org.sdk.AppsService/Patch": [
+    {
+      "FullMethodName": "/begonia.org.sdk.AppsService/Patch",
+      "HttpMethod": "PATCH",
+      "HttpUri": "/api/v1/app",
+      "InName": "AppsRequest",
+      "InPkg": "begonia.org.sdk",
+      "IsClientStream": false,
+      "IsServerStream": false,
+      "OutName": "Apps",
       "OutPkg": "begonia.org.sdk",
       "PathParams": [],
       "Pattern": {},
@@ -63,34 +356,31 @@
           2,
           1,
           2,
-          2,
-          2,
-          3
+          2
         ],
         "Pool": [
           "api",
           "v1",
-          "app",
-          "create"
+          "app"
         ],
-        "Template": "/api/v1/app/create",
+        "Template": "/api/v1/app",
         "Verb": "",
         "Version": 1
       },
       "http_response": "begonia.org.sdk.common.HttpResponse"
     }
   ],
-  "/begonia.org.sdk.AppsService/GetApps": [
+  "/begonia.org.sdk.AppsService/Put": [
     {
-      "FullMethodName": "/begonia.org.sdk.AppsService/GetApps",
-      "HttpMethod": "GET",
-      "HttpUri": "/api/v1/app/list",
-      "InName": "AppsListRequest",
+      "FullMethodName": "/begonia.org.sdk.AppsService/Put",
+      "HttpMethod": "POST",
+      "HttpUri": "/api/v1/app",
+      "InName": "AppsRequest",
       "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
       "IsServerStream": false,
-      "OutName": "APIResponse",
-      "OutPkg": "begonia.org.sdk.common",
+      "OutName": "AddAppResponse",
+      "OutPkg": "begonia.org.sdk",
       "PathParams": [],
       "Pattern": {},
       "Pkg": "begonia.org.sdk",
@@ -102,17 +392,14 @@
           2,
           1,
           2,
-          2,
-          2,
-          3
+          2
         ],
         "Pool": [
           "api",
           "v1",
-          "app",
-          "list"
+          "app"
         ],
-        "Template": "/api/v1/app/list",
+        "Template": "/api/v1/app",
         "Verb": "",
         "Version": 1
       },
@@ -796,7 +1083,7 @@
   "/begonia.org.sdk.FileService/Upload": [
     {
       "FullMethodName": "/begonia.org.sdk.FileService/Upload",
-      "HttpMethod": "PUT",
+      "HttpMethod": "POST",
       "HttpUri": "/api/v1/file",
       "InName": "UploadFileRequest",
       "InPkg": "begonia.org.sdk",
@@ -972,6 +1259,183 @@
         "Version": 1
       },
       "http_response": ""
+    }
+  ],
+  "/begonia.org.sdk.UserService/Delete": [
+    {
+      "FullMethodName": "/begonia.org.sdk.UserService/Delete",
+      "HttpMethod": "DELETE",
+      "HttpUri": "/api/v1/user/{uid}",
+      "InName": "DeleteUserRequest",
+      "InPkg": "begonia.org.sdk",
+      "IsClientStream": false,
+      "IsServerStream": false,
+      "OutName": "DeleteUserResponse",
+      "OutPkg": "begonia.org.sdk",
+      "PathParams": [
+        "uid"
+      ],
+      "Pattern": {},
+      "Pkg": "begonia.org.sdk",
+      "Template": {
+        "Fields": [
+          "uid"
+        ],
+        "OpCodes": [
+          2,
+          0,
+          2,
+          1,
+          2,
+          2,
+          1,
+          0,
+          4,
+          1,
+          5,
+          3
+        ],
+        "Pool": [
+          "api",
+          "v1",
+          "user",
+          "uid"
+        ],
+        "Template": "/api/v1/user/{uid}",
+        "Verb": "",
+        "Version": 1
+      },
+      "http_response": "begonia.org.sdk.common.HttpResponse"
+    }
+  ],
+  "/begonia.org.sdk.UserService/Get": [
+    {
+      "FullMethodName": "/begonia.org.sdk.UserService/Get",
+      "HttpMethod": "GET",
+      "HttpUri": "/api/v1/user/{uid}",
+      "InName": "GetUserRequest",
+      "InPkg": "begonia.org.sdk",
+      "IsClientStream": false,
+      "IsServerStream": false,
+      "OutName": "Users",
+      "OutPkg": "begonia.org.sdk",
+      "PathParams": [
+        "uid"
+      ],
+      "Pattern": {},
+      "Pkg": "begonia.org.sdk",
+      "Template": {
+        "Fields": [
+          "uid"
+        ],
+        "OpCodes": [
+          2,
+          0,
+          2,
+          1,
+          2,
+          2,
+          1,
+          0,
+          4,
+          1,
+          5,
+          3
+        ],
+        "Pool": [
+          "api",
+          "v1",
+          "user",
+          "uid"
+        ],
+        "Template": "/api/v1/user/{uid}",
+        "Verb": "",
+        "Version": 1
+      },
+      "http_response": "begonia.org.sdk.common.HttpResponse"
+    }
+  ],
+  "/begonia.org.sdk.UserService/Register": [
+    {
+      "FullMethodName": "/begonia.org.sdk.UserService/Register",
+      "HttpMethod": "POST",
+      "HttpUri": "/api/v1/user",
+      "InName": "PostUserRequest",
+      "InPkg": "begonia.org.sdk",
+      "IsClientStream": false,
+      "IsServerStream": false,
+      "OutName": "Users",
+      "OutPkg": "begonia.org.sdk",
+      "PathParams": [],
+      "Pattern": {},
+      "Pkg": "begonia.org.sdk",
+      "Template": {
+        "Fields": null,
+        "OpCodes": [
+          2,
+          0,
+          2,
+          1,
+          2,
+          2
+        ],
+        "Pool": [
+          "api",
+          "v1",
+          "user"
+        ],
+        "Template": "/api/v1/user",
+        "Verb": "",
+        "Version": 1
+      },
+      "http_response": "begonia.org.sdk.common.HttpResponse"
+    }
+  ],
+  "/begonia.org.sdk.UserService/Update": [
+    {
+      "FullMethodName": "/begonia.org.sdk.UserService/Update",
+      "HttpMethod": "PATCH",
+      "HttpUri": "/api/v1/user/{uid}",
+      "InName": "PatchUserRequest",
+      "InPkg": "begonia.org.sdk",
+      "IsClientStream": false,
+      "IsServerStream": false,
+      "OutName": "Users",
+      "OutPkg": "begonia.org.sdk",
+      "PathParams": [
+        "uid"
+      ],
+      "Pattern": {},
+      "Pkg": "begonia.org.sdk",
+      "Template": {
+        "Fields": [
+          "uid"
+        ],
+        "OpCodes": [
+          2,
+          0,
+          2,
+          1,
+          2,
+          2,
+          1,
+          0,
+          4,
+          1,
+          5,
+          3
+        ],
+        "Pool": [
+          "api",
+          "v1",
+          "user",
+          "uid"
+        ],
+        "Template": "/api/v1/user/{uid}",
+        "Verb": "",
+        "Version": 1
+      },
+      "http_response": "begonia.org.sdk.common.HttpResponse"
     }
   ],
   "/helloworld.Greeter/SayHello": [
