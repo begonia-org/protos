@@ -14,17 +14,18 @@ enum Role {
 }
 enum USER_STATUS {
 
-    ACTIVTE = 0; 
-    INACTIVTE = 1;
+    ACTIVE = 0; 
+    INACTIVE = 1;
     LOCKED = 2;
     DELETED = 3;
 
 }
 
 enum UserSvrCode{
-    USER_UNKONW = 0;
+    USER_UNKNOWN = 0;
     USER_LOGIN_ERR=4107[(.begonia.org.sdk.common.msg) = "login fail"];
     USER_TOKEN_EXPIRE_ERR=4108[(.begonia.org.sdk.common.msg) = "token expire"];
+    USER_DISABLED_ERR=4119[(.begonia.org.sdk.common.msg) = "user disabled"];
     // 非法的token
     USER_TOKEN_INVALIDATE_ERR=4109[(.begonia.org.sdk.common.msg) = "invalidate token"];
     USER_TOKEN_NOT_ACTIVTE_ERR=4114[(.begonia.org.sdk.common.msg) = "invaildate token"];
@@ -47,11 +48,11 @@ message Users {
     string owner = 13;
     // @gotags: json:"dept" gorm:"column:dept;type:varchar(36);comment:部门"
     string dept = 14;
-    // @gotags: json:"name" gorm:"column:name;type:varchar(128);unique;comment:username" aes:"true"
+    // @gotags: json:"name" ondeleted:"rename" gorm:"column:name;type:varchar(128);unique;comment:username" aes:"true"
     string name = 3;
-    // @gotags: json:"email" gorm:"column:email;type:varchar(128);not null;unique;comment:Users Email" aes:"true"
+    // @gotags: json:"email" ondeleted:"rename" gorm:"column:email;type:varchar(128);not null;unique;comment:Users Email" aes:"true"
     string email = 4;
-    // @gotags: doc:"phone number" gorm:"type:varchar(128);not null;unique;comment:Users Phone Number" aes:"true"
+    // @gotags: doc:"phone number" ondeleted:"rename" gorm:"type:varchar(128);not null;unique;comment:Users Phone Number" aes:"true"
     string phone = 5;
     // @gotags: doc:"account password" gorm:"type:varchar(128);comment:Users account password" aes:"true"
     string password = 6;
@@ -64,11 +65,11 @@ message Users {
     // @gotags: json:"is_deleted" gorm:"column:is_deleted;type:tinyint;comment:proto服务是否删除"
     bool is_deleted=12 [json_name="is_deleted"];
     // @gotags: doc:"完成时间" gorm:"column:created_at;type:datetime;serializer:timepb;comment:定时任务的最近一次完成时间"
-    google.protobuf.Timestamp created_at = 10;
+    google.protobuf.Timestamp created_at = 10[json_name="created_at"];
     // @gotags: doc:"更新时间" gorm:"column:updated_at;type:datetime;serializer:timepb;comment:定时任务的更新时间"
-    google.protobuf.Timestamp updated_at = 11;
+    google.protobuf.Timestamp updated_at = 11[json_name="updated_at"];
     // @gotags: gorm:"-" json:"-"
-    google.protobuf.FieldMask update_mask = 18;
+    google.protobuf.FieldMask update_mask = 18[json_name="update_mask"];
 
 }
 
@@ -124,6 +125,8 @@ message PatchUserRequest{
     google.protobuf.FieldMask update_mask = 18;
 }
 service UserService{
+    option (.begonia.org.sdk.common.auth_reqiured)=true;
+
 	option (.begonia.org.sdk.common.http_response)="begonia.org.sdk.common.HttpResponse";
 	rpc Register(PostUserRequest) returns (Users){
         option (google.api.http)={

@@ -40,7 +40,7 @@ message RegsiterAPIResponse{
 	string msg=1;
 }
 message AuthLogAPIRequest{
-	string timestamp=1;
+	string token=1;
 }
 message AuthSeed{
 	int64 seed=1;
@@ -53,6 +53,8 @@ message AuthLogAPIResponse{
 	string timestamp=2;
 }
 service AuthService{
+	option (.begonia.org.sdk.common.auth_reqiured)=true;
+
 	option (.begonia.org.sdk.common.http_response)="begonia.org.sdk.common.HttpResponse";
 rpc Login (LoginAPIRequest) returns (LoginAPIResponse) {
 	option (google.api.http) = {
@@ -63,28 +65,16 @@ rpc Login (LoginAPIRequest) returns (LoginAPIResponse) {
  }
  rpc Logout (LogoutAPIRequest) returns (LogoutAPIResponse) {
 	option (google.api.http) = {
-   get: "/api/v1/auth/logout"
+		delete: "/api/v1/auth/logout"
  };
  }
- rpc Account (AccountAPIRequest) returns (AccountAPIResponse) {
-	option (google.api.http) = {
-		post: "/api/v1/auth/account"
-		body: "*"
- };
- 
- }
+
  rpc AuthSeed (AuthLogAPIRequest) returns (AuthLogAPIResponse) {
 	option (google.api.http) = {
-   post: "/api/v1/auth/log"
-   body: "*"
+   get: "/api/v1/auth/log/{token}"
 
  };
  }
- rpc Regsiter(RegsiterAPIRequest)returns(RegsiterAPIResponse){
-	option (google.api.http)={
-		post:"/api/v1/auth/regsiter"
-		body:"*"
-	};
- }
+
 }
 

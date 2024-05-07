@@ -34,7 +34,7 @@ enum APPSvrCode{
 message Apps{
 	// @gotags: doc:"历史ID" gorm:"primaryKey;autoIncrement;comment:自增id"
 	int64 id = 1;
-    // @gotags: json:"name" gorm:"column:name;type:varchar(128);unique;comment:app服务名称"
+    // @gotags: json:"name" ondeleted:"rename" gorm:"column:name;type:varchar(128);unique;comment:app服务名称"
 	string name = 2;
     // @gotags: json:"description" gorm:"column:description;type:varchar(256);comment:app描述服务"
 	string description = 3;
@@ -56,11 +56,11 @@ message Apps{
 	repeated string tags = 10;
 
 	// @gotags: doc:"完成时间" gorm:"column:created_at;type:datetime;serializer:timepb;comment:定时任务的最近一次完成时间"
-    google.protobuf.Timestamp created_at = 12;
+    google.protobuf.Timestamp created_at = 12[json_name="created_at"];
     // @gotags: doc:"更新时间" gorm:"column:updated_at;type:datetime;serializer:timepb;comment:定时任务的更新时间"
-    google.protobuf.Timestamp updated_at = 13;
+    google.protobuf.Timestamp updated_at = 13[json_name="updated_at"];
 	// @gotags: gorm:"-" json:"-"
-	google.protobuf.FieldMask update_mask = 18;
+	google.protobuf.FieldMask update_mask = 18[json_name="update_mask"];
 }
 message CreateAppRequest{
 	// @gotags: json:"name" gorm:"column:name;type:varchar(128);unique;comment:app名称"
@@ -103,12 +103,12 @@ message AppsListRequest{
 	// @gotags: json:"page_size" gorm:"column:page_size;type:int;comment:每页数量"
 	int32 page_size = 2;
     repeated string tags = 3;
-    repeated string name = 4;
-    repeated string appid = 5;
-    repeated string owner = 6;
-    // @gotags: json:"access_key"
-    repeated string access_key = 7;
-    // @gotags: json:"status" gorm:"column:status;type:tinyint;comment:app服务状态"
+    // repeated string name = 4;
+    // repeated string appid = 5;
+    // repeated string owner = 6;
+    // // @gotags: json:"access_key"
+    // repeated string access_key = 7;
+    // // @gotags: json:"status" gorm:"column:status;type:tinyint;comment:app服务状态"
     repeated	APPStatus status = 8;
 }
 message AppsListResponse{
@@ -143,6 +143,11 @@ service AppsService {
 	rpc Delete(DeleteAppRequest) returns (DeleteAppResponse){
 		option (google.api.http) = {
 			delete: "/api/v1/app/{appid}"
+		  };
+	};
+	rpc List(AppsListRequest) returns (AppsListResponse){
+		option (google.api.http) = {
+			get: "/api/v1/apps"
 		  };
 	};
 }

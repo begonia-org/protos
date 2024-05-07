@@ -334,6 +334,42 @@
       "http_response": "begonia.org.sdk.common.HttpResponse"
     }
   ],
+  "/begonia.org.sdk.AppsService/List": [
+    {
+      "FullMethodName": "/begonia.org.sdk.AppsService/List",
+      "HttpMethod": "GET",
+      "HttpUri": "/api/v1/apps",
+      "InName": "AppsListRequest",
+      "InPkg": "begonia.org.sdk",
+      "IsClientStream": false,
+      "IsServerStream": false,
+      "OutName": "AppsListResponse",
+      "OutPkg": "begonia.org.sdk",
+      "PathParams": [],
+      "Pattern": {},
+      "Pkg": "begonia.org.sdk",
+      "Template": {
+        "Fields": null,
+        "OpCodes": [
+          2,
+          0,
+          2,
+          1,
+          2,
+          2
+        ],
+        "Pool": [
+          "api",
+          "v1",
+          "apps"
+        ],
+        "Template": "/api/v1/apps",
+        "Verb": "",
+        "Version": 1
+      },
+      "http_response": "begonia.org.sdk.common.HttpResponse"
+    }
+  ],
   "/begonia.org.sdk.AppsService/Patch": [
     {
       "FullMethodName": "/begonia.org.sdk.AppsService/Patch",
@@ -406,61 +442,26 @@
       "http_response": "begonia.org.sdk.common.HttpResponse"
     }
   ],
-  "/begonia.org.sdk.AuthService/Account": [
-    {
-      "FullMethodName": "/begonia.org.sdk.AuthService/Account",
-      "HttpMethod": "POST",
-      "HttpUri": "/api/v1/auth/account",
-      "InName": "AccountAPIRequest",
-      "InPkg": "begonia.org.sdk",
-      "IsClientStream": false,
-      "IsServerStream": false,
-      "OutName": "AccountAPIResponse",
-      "OutPkg": "begonia.org.sdk",
-      "PathParams": [],
-      "Pattern": {},
-      "Pkg": "begonia.org.sdk",
-      "Template": {
-        "Fields": null,
-        "OpCodes": [
-          2,
-          0,
-          2,
-          1,
-          2,
-          2,
-          2,
-          3
-        ],
-        "Pool": [
-          "api",
-          "v1",
-          "auth",
-          "account"
-        ],
-        "Template": "/api/v1/auth/account",
-        "Verb": "",
-        "Version": 1
-      },
-      "http_response": "begonia.org.sdk.common.HttpResponse"
-    }
-  ],
   "/begonia.org.sdk.AuthService/AuthSeed": [
     {
       "FullMethodName": "/begonia.org.sdk.AuthService/AuthSeed",
-      "HttpMethod": "POST",
-      "HttpUri": "/api/v1/auth/log",
+      "HttpMethod": "GET",
+      "HttpUri": "/api/v1/auth/log/{token}",
       "InName": "AuthLogAPIRequest",
       "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
       "IsServerStream": false,
       "OutName": "AuthLogAPIResponse",
       "OutPkg": "begonia.org.sdk",
-      "PathParams": [],
+      "PathParams": [
+        "token"
+      ],
       "Pattern": {},
       "Pkg": "begonia.org.sdk",
       "Template": {
-        "Fields": null,
+        "Fields": [
+          "token"
+        ],
         "OpCodes": [
           2,
           0,
@@ -469,15 +470,22 @@
           2,
           2,
           2,
-          3
+          3,
+          1,
+          0,
+          4,
+          1,
+          5,
+          4
         ],
         "Pool": [
           "api",
           "v1",
           "auth",
-          "log"
+          "log",
+          "token"
         ],
-        "Template": "/api/v1/auth/log",
+        "Template": "/api/v1/auth/log/{token}",
         "Verb": "",
         "Version": 1
       },
@@ -526,7 +534,7 @@
   "/begonia.org.sdk.AuthService/Logout": [
     {
       "FullMethodName": "/begonia.org.sdk.AuthService/Logout",
-      "HttpMethod": "GET",
+      "HttpMethod": "DELETE",
       "HttpUri": "/api/v1/auth/logout",
       "InName": "LogoutAPIRequest",
       "InPkg": "begonia.org.sdk",
@@ -556,45 +564,6 @@
           "logout"
         ],
         "Template": "/api/v1/auth/logout",
-        "Verb": "",
-        "Version": 1
-      },
-      "http_response": "begonia.org.sdk.common.HttpResponse"
-    }
-  ],
-  "/begonia.org.sdk.AuthService/Regsiter": [
-    {
-      "FullMethodName": "/begonia.org.sdk.AuthService/Regsiter",
-      "HttpMethod": "POST",
-      "HttpUri": "/api/v1/auth/regsiter",
-      "InName": "RegsiterAPIRequest",
-      "InPkg": "begonia.org.sdk",
-      "IsClientStream": false,
-      "IsServerStream": false,
-      "OutName": "RegsiterAPIResponse",
-      "OutPkg": "begonia.org.sdk",
-      "PathParams": [],
-      "Pattern": {},
-      "Pkg": "begonia.org.sdk",
-      "Template": {
-        "Fields": null,
-        "OpCodes": [
-          2,
-          0,
-          2,
-          1,
-          2,
-          2,
-          2,
-          3
-        ],
-        "Pool": [
-          "api",
-          "v1",
-          "auth",
-          "regsiter"
-        ],
-        "Template": "/api/v1/auth/regsiter",
         "Verb": "",
         "Version": 1
       },
@@ -1225,9 +1194,9 @@
       }
     }
   ],
-  "/begonia.org.sdk.SystemService/GetInfo": [
+  "/begonia.org.sdk.SystemService/Get": [
     {
-      "FullMethodName": "/begonia.org.sdk.SystemService/GetInfo",
+      "FullMethodName": "/begonia.org.sdk.SystemService/Get",
       "HttpMethod": "GET",
       "HttpUri": "/v1/gateway/info",
       "InName": "InfoRequest",
@@ -1258,7 +1227,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": ""
+      "http_response": "begonia.org.sdk.common.HttpResponse"
     }
   ],
   "/begonia.org.sdk.UserService/Delete": [
