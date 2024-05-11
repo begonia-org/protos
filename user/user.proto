@@ -42,13 +42,13 @@ enum UserSvrCode{
 message Users {
     // @gotags: gorm:"primaryKey;autoIncrement;comment:自增id"
     int64 ID = 1;
-    // @gotags: json:"uid"  primary:"uid" gorm:"column:uid;type:varchar(36);unique;comment:uid"
+    // @gotags: json:"uid"  primary:"uid" gorm:"column:uid;type:varchar(36);not null;unique;comment:uid"
     string uid = 2;
     // @gotags: json:"group" owner:"owner" gorm:"column:group;type:varchar(36);comment:group"
     string owner = 13;
     // @gotags: json:"dept" gorm:"column:dept;type:varchar(36);comment:部门"
     string dept = 14;
-    // @gotags: json:"name" ondeleted:"rename" gorm:"column:name;type:varchar(128);unique;comment:username" aes:"true"
+    // @gotags: json:"name" ondeleted:"rename" gorm:"column:name;type:varchar(128);not null;unique;comment:username" aes:"true"
     string name = 3;
     // @gotags: json:"email" ondeleted:"rename" gorm:"column:email;type:varchar(128);not null;unique;comment:Users Email" aes:"true"
     string email = 4;

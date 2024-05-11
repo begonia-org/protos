@@ -20,7 +20,7 @@ enum APPPremission{
 	APP_ALL = 3;
 }
 enum APPSvrCode{
-    APP_UNKONW = 0;
+    APP_UNKNOWN = 0;
     APP_CREATE_ERR=5101[(.begonia.org.sdk.common.msg) = "create app error"];
 	APP_DUPLICATE_ERR=5102[(.begonia.org.sdk.common.msg) = "duplicate app name"];
 	APP_SIGNATURE_ERR=5103[(.begonia.org.sdk.common.msg) = "app signature error"];
@@ -34,19 +34,19 @@ enum APPSvrCode{
 message Apps{
 	// @gotags: doc:"历史ID" gorm:"primaryKey;autoIncrement;comment:自增id"
 	int64 id = 1;
-    // @gotags: json:"name" ondeleted:"rename" gorm:"column:name;type:varchar(128);unique;comment:app服务名称"
+    // @gotags: json:"name" ondeleted:"rename" gorm:"column:name;type:varchar(128);not null;unique;comment:app服务名称"
 	string name = 2;
     // @gotags: json:"description" gorm:"column:description;type:varchar(256);comment:app描述服务"
 	string description = 3;
 	// @gotags: json:"status" gorm:"column:status;type:tinyint;comment:app服务状态"
 	APPStatus status = 4;
-	// @gotags: json:"appid" primary:"appid" gorm:"column:appid;type:varchar(64);unique;comment:app服务id"
+	// @gotags: json:"appid" primary:"appid" gorm:"column:appid;type:varchar(64);not null;unique;comment:app服务id"
 	string appid = 5;
-	// @gotags: json:"access_key" gorm:"column:access_key;type:varchar(64);unique;comment:app服务key"
+	// @gotags: json:"access_key" gorm:"column:access_key;type:varchar(64);not null;unique;comment:app服务key"
 	string access_key = 6 [json_name="access_key"];
-	// @gotags json:"secret" gorm:"column:secret;type:varchar(64);unique;comment:app服务secret"
+	// @gotags json:"secret" gorm:"column:secret;type:varchar(64);unique;not null;comment:app服务secret"
 	string secret = 7;
-	// @gotags: json:"-" owner:"owner" gorm:"column:owner;type:varchar(64);comment:app服务拥有者"
+	// @gotags: json:"-" owner:"owner" gorm:"column:owner;not null;type:varchar(64);comment:app服务拥有者"
 	string owner = 8;
 	// @gotags: json:"permission" gorm:"column:permission;type:int;comment:app服务权限"
 	int32 permission = 11;
