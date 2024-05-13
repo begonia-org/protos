@@ -144,7 +144,7 @@ message EndpointSrvUpdateRequest{
     // @gotags: validate:"oneof=RR WRR LC WLC CH SED NQ"
     string balance=7;
     repeated string tags=8;
-    google.protobuf.FieldMask mask = 18;
+    google.protobuf.FieldMask update_mask = 18[json_name="update_mask"];
 }
 message UpdateEndpointResponse{
     string version=1;
@@ -171,7 +171,7 @@ service EndpointService{
     option (.begonia.org.sdk.common.auth_reqiured)=true;
     option (.begonia.org.sdk.common.http_response)="begonia.org.sdk.common.HttpResponse";
 
-    rpc Config(EndpointSrvConfig) returns (AddEndpointResponse){
+    rpc Put(EndpointSrvConfig) returns (AddEndpointResponse){
         option (google.api.http) = {
             post: "/api/v1/endpoint"
             body: "*"

@@ -570,42 +570,6 @@
       "http_response": "begonia.org.sdk.common.HttpResponse"
     }
   ],
-  "/begonia.org.sdk.EndpointService/Config": [
-    {
-      "FullMethodName": "/begonia.org.sdk.EndpointService/Config",
-      "HttpMethod": "POST",
-      "HttpUri": "/api/v1/endpoint",
-      "InName": "EndpointSrvConfig",
-      "InPkg": "begonia.org.sdk",
-      "IsClientStream": false,
-      "IsServerStream": false,
-      "OutName": "AddEndpointResponse",
-      "OutPkg": "begonia.org.sdk",
-      "PathParams": [],
-      "Pattern": {},
-      "Pkg": "begonia.org.sdk",
-      "Template": {
-        "Fields": null,
-        "OpCodes": [
-          2,
-          0,
-          2,
-          1,
-          2,
-          2
-        ],
-        "Pool": [
-          "api",
-          "v1",
-          "endpoint"
-        ],
-        "Template": "/api/v1/endpoint",
-        "Verb": "",
-        "Version": 1
-      },
-      "http_response": "begonia.org.sdk.common.HttpResponse"
-    }
-  ],
   "/begonia.org.sdk.EndpointService/Delete": [
     {
       "FullMethodName": "/begonia.org.sdk.EndpointService/Delete",
@@ -733,6 +697,42 @@
           "batch"
         ],
         "Template": "/api/v1/endpoint/batch",
+        "Verb": "",
+        "Version": 1
+      },
+      "http_response": "begonia.org.sdk.common.HttpResponse"
+    }
+  ],
+  "/begonia.org.sdk.EndpointService/Put": [
+    {
+      "FullMethodName": "/begonia.org.sdk.EndpointService/Put",
+      "HttpMethod": "POST",
+      "HttpUri": "/api/v1/endpoint",
+      "InName": "EndpointSrvConfig",
+      "InPkg": "begonia.org.sdk",
+      "IsClientStream": false,
+      "IsServerStream": false,
+      "OutName": "AddEndpointResponse",
+      "OutPkg": "begonia.org.sdk",
+      "PathParams": [],
+      "Pattern": {},
+      "Pkg": "begonia.org.sdk",
+      "Template": {
+        "Fields": null,
+        "OpCodes": [
+          2,
+          0,
+          2,
+          1,
+          2,
+          2
+        ],
+        "Pool": [
+          "api",
+          "v1",
+          "endpoint"
+        ],
+        "Template": "/api/v1/endpoint",
         "Verb": "",
         "Version": 1
       },
