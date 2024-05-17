@@ -51,8 +51,18 @@ service Greeter {
         post: "/api/v1/example/body"
       };
   }
+  rpc SayHelloError (ErrorRequest) returns (HelloReply) {
+    option (google.api.http) = {
+        get: "/api/v1/example/error/test"
+      };
+  }
+  
 }
 
+message ErrorRequest {
+  string msg = 1;
+  int32 code = 2;
+}
 // The request message containing the user's name.
 message HelloRequest {
   string msg = 1;
