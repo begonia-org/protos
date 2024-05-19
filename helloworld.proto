@@ -85,6 +85,7 @@ message ExampleMessage {
   string message = 1;
   int32 code = 2;
   double float_num = 3[json_name="float_num"];
+  float float_data = 14[json_name="float_data"];
   bytes byte_data = 4[json_name="byte_data"];
   bool bool_data = 5[json_name="bool_data"];
   EnumAllow allow = 6;
