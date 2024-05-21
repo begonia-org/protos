@@ -12,6 +12,8 @@ import "google/api/annotations.proto";
 import "google/protobuf/field_mask.proto";
 import "google/protobuf/descriptor.proto";
 import "google/api/httpbody.proto";
+import "google/protobuf/timestamp.proto";
+
 // The greeting service definition.
 // The greeting service definition.
 service Greeter {
@@ -97,4 +99,21 @@ message ExampleMessage {
   repeated HelloRequest repeated_msg = 12[json_name="repeated_msg"];
   HelloRequest msg = 13;
   google.protobuf.FieldMask mask = 18;
+}
+
+message ExampleTable{
+    // @gotags: gorm:"primaryKey;autoIncrement;comment:自增id"
+    int64 ID = 1;
+    // @gotags: json:"uid"  primary:"uid" gorm:"column:uid;type:varchar(36);not null;unique;comment:uid"
+    string uid = 2;
+	// @gotags: json:"-" owner:"owner" gorm:"column:owner;not null;type:varchar(64);comment:app服务拥有者"
+    string owner = 3;
+    // @gotags: json:"is_deleted" gorm:"column:is_deleted;type:tinyint;comment:proto服务是否删除"
+    bool is_deleted=12 [json_name="is_deleted"];
+    // @gotags: doc:"完成时间" gorm:"column:created_at;type:datetime;serializer:timepb;comment:定时任务的最近一次完成时间"
+    google.protobuf.Timestamp created_at = 10[json_name="created_at"];
+    // @gotags: doc:"更新时间" gorm:"column:updated_at;type:datetime;serializer:timepb;comment:定时任务的更新时间"
+    google.protobuf.Timestamp updated_at = 11[json_name="updated_at"];
+    // @gotags: gorm:"-" json:"-"
+    google.protobuf.FieldMask update_mask = 18[json_name="update_mask"];
 }
