@@ -171,31 +171,31 @@ service EndpointService{
     option (.begonia.org.sdk.common.auth_reqiured)=true;
     option (.begonia.org.sdk.common.http_response)="begonia.org.sdk.common.HttpResponse";
 
-    rpc Put(EndpointSrvConfig) returns (AddEndpointResponse){
+    rpc Post(EndpointSrvConfig) returns (AddEndpointResponse){
         option (google.api.http) = {
-            post: "/api/v1/endpoint"
+            post: "/api/v1/endpoints"
             body: "*"
           };
     };
     rpc Update(EndpointSrvUpdateRequest) returns (UpdateEndpointResponse){
         option (google.api.http) = {
-            patch: "/api/v1/endpoint"
+            put: "/api/v1/endpoints/{unique_key}"
             body: "*"
           };
     };
     rpc Delete(DeleteEndpointRequest) returns (DeleteEndpointResponse){
         option (google.api.http) = {
-            delete: "/api/v1/endpoint/{unique_key}"
+            delete: "/api/v1/endpoints/{unique_key}"
           };
     };
     rpc List(ListEndpointRequest) returns (ListEndpointResponse){
         option (google.api.http) = {
-            get: "/api/v1/endpoint/batch"
+            get: "/api/v1/endpoints"
           };
     };
-    rpc Details(DetailsEndpointRequest) returns (DetailsEndpointResponse){
+    rpc Get(DetailsEndpointRequest) returns (DetailsEndpointResponse){
         option (google.api.http) = {
-            get: "/api/v1/endpoint/{unique_key}"
+            get: "/api/v1/endpoints/{unique_key}"
           };
     };
 }

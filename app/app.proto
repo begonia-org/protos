@@ -122,27 +122,27 @@ service AppsService {
 	option (.begonia.org.sdk.common.http_response)="begonia.org.sdk.common.HttpResponse";
 
 	// @gotags: doc:"添加app服务"
-	rpc Put(AppsRequest) returns (AddAppResponse){
+	rpc Post(AppsRequest) returns (AddAppResponse){
 		option (google.api.http) = {
-            post: "/api/v1/app"
+            post: "/api/v1/apps"
             body: "*"
           };
 	};
-	rpc Patch(AppsRequest) returns (Apps){
+	rpc Update(AppsRequest) returns (Apps){
 		option (google.api.http) = {
-			patch: "/api/v1/app"
+			put: "/api/v1/apps"
 			body: "*"
 		  };
 	};
 	// @gotags: doc:"获取app服务"
 	rpc Get(GetAPPRequest) returns (Apps){
 		option (google.api.http) = {
-			get: "/api/v1/app/{appid}"
+			get: "/api/v1/apps/{appid}"
 		  };
 	};
 	rpc Delete(DeleteAppRequest) returns (DeleteAppResponse){
 		option (google.api.http) = {
-			delete: "/api/v1/app/{appid}"
+			delete: "/api/v1/apps/{appid}"
 		  };
 	};
 	rpc List(AppsListRequest) returns (AppsListResponse){

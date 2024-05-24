@@ -134,54 +134,54 @@ service FileService {
 
 	rpc Upload(UploadFileRequest) returns (UploadFileResponse){
 		option (google.api.http) = {
-			post: "/api/v1/file"
+			post: "/api/v1/files"
 			body: "*"
 		  };
 	};
 	rpc UploadMultipartFile(UploadMultipartFileRequest) returns (UploadMultipartFileResponse){
 		option (google.api.http) = {
-			put: "/api/v1/file/part"
+			put: "/api/v1/files/part"
 			body: "*"
 		  };
 	};
 	rpc InitiateMultipartUpload(InitiateMultipartUploadRequest) returns (InitiateMultipartUploadResponse){
 		option (google.api.http) = {
-			post: "/api/v1/file/part/init"
+			post: "/api/v1/files/part/init"
 			body: "*"
 		  };
 	};
 	rpc CompleteMultipartUpload(CompleteMultipartUploadRequest) returns (CompleteMultipartUploadResponse){
 		option (google.api.http) = {
-			post: "/api/v1/file/part/complete"
+			post: "/api/v1/files/part/complete"
 			body: "*"
 		  };
 	};
 	rpc AbortMultipartUpload(AbortMultipartUploadRequest) returns (AbortMultipartUploadResponse){
 		option (google.api.http) = {
-			post: "/api/v1/file/part/abort"
+			post: "/api/v1/files/part/abort"
 			body: "*"
 		  };
 	};
 	rpc Download(DownloadRequest) returns (google.api.HttpBody){
 		option (google.api.http) = {
-			get: "/api/v1/file"
+			get: "/api/v1/files"
 		  };
 	};
 	rpc Delete(DeleteRequest) returns (DeleteResponse){
 		option (google.api.http) = {
-			delete: "/api/v1/file"
+			delete: "/api/v1/files"
 		  };
 	};
 	rpc DownloadForRange(DownloadRequest) returns (google.api.HttpBody){
 		option (google.api.http) = {
-			get: "/api/v1/file/part"
+			get: "/api/v1/files/part"
 		  };
 	};
 	rpc Metadata(FileMetadataRequest) returns (FileMetadataResponse){
 		option (google.api.http) = {
 			custom: {
 				kind: "HEAD"
-				path: "/api/v1/file/metadata"
+				path: "/api/v1/files/metadata"
 			  }
 		  };
 	};

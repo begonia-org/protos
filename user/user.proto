@@ -130,24 +130,24 @@ service UserService{
 	option (.begonia.org.sdk.common.http_response)="begonia.org.sdk.common.HttpResponse";
 	rpc Register(PostUserRequest) returns (Users){
         option (google.api.http)={
-            post:"/api/v1/user"
+            post:"/api/v1/users"
             body:"*"
         };
     };
     rpc Update(PatchUserRequest) returns (Users){
         option (google.api.http)={
-            patch:"/api/v1/user/{uid}"
+            put:"/api/v1/users/{uid}"
             body:"*"
         };
     };
     rpc Get(GetUserRequest) returns (Users){
         option (google.api.http)={
-            get:"/api/v1/user/{uid}"
+            get:"/api/v1/users/{uid}"
         };
     };
     rpc Delete(DeleteUserRequest) returns (DeleteUserResponse){
         option (google.api.http)={
-            delete:"/api/v1/user/{uid}"
+            delete:"/api/v1/users/{uid}"
         };
     };
 }
