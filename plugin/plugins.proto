@@ -21,13 +21,13 @@ message PluginInfo{
 }
 
 service PluginService {
-	rpc Call(PluginRequest) returns (PluginResponse) {
+	rpc Apply(PluginRequest) returns (PluginResponse) {
 		option (google.api.http) = {
-			post: "/v1/plugin/call"
+			post: "/v1/plugin"
 			body: "*"
 		};
 	}
-	rpc GetPluginInfo(google.protobuf.Empty) returns (PluginInfo) {
+	rpc Info(google.protobuf.Empty) returns (PluginInfo) {
 		option (google.api.http) = {
 			get: "/v1/plugin/info"
 		};

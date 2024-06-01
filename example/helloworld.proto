@@ -70,7 +70,28 @@ message HelloRequest {
   string msg = 1;
   string name = 2;
 }
+message HelloSubRequest{
+    // @gotags: validate:"required"
+    string sub_msg = 1[json_name="sub_msg"];
+    // @gotags: validate:"required"
+    string sub_name = 2[json_name="sub_name"];
+    google.protobuf.FieldMask update_mask = 3[json_name="update_mask"];
+}
+message HelloRequestWithValidator{
+    // @gotags: validate:"required"
+    string msg = 1;
+    // @gotags: validate:"required"
+    string name = 2;
+    // @gotags: validate:"gte=18,lte=35"
+    int32 age = 3;
+    // @gotags: validate:"required"
+    HelloSubRequest sub = 4;
+    // @gotags: validate:"dive,required"
+    repeated HelloSubRequest subs = 5;
+    google.protobuf.FieldMask update_mask = 6[json_name="update_mask"];
 
+
+}
 // The response message containing the greetings
 message HelloReply {
   string message = 1;
