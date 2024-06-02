@@ -244,7 +244,7 @@
     {
       "FullMethodName": "/begonia.org.sdk.AppsService/Delete",
       "HttpMethod": "DELETE",
-      "HttpUri": "/api/v1/app/{appid}",
+      "HttpUri": "/api/v1/apps/{appid}",
       "InName": "DeleteAppRequest",
       "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
@@ -277,10 +277,10 @@
         "Pool": [
           "api",
           "v1",
-          "app",
+          "apps",
           "appid"
         ],
-        "Template": "/api/v1/app/{appid}",
+        "Template": "/api/v1/apps/{appid}",
         "Verb": "",
         "Version": 1
       },
@@ -291,7 +291,7 @@
     {
       "FullMethodName": "/begonia.org.sdk.AppsService/Get",
       "HttpMethod": "GET",
-      "HttpUri": "/api/v1/app/{appid}",
+      "HttpUri": "/api/v1/apps/{appid}",
       "InName": "GetAPPRequest",
       "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
@@ -324,10 +324,10 @@
         "Pool": [
           "api",
           "v1",
-          "app",
+          "apps",
           "appid"
         ],
-        "Template": "/api/v1/app/{appid}",
+        "Template": "/api/v1/apps/{appid}",
         "Verb": "",
         "Version": 1
       },
@@ -370,47 +370,11 @@
       "http_response": "begonia.org.sdk.common.HttpResponse"
     }
   ],
-  "/begonia.org.sdk.AppsService/Patch": [
+  "/begonia.org.sdk.AppsService/Post": [
     {
-      "FullMethodName": "/begonia.org.sdk.AppsService/Patch",
-      "HttpMethod": "PATCH",
-      "HttpUri": "/api/v1/app",
-      "InName": "AppsRequest",
-      "InPkg": "begonia.org.sdk",
-      "IsClientStream": false,
-      "IsServerStream": false,
-      "OutName": "Apps",
-      "OutPkg": "begonia.org.sdk",
-      "PathParams": [],
-      "Pattern": {},
-      "Pkg": "begonia.org.sdk",
-      "Template": {
-        "Fields": null,
-        "OpCodes": [
-          2,
-          0,
-          2,
-          1,
-          2,
-          2
-        ],
-        "Pool": [
-          "api",
-          "v1",
-          "app"
-        ],
-        "Template": "/api/v1/app",
-        "Verb": "",
-        "Version": 1
-      },
-      "http_response": "begonia.org.sdk.common.HttpResponse"
-    }
-  ],
-  "/begonia.org.sdk.AppsService/Put": [
-    {
-      "FullMethodName": "/begonia.org.sdk.AppsService/Put",
+      "FullMethodName": "/begonia.org.sdk.AppsService/Post",
       "HttpMethod": "POST",
-      "HttpUri": "/api/v1/app",
+      "HttpUri": "/api/v1/apps",
       "InName": "AppsRequest",
       "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
@@ -433,9 +397,45 @@
         "Pool": [
           "api",
           "v1",
-          "app"
+          "apps"
         ],
-        "Template": "/api/v1/app",
+        "Template": "/api/v1/apps",
+        "Verb": "",
+        "Version": 1
+      },
+      "http_response": "begonia.org.sdk.common.HttpResponse"
+    }
+  ],
+  "/begonia.org.sdk.AppsService/Update": [
+    {
+      "FullMethodName": "/begonia.org.sdk.AppsService/Update",
+      "HttpMethod": "PUT",
+      "HttpUri": "/api/v1/apps",
+      "InName": "AppsRequest",
+      "InPkg": "begonia.org.sdk",
+      "IsClientStream": false,
+      "IsServerStream": false,
+      "OutName": "Apps",
+      "OutPkg": "begonia.org.sdk",
+      "PathParams": [],
+      "Pattern": {},
+      "Pkg": "begonia.org.sdk",
+      "Template": {
+        "Fields": null,
+        "OpCodes": [
+          2,
+          0,
+          2,
+          1,
+          2,
+          2
+        ],
+        "Pool": [
+          "api",
+          "v1",
+          "apps"
+        ],
+        "Template": "/api/v1/apps",
         "Verb": "",
         "Version": 1
       },
@@ -574,7 +574,7 @@
     {
       "FullMethodName": "/begonia.org.sdk.EndpointService/Delete",
       "HttpMethod": "DELETE",
-      "HttpUri": "/api/v1/endpoint/{unique_key}",
+      "HttpUri": "/api/v1/endpoints/{unique_key}",
       "InName": "DeleteEndpointRequest",
       "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
@@ -607,21 +607,21 @@
         "Pool": [
           "api",
           "v1",
-          "endpoint",
+          "endpoints",
           "unique_key"
         ],
-        "Template": "/api/v1/endpoint/{unique_key}",
+        "Template": "/api/v1/endpoints/{unique_key}",
         "Verb": "",
         "Version": 1
       },
       "http_response": "begonia.org.sdk.common.HttpResponse"
     }
   ],
-  "/begonia.org.sdk.EndpointService/Details": [
+  "/begonia.org.sdk.EndpointService/Get": [
     {
-      "FullMethodName": "/begonia.org.sdk.EndpointService/Details",
+      "FullMethodName": "/begonia.org.sdk.EndpointService/Get",
       "HttpMethod": "GET",
-      "HttpUri": "/api/v1/endpoint/{unique_key}",
+      "HttpUri": "/api/v1/endpoints/{unique_key}",
       "InName": "DetailsEndpointRequest",
       "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
@@ -654,10 +654,10 @@
         "Pool": [
           "api",
           "v1",
-          "endpoint",
+          "endpoints",
           "unique_key"
         ],
-        "Template": "/api/v1/endpoint/{unique_key}",
+        "Template": "/api/v1/endpoints/{unique_key}",
         "Verb": "",
         "Version": 1
       },
@@ -668,7 +668,7 @@
     {
       "FullMethodName": "/begonia.org.sdk.EndpointService/List",
       "HttpMethod": "GET",
-      "HttpUri": "/api/v1/endpoint/batch",
+      "HttpUri": "/api/v1/endpoints",
       "InName": "ListEndpointRequest",
       "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
@@ -686,28 +686,25 @@
           2,
           1,
           2,
-          2,
-          2,
-          3
+          2
         ],
         "Pool": [
           "api",
           "v1",
-          "endpoint",
-          "batch"
+          "endpoints"
         ],
-        "Template": "/api/v1/endpoint/batch",
+        "Template": "/api/v1/endpoints",
         "Verb": "",
         "Version": 1
       },
       "http_response": "begonia.org.sdk.common.HttpResponse"
     }
   ],
-  "/begonia.org.sdk.EndpointService/Put": [
+  "/begonia.org.sdk.EndpointService/Post": [
     {
-      "FullMethodName": "/begonia.org.sdk.EndpointService/Put",
+      "FullMethodName": "/begonia.org.sdk.EndpointService/Post",
       "HttpMethod": "POST",
-      "HttpUri": "/api/v1/endpoint",
+      "HttpUri": "/api/v1/endpoints",
       "InName": "EndpointSrvConfig",
       "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
@@ -730,9 +727,9 @@
         "Pool": [
           "api",
           "v1",
-          "endpoint"
+          "endpoints"
         ],
-        "Template": "/api/v1/endpoint",
+        "Template": "/api/v1/endpoints",
         "Verb": "",
         "Version": 1
       },
@@ -742,33 +739,44 @@
   "/begonia.org.sdk.EndpointService/Update": [
     {
       "FullMethodName": "/begonia.org.sdk.EndpointService/Update",
-      "HttpMethod": "PATCH",
-      "HttpUri": "/api/v1/endpoint",
+      "HttpMethod": "PUT",
+      "HttpUri": "/api/v1/endpoints/{unique_key}",
       "InName": "EndpointSrvUpdateRequest",
       "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
       "IsServerStream": false,
       "OutName": "UpdateEndpointResponse",
       "OutPkg": "begonia.org.sdk",
-      "PathParams": [],
+      "PathParams": [
+        "unique_key"
+      ],
       "Pattern": {},
       "Pkg": "begonia.org.sdk",
       "Template": {
-        "Fields": null,
+        "Fields": [
+          "unique_key"
+        ],
         "OpCodes": [
           2,
           0,
           2,
           1,
           2,
-          2
+          2,
+          1,
+          0,
+          4,
+          1,
+          5,
+          3
         ],
         "Pool": [
           "api",
           "v1",
-          "endpoint"
+          "endpoints",
+          "unique_key"
         ],
-        "Template": "/api/v1/endpoint",
+        "Template": "/api/v1/endpoints/{unique_key}",
         "Verb": "",
         "Version": 1
       },
@@ -779,7 +787,7 @@
     {
       "FullMethodName": "/begonia.org.sdk.FileService/AbortMultipartUpload",
       "HttpMethod": "POST",
-      "HttpUri": "/api/v1/file/part/abort",
+      "HttpUri": "/api/v1/files/part/abort",
       "InName": "AbortMultipartUploadRequest",
       "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
@@ -806,11 +814,11 @@
         "Pool": [
           "api",
           "v1",
-          "file",
+          "files",
           "part",
           "abort"
         ],
-        "Template": "/api/v1/file/part/abort",
+        "Template": "/api/v1/files/part/abort",
         "Verb": "",
         "Version": 1
       },
@@ -821,7 +829,7 @@
     {
       "FullMethodName": "/begonia.org.sdk.FileService/CompleteMultipartUpload",
       "HttpMethod": "POST",
-      "HttpUri": "/api/v1/file/part/complete",
+      "HttpUri": "/api/v1/files/part/complete",
       "InName": "CompleteMultipartUploadRequest",
       "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
@@ -848,11 +856,11 @@
         "Pool": [
           "api",
           "v1",
-          "file",
+          "files",
           "part",
           "complete"
         ],
-        "Template": "/api/v1/file/part/complete",
+        "Template": "/api/v1/files/part/complete",
         "Verb": "",
         "Version": 1
       },
@@ -863,7 +871,7 @@
     {
       "FullMethodName": "/begonia.org.sdk.FileService/Delete",
       "HttpMethod": "DELETE",
-      "HttpUri": "/api/v1/file",
+      "HttpUri": "/api/v1/files",
       "InName": "DeleteRequest",
       "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
@@ -886,9 +894,9 @@
         "Pool": [
           "api",
           "v1",
-          "file"
+          "files"
         ],
-        "Template": "/api/v1/file",
+        "Template": "/api/v1/files",
         "Verb": "",
         "Version": 1
       },
@@ -899,7 +907,7 @@
     {
       "FullMethodName": "/begonia.org.sdk.FileService/Download",
       "HttpMethod": "GET",
-      "HttpUri": "/api/v1/file",
+      "HttpUri": "/api/v1/files",
       "InName": "DownloadRequest",
       "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
@@ -922,9 +930,9 @@
         "Pool": [
           "api",
           "v1",
-          "file"
+          "files"
         ],
-        "Template": "/api/v1/file",
+        "Template": "/api/v1/files",
         "Verb": "",
         "Version": 1
       }
@@ -934,7 +942,7 @@
     {
       "FullMethodName": "/begonia.org.sdk.FileService/DownloadForRange",
       "HttpMethod": "GET",
-      "HttpUri": "/api/v1/file/part",
+      "HttpUri": "/api/v1/files/part",
       "InName": "DownloadRequest",
       "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
@@ -959,10 +967,10 @@
         "Pool": [
           "api",
           "v1",
-          "file",
+          "files",
           "part"
         ],
-        "Template": "/api/v1/file/part",
+        "Template": "/api/v1/files/part",
         "Verb": "",
         "Version": 1
       }
@@ -972,7 +980,7 @@
     {
       "FullMethodName": "/begonia.org.sdk.FileService/InitiateMultipartUpload",
       "HttpMethod": "POST",
-      "HttpUri": "/api/v1/file/part/init",
+      "HttpUri": "/api/v1/files/part/init",
       "InName": "InitiateMultipartUploadRequest",
       "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
@@ -999,11 +1007,11 @@
         "Pool": [
           "api",
           "v1",
-          "file",
+          "files",
           "part",
           "init"
         ],
-        "Template": "/api/v1/file/part/init",
+        "Template": "/api/v1/files/part/init",
         "Verb": "",
         "Version": 1
       },
@@ -1014,7 +1022,7 @@
     {
       "FullMethodName": "/begonia.org.sdk.FileService/Metadata",
       "HttpMethod": "HEAD",
-      "HttpUri": "/api/v1/file/metadata",
+      "HttpUri": "/api/v1/files/metadata",
       "InName": "FileMetadataRequest",
       "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
@@ -1039,10 +1047,10 @@
         "Pool": [
           "api",
           "v1",
-          "file",
+          "files",
           "metadata"
         ],
-        "Template": "/api/v1/file/metadata",
+        "Template": "/api/v1/files/metadata",
         "Verb": "",
         "Version": 1
       },
@@ -1053,7 +1061,7 @@
     {
       "FullMethodName": "/begonia.org.sdk.FileService/Upload",
       "HttpMethod": "POST",
-      "HttpUri": "/api/v1/file",
+      "HttpUri": "/api/v1/files",
       "InName": "UploadFileRequest",
       "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
@@ -1076,9 +1084,9 @@
         "Pool": [
           "api",
           "v1",
-          "file"
+          "files"
         ],
-        "Template": "/api/v1/file",
+        "Template": "/api/v1/files",
         "Verb": "",
         "Version": 1
       },
@@ -1089,7 +1097,7 @@
     {
       "FullMethodName": "/begonia.org.sdk.FileService/UploadMultipartFile",
       "HttpMethod": "PUT",
-      "HttpUri": "/api/v1/file/part",
+      "HttpUri": "/api/v1/files/part",
       "InName": "UploadMultipartFileRequest",
       "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
@@ -1114,21 +1122,21 @@
         "Pool": [
           "api",
           "v1",
-          "file",
+          "files",
           "part"
         ],
-        "Template": "/api/v1/file/part",
+        "Template": "/api/v1/files/part",
         "Verb": "",
         "Version": 1
       },
       "http_response": "begonia.org.sdk.common.HttpResponse"
     }
   ],
-  "/begonia.org.sdk.PluginService/Call": [
+  "/begonia.org.sdk.PluginService/Apply": [
     {
-      "FullMethodName": "/begonia.org.sdk.PluginService/Call",
+      "FullMethodName": "/begonia.org.sdk.PluginService/Apply",
       "HttpMethod": "POST",
-      "HttpUri": "/v1/plugin/call",
+      "HttpUri": "/v1/plugin",
       "InName": "PluginRequest",
       "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
@@ -1144,24 +1152,21 @@
           2,
           0,
           2,
-          1,
-          2,
-          2
+          1
         ],
         "Pool": [
           "v1",
-          "plugin",
-          "call"
+          "plugin"
         ],
-        "Template": "/v1/plugin/call",
+        "Template": "/v1/plugin",
         "Verb": "",
         "Version": 1
       }
     }
   ],
-  "/begonia.org.sdk.PluginService/GetPluginInfo": [
+  "/begonia.org.sdk.PluginService/Info": [
     {
-      "FullMethodName": "/begonia.org.sdk.PluginService/GetPluginInfo",
+      "FullMethodName": "/begonia.org.sdk.PluginService/Info",
       "HttpMethod": "GET",
       "HttpUri": "/v1/plugin/info",
       "InName": "Empty",
@@ -1234,7 +1239,7 @@
     {
       "FullMethodName": "/begonia.org.sdk.UserService/Delete",
       "HttpMethod": "DELETE",
-      "HttpUri": "/api/v1/user/{uid}",
+      "HttpUri": "/api/v1/users/{uid}",
       "InName": "DeleteUserRequest",
       "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
@@ -1267,10 +1272,10 @@
         "Pool": [
           "api",
           "v1",
-          "user",
+          "users",
           "uid"
         ],
-        "Template": "/api/v1/user/{uid}",
+        "Template": "/api/v1/users/{uid}",
         "Verb": "",
         "Version": 1
       },
@@ -1281,7 +1286,7 @@
     {
       "FullMethodName": "/begonia.org.sdk.UserService/Get",
       "HttpMethod": "GET",
-      "HttpUri": "/api/v1/user/{uid}",
+      "HttpUri": "/api/v1/users/{uid}",
       "InName": "GetUserRequest",
       "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
@@ -1314,10 +1319,10 @@
         "Pool": [
           "api",
           "v1",
-          "user",
+          "users",
           "uid"
         ],
-        "Template": "/api/v1/user/{uid}",
+        "Template": "/api/v1/users/{uid}",
         "Verb": "",
         "Version": 1
       },
@@ -1328,7 +1333,7 @@
     {
       "FullMethodName": "/begonia.org.sdk.UserService/Register",
       "HttpMethod": "POST",
-      "HttpUri": "/api/v1/user",
+      "HttpUri": "/api/v1/users",
       "InName": "PostUserRequest",
       "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
@@ -1351,9 +1356,9 @@
         "Pool": [
           "api",
           "v1",
-          "user"
+          "users"
         ],
-        "Template": "/api/v1/user",
+        "Template": "/api/v1/users",
         "Verb": "",
         "Version": 1
       },
@@ -1363,8 +1368,8 @@
   "/begonia.org.sdk.UserService/Update": [
     {
       "FullMethodName": "/begonia.org.sdk.UserService/Update",
-      "HttpMethod": "PATCH",
-      "HttpUri": "/api/v1/user/{uid}",
+      "HttpMethod": "PUT",
+      "HttpUri": "/api/v1/users/{uid}",
       "InName": "PatchUserRequest",
       "InPkg": "begonia.org.sdk",
       "IsClientStream": false,
@@ -1397,10 +1402,10 @@
         "Pool": [
           "api",
           "v1",
-          "user",
+          "users",
           "uid"
         ],
-        "Template": "/api/v1/user/{uid}",
+        "Template": "/api/v1/users/{uid}",
         "Verb": "",
         "Version": 1
       },
@@ -1411,7 +1416,7 @@
     {
       "FullMethodName": "/helloworld.Greeter/SayHello",
       "HttpMethod": "POST",
-      "HttpUri": "/api/v1/example/helloworld",
+      "HttpUri": "/api/v1/example/post",
       "InName": "HelloRequest",
       "InPkg": "helloworld",
       "IsClientStream": false,
@@ -1437,19 +1442,237 @@
           "api",
           "v1",
           "example",
-          "helloworld"
+          "post"
         ],
-        "Template": "/api/v1/example/helloworld",
+        "Template": "/api/v1/example/post",
         "Verb": "",
         "Version": 1
       }
     }
   ],
-  "/helloworld.Greeter/SayHelloBidiStream": [
+  "/helloworld.Greeter/SayHelloBody": [
     {
-      "FullMethodName": "/helloworld.Greeter/SayHelloBidiStream",
+      "FullMethodName": "/helloworld.Greeter/SayHelloBody",
+      "HttpMethod": "POST",
+      "HttpUri": "/api/v1/example/body",
+      "InName": "HttpBody",
+      "InPkg": "google.api",
+      "IsClientStream": false,
+      "IsServerStream": false,
+      "OutName": "HttpBody",
+      "OutPkg": "google.api",
+      "PathParams": [],
+      "Pattern": {},
+      "Pkg": "helloworld",
+      "Template": {
+        "Fields": null,
+        "OpCodes": [
+          2,
+          0,
+          2,
+          1,
+          2,
+          2,
+          2,
+          3
+        ],
+        "Pool": [
+          "api",
+          "v1",
+          "example",
+          "body"
+        ],
+        "Template": "/api/v1/example/body",
+        "Verb": "",
+        "Version": 1
+      }
+    }
+  ],
+  "/helloworld.Greeter/SayHelloClientStream": [
+    {
+      "FullMethodName": "/helloworld.Greeter/SayHelloClientStream",
+      "HttpMethod": "POST",
+      "HttpUri": "/api/v1/example/client/stream",
+      "InName": "HelloRequest",
+      "InPkg": "helloworld",
+      "IsClientStream": true,
+      "IsServerStream": false,
+      "OutName": "RepeatedReply",
+      "OutPkg": "helloworld",
+      "PathParams": [],
+      "Pattern": {},
+      "Pkg": "helloworld",
+      "Template": {
+        "Fields": null,
+        "OpCodes": [
+          2,
+          0,
+          2,
+          1,
+          2,
+          2,
+          2,
+          3,
+          2,
+          4
+        ],
+        "Pool": [
+          "api",
+          "v1",
+          "example",
+          "client",
+          "stream"
+        ],
+        "Template": "/api/v1/example/client/stream",
+        "Verb": "",
+        "Version": 1
+      }
+    }
+  ],
+  "/helloworld.Greeter/SayHelloError": [
+    {
+      "FullMethodName": "/helloworld.Greeter/SayHelloError",
       "HttpMethod": "GET",
-      "HttpUri": "/api/v1/example/helloworld/stream",
+      "HttpUri": "/api/v1/example/error/test",
+      "InName": "ErrorRequest",
+      "InPkg": "helloworld",
+      "IsClientStream": false,
+      "IsServerStream": false,
+      "OutName": "HelloReply",
+      "OutPkg": "helloworld",
+      "PathParams": [],
+      "Pattern": {},
+      "Pkg": "helloworld",
+      "Template": {
+        "Fields": null,
+        "OpCodes": [
+          2,
+          0,
+          2,
+          1,
+          2,
+          2,
+          2,
+          3,
+          2,
+          4
+        ],
+        "Pool": [
+          "api",
+          "v1",
+          "example",
+          "error",
+          "test"
+        ],
+        "Template": "/api/v1/example/error/test",
+        "Verb": "",
+        "Version": 1
+      }
+    }
+  ],
+  "/helloworld.Greeter/SayHelloGet": [
+    {
+      "FullMethodName": "/helloworld.Greeter/SayHelloGet",
+      "HttpMethod": "GET",
+      "HttpUri": "/api/v1/example/{name}",
+      "InName": "HelloRequest",
+      "InPkg": "helloworld",
+      "IsClientStream": false,
+      "IsServerStream": false,
+      "OutName": "HelloReply",
+      "OutPkg": "helloworld",
+      "PathParams": [
+        "name"
+      ],
+      "Pattern": {},
+      "Pkg": "helloworld",
+      "Template": {
+        "Fields": [
+          "name"
+        ],
+        "OpCodes": [
+          2,
+          0,
+          2,
+          1,
+          2,
+          2,
+          1,
+          0,
+          4,
+          1,
+          5,
+          3
+        ],
+        "Pool": [
+          "api",
+          "v1",
+          "example",
+          "name"
+        ],
+        "Template": "/api/v1/example/{name}",
+        "Verb": "",
+        "Version": 1
+      }
+    }
+  ],
+  "/helloworld.Greeter/SayHelloServerSideEvent": [
+    {
+      "FullMethodName": "/helloworld.Greeter/SayHelloServerSideEvent",
+      "HttpMethod": "GET",
+      "HttpUri": "/api/v1/example/server/sse/{name}",
+      "InName": "HelloRequest",
+      "InPkg": "helloworld",
+      "IsClientStream": false,
+      "IsServerStream": true,
+      "OutName": "HelloReply",
+      "OutPkg": "helloworld",
+      "PathParams": [
+        "name"
+      ],
+      "Pattern": {},
+      "Pkg": "helloworld",
+      "Template": {
+        "Fields": [
+          "name"
+        ],
+        "OpCodes": [
+          2,
+          0,
+          2,
+          1,
+          2,
+          2,
+          2,
+          3,
+          2,
+          4,
+          1,
+          0,
+          4,
+          1,
+          5,
+          5
+        ],
+        "Pool": [
+          "api",
+          "v1",
+          "example",
+          "server",
+          "sse",
+          "name"
+        ],
+        "Template": "/api/v1/example/server/sse/{name}",
+        "Verb": "",
+        "Version": 1
+      }
+    }
+  ],
+  "/helloworld.Greeter/SayHelloWebsocket": [
+    {
+      "FullMethodName": "/helloworld.Greeter/SayHelloWebsocket",
+      "HttpMethod": "GET",
+      "HttpUri": "/api/v1/example/server/websocket",
       "InName": "HelloRequest",
       "InPkg": "helloworld",
       "IsClientStream": true,
@@ -1477,136 +1700,10 @@
           "api",
           "v1",
           "example",
-          "helloworld",
-          "stream"
-        ],
-        "Template": "/api/v1/example/helloworld/stream",
-        "Verb": "",
-        "Version": 1
-      }
-    }
-  ],
-  "/helloworld.Greeter/SayHelloGet": [
-    {
-      "FullMethodName": "/helloworld.Greeter/SayHelloGet",
-      "HttpMethod": "GET",
-      "HttpUri": "/api/v1/example/helloworld",
-      "InName": "HelloRequest",
-      "InPkg": "helloworld",
-      "IsClientStream": false,
-      "IsServerStream": false,
-      "OutName": "HelloReply",
-      "OutPkg": "helloworld",
-      "PathParams": [],
-      "Pattern": {},
-      "Pkg": "helloworld",
-      "Template": {
-        "Fields": null,
-        "OpCodes": [
-          2,
-          0,
-          2,
-          1,
-          2,
-          2,
-          2,
-          3
-        ],
-        "Pool": [
-          "api",
-          "v1",
-          "example",
-          "helloworld"
-        ],
-        "Template": "/api/v1/example/helloworld",
-        "Verb": "",
-        "Version": 1
-      }
-    }
-  ],
-  "/helloworld.Greeter/SayHelloStreamReply": [
-    {
-      "FullMethodName": "/helloworld.Greeter/SayHelloStreamReply",
-      "HttpMethod": "GET",
-      "HttpUri": "/api/v1/example/helloworld/server/stream",
-      "InName": "HelloRequest",
-      "InPkg": "helloworld",
-      "IsClientStream": false,
-      "IsServerStream": true,
-      "OutName": "HelloReply",
-      "OutPkg": "helloworld",
-      "PathParams": [],
-      "Pattern": {},
-      "Pkg": "helloworld",
-      "Template": {
-        "Fields": null,
-        "OpCodes": [
-          2,
-          0,
-          2,
-          1,
-          2,
-          2,
-          2,
-          3,
-          2,
-          4,
-          2,
-          5
-        ],
-        "Pool": [
-          "api",
-          "v1",
-          "example",
-          "helloworld",
           "server",
-          "stream"
+          "websocket"
         ],
-        "Template": "/api/v1/example/helloworld/server/stream",
-        "Verb": "",
-        "Version": 1
-      }
-    }
-  ],
-  "/helloworld.Greeter/SayHelloStreamSend": [
-    {
-      "FullMethodName": "/helloworld.Greeter/SayHelloStreamSend",
-      "HttpMethod": "POST",
-      "HttpUri": "/api/v1/example/helloworld/client/stream",
-      "InName": "HelloRequest",
-      "InPkg": "helloworld",
-      "IsClientStream": true,
-      "IsServerStream": false,
-      "OutName": "HelloReply",
-      "OutPkg": "helloworld",
-      "PathParams": [],
-      "Pattern": {},
-      "Pkg": "helloworld",
-      "Template": {
-        "Fields": null,
-        "OpCodes": [
-          2,
-          0,
-          2,
-          1,
-          2,
-          2,
-          2,
-          3,
-          2,
-          4,
-          2,
-          5
-        ],
-        "Pool": [
-          "api",
-          "v1",
-          "example",
-          "helloworld",
-          "client",
-          "stream"
-        ],
-        "Template": "/api/v1/example/helloworld/client/stream",
+        "Template": "/api/v1/example/server/websocket",
         "Verb": "",
         "Version": 1
       }
