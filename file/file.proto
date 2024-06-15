@@ -5,6 +5,9 @@ import "google/protobuf/descriptor.proto";
 import "google/api/annotations.proto";
 import "google/api/httpbody.proto";
 import "common/options.proto";
+import "google/protobuf/field_mask.proto";
+
+import "google/protobuf/timestamp.proto";
 
 
 enum FileSvrStatus{
@@ -16,12 +19,23 @@ enum FileSvrStatus{
 	FILE_NOT_FOUND_UPLOADID_ERR=6105[(.begonia.org.sdk.common.msg) = "File not found uploadId error"];
 	FILE_INVALIDATE_KEY_ERR=6106[(.begonia.org.sdk.common.msg) = "File invaildate key error"];
 	FILE_INVALIDATE_RANGE_ERR=6107[(.begonia.org.sdk.common.msg) = "Invaildate Range"];
+    FILE_INVALIDATE_BUCKET_ERR=6108[(.begonia.org.sdk.common.msg) = "Invaildate Bucket"];
+    FILE_INVALIDATE_ENGINE_ERR=6109[(.begonia.org.sdk.common.msg) = "Invaildate Engine"];
 
 
+}
+enum FileEngine{
+    FILE_ENGINE_UNKNOWN = 0;
+    FILE_ENGINE_LOCAL = 1;
+    FILE_ENGINE_MINIO = 2;
+    FILE_ENGINE_S3 = 3;
+    FILE_ENGINE_OSS = 4;
 }
 message InitiateMultipartUploadRequest {
 	// @gotags: validate:"required,startsnotwith=/" doc:"文件名,仅支持相对路径，例如test/a.txt,不支持/开头的绝对路径"
 	string key = 1;
+        // @gotags: validate:"required,oneof=FILE_ENGINE_LOCAL FILE_ENGINE_MINIO FILE_ENGINE_S3 FILE_ENGINE_OSS" doc:"存储引擎"
+        string engine=2;
 }
 message InitiateMultipartUploadResponse {
 // upload_id 标识本次分块上传的 ID，使用 Initiate Multipart Upload 接口初始化分块上传时得到的 UploadId。
@@ -39,10 +53,12 @@ message UploadMultipartFileRequest {
 	int64 part_number = 4[json_name="part_number"];
 	// @gotags: validate:"required,sha256" doc:"文件sha256"
 	string sha256 = 5;
+    // @gotags: validate:"required,oneof=FILE_ENGINE_LOCAL FILE_ENGINE_MINIO FILE_ENGINE_S3 FILE_ENGINE_OSS" doc:"存储引擎"
+    string engine=6;
 }
 message UploadMultipartFileResponse {
 	// @gotags: validate:"required" doc:"文件名,仅支持相对路径，例如test/a.txt,不支持/开头的绝对路径"
-	string uri = 1 [json_name="uri"];
+	// string uri = 1 [json_name="uri"];
 }
 message UploadFileRequest {
 	// @gotags: validate:"required" doc:"文件名,仅支持相对路径，例如test/a.txt,不支持/开头的绝对路径"
@@ -52,6 +68,42 @@ message UploadFileRequest {
 	// @gotags: validate:"required,sha256" doc:"文件sha256"
 	string sha256 = 4;
 	bool use_version = 5[json_name="use_version"];
+    string bucket = 6;
+    // @gotags: validate:"required,oneof=FILE_ENGINE_LOCAL FILE_ENGINE_MINIO FILE_ENGINE_S3 FILE_ENGINE_OSS" doc:"存储引擎"
+    string engine=7;
+}
+message FileSystemEngine{
+    // @gotags: validate:"required,oneof=FILE_ENGINE_LOCAL FILE_ENGINE_MINIO FILE_ENGINE_S3 FILE_ENGINE_OSS" doc:"存储引擎"
+    string name=1;
+    // @gotags: validate:"required" doc:"引擎地址"
+    string endpoint=2;
+    string access_key=3[json_name="access_key"];
+    string secret_key=4[json_name="secret_key"];
+
+}
+message ListFilesRequest{
+    string bucket=1;
+    // @gotags: validate:"required,oneof=FILE_ENGINE_LOCAL FILE_ENGINE_MINIO FILE_ENGINE_S3 FILE_ENGINE_OSS" doc:"bucket名称"
+    string engine=2;
+    // @gotags: validate:"gte=1" doc:"页码"
+    int32 page=3;
+    // @gotags: validate:"gte=1" doc:"每页数量"
+    int64 page_size=4[json_name="page_size"];
+    
+}
+message ListFilesResponse{
+    repeated Files files=1;
+}
+message MakeBucketRequest{
+    // @gotags: validate:"required" doc:"bucket名称"
+    string bucket=1;
+    string Region=2;
+
+    bool object_locking=3[json_name="object_locking"];
+    // @gotags: validate:"required,oneof=FILE_ENGINE_LOCAL FILE_ENGINE_MINIO FILE_ENGINE_S3 FILE_ENGINE_OSS" doc:"存储引擎"
+   string engine=4;
+}
+message MakeBucketResponse{
 }
 message UploadFileResponse {
 	string uri = 1 [json_name="uri"];
@@ -68,6 +120,10 @@ message CompleteMultipartUploadRequest {
 	// @gotags: validate:"required,sha256" doc:"文件sha256"
 	string sha256 = 4;
 	bool use_version = 5[json_name="use_version"];
+    // @gotags: validate:"required" doc:"bucket名称"
+    string bucket = 6;
+    // @gotags: validate:"required,oneof=FILE_ENGINE_LOCAL FILE_ENGINE_MINIO FILE_ENGINE_S3 FILE_ENGINE_OSS" doc:"存储引擎"
+    string engine=7;
 
 
 }
@@ -80,6 +136,8 @@ message CompleteMultipartUploadResponse {
 message AbortMultipartUploadRequest{
 	// upload_id 标识本次分块上传的 ID，使用 Initiate Multipart Upload 接口初始化分块上传时得到的 UploadId。
 	string upload_id = 1[json_name="upload_id"];
+    // @gotags: validate:"required,oneof=FILE_ENGINE_LOCAL FILE_ENGINE_MINIO FILE_ENGINE_S3 FILE_ENGINE_OSS" doc:"存储引擎"
+    string engine=2;
 
 }
 message AbortMultipartUploadResponse{
@@ -95,6 +153,10 @@ message DownloadRequest {
 	// @gotags: validate:"required" doc:"文件名,仅支持相对路径，例如test/a.txt,不支持/开头的绝对路径"
 	string key = 1;
 	string version=2;
+    // @gotags: validate:"required" doc:"bucket名称"
+    string bucket=3;
+    // @gotags: validate:"required,oneof=FILE_ENGINE_LOCAL FILE_ENGINE_MINIO FILE_ENGINE_S3 FILE_ENGINE_OSS" doc:"存储引擎"
+    string engine=6;
 }
 message DownloadResponse {
 	bytes content = 1;
@@ -103,6 +165,11 @@ message DownloadResponse {
 message DeleteRequest {
 	// @gotags: validate:"required" doc:"文件名,仅支持相对路径，例如test/a.txt,不支持/开头的绝对路径"
 	string key = 1;
+    string version=2;
+    // @gotags: validate:"required" doc:"bucket名称"
+    string bucket=3;
+    // @gotags: validate:"required,oneof=FILE_ENGINE_LOCAL FILE_ENGINE_MINIO FILE_ENGINE_S3 FILE_ENGINE_OSS" doc:"存储引擎"
+    string engine=6;
 }
 message DeleteResponse {
 
@@ -111,6 +178,10 @@ message FileMetadataRequest {
 	// @gotags: validate:"required" doc:"文件名,仅支持相对路径，例如test/a.txt,不支持/开头的绝对路径"
 	string key = 1;
 	string version=2;
+    // @gotags: validate:"required" doc:"bucket名称"
+    string bucket=3;
+    // @gotags: validate:"required,oneof=FILE_ENGINE_LOCAL FILE_ENGINE_MINIO FILE_ENGINE_S3 FILE_ENGINE_OSS" doc:"存储引擎"
+    string engine=6;
 }
 message FileMetadataResponse {
 	// @gotags: validate:"required" doc:"文件名,仅支持相对路径，例如test/a.txt,不支持/开头的绝对路径"
@@ -128,6 +199,50 @@ message FileMetadataResponse {
 	string name = 7;
 	string version = 8;
 }
+message Files{
+    // @gotags: gorm:"primaryKey;autoIncrement;comment:自增id"
+    int64 ID = 1;
+    // @gotags: json:"uid"  primary:"uid" gorm:"column:uid;type:varchar(36);not null;unique;comment:uid"
+    string uid = 2;
+    // @gotags: json:"key" owner:"key" gorm:"index:idx_key_bucket_engine,unique;column:key;type:varchar(512);not null;comment:key"
+    string key=3;
+    // @gotags: json:"bucket" gorm:"index:idx_key_bucket_engine,unique;column:bucket;type:varchar(64);comment:bucket"
+    string bucket=4;
+    // @gotags: json:"engine" gorm:"index:idx_key_bucket_engine,unique;column:engine;type:varchar(64);comment:存储引擎"
+    string engine=5;
+
+    // @gotags: json:"is_deleted" gorm:"column:is_deleted;type:tinyint;comment:proto服务是否删除"
+    bool is_deleted=12 [json_name="is_deleted"];
+    // @gotags: doc:"完成时间" gorm:"column:created_at;type:datetime;serializer:timepb;comment:定时任务的最近一次完成时间"
+    google.protobuf.Timestamp created_at = 10[json_name="created_at"];
+    // @gotags: doc:"更新时间" gorm:"column:updated_at;type:datetime;serializer:timepb;comment:定时任务的更新时间"
+    google.protobuf.Timestamp updated_at = 11[json_name="updated_at"];
+
+    // @gotags: json:"owner" owner:"owner" gorm:"column:owner;type:varchar(36);comment:文件所有者"
+    string owner = 13;
+    // @gotags: gorm:"-" json:"update_mask"
+    google.protobuf.FieldMask update_mask = 18;
+}
+message Buckets{
+    // @gotags: gorm:"primaryKey;autoIncrement;comment:自增id"
+    int64 ID = 1;
+    // @gotags: json:"uid"  primary:"uid" gorm:"column:uid;type:varchar(36);not null;unique;comment:uid"
+    string uid = 2;
+    // @gotags: json:"bucket" owner:"bucket" gorm:"index:idx_bucket_engine,unique;column:engine;type:varchar(64);comment:存储引擎"
+    string engine=3;
+    // @gotags: json:"bucket" owner:"bucket" gorm:"index:idx_bucket_engine,unique;column:bucket;type:varchar(64);comment:存储桶"
+    string bucket=4;
+    string owner=5;
+    // @gotags: json:"is_deleted" gorm:"column:is_deleted;type:tinyint;comment:proto服务是否删除"
+    bool is_deleted=12 [json_name="is_deleted"];
+    // @gotags: doc:"完成时间" gorm:"column:created_at;type:datetime;serializer:timepb;comment:定时任务的最近一次完成时间"
+    google.protobuf.Timestamp created_at = 10[json_name="created_at"];
+    // @gotags: doc:"更新时间" gorm:"column:updated_at;type:datetime;serializer:timepb;comment:定时任务的更新时间"
+    google.protobuf.Timestamp updated_at = 11[json_name="updated_at"];
+    // @gotags: gorm:"-" json:"update_mask"
+    google.protobuf.FieldMask update_mask = 18;
+
+}
 service FileService {
 	option (.begonia.org.sdk.common.http_response)="begonia.org.sdk.common.HttpResponse";
 	option (.begonia.org.sdk.common.auth_reqiured)=true;
@@ -138,6 +253,12 @@ service FileService {
 			body: "*"
 		  };
 	};
+    rpc MakeBucket(MakeBucketRequest) returns (MakeBucketResponse){
+        option (google.api.http) = {
+            post: "/api/v1/files/buckets"
+            body: "*"
+          };
+    };
 	rpc UploadMultipartFile(UploadMultipartFileRequest) returns (UploadMultipartFileResponse){
 		option (google.api.http) = {
 			put: "/api/v1/files/part"
@@ -177,6 +298,11 @@ service FileService {
 			get: "/api/v1/files/part"
 		  };
 	};
+    rpc ListFiles(ListFilesRequest) returns (ListFilesResponse){
+        option (google.api.http) = {
+            get: "/api/v1/files/list"
+          };
+    };
 	rpc Metadata(FileMetadataRequest) returns (FileMetadataResponse){
 		option (google.api.http) = {
 			custom: {
