@@ -17,7 +17,7 @@ message InfoResponse {
 
 service SystemService {
     option (.begonia.org.sdk.common.api.v1.auth_reqiured)=true;
-    option (.begonia.org.sdk.common.api.v1.http_response)="begonia.org.sdk.common.HttpResponse";
+    option (.begonia.org.sdk.common.api.v1.http_response)="begonia.org.sdk.common.api.v1.HttpResponse";
 
     rpc Get(InfoRequest) returns (InfoResponse) {
         option (google.api.http) = {
