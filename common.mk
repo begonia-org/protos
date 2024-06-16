@@ -8,19 +8,20 @@ TS_PROTO_PLUGIN = $(shell which protoc-gen-ts_proto)
 # 目标文件夹
 PROTO_DIR = ./common
 OUTPUT_DIR = ../common/api/v1
-PY_OUTPUT_DIR = ../api
+PY_PROTO_DIR = ./
+
+PY_OUTPUT_DIR = ../api/common/v1
 COMMON_FILES = $(wildcard $(PROTO_DIR)/*.proto)
 COMMON_PROTO_FILES = $(notdir $(COMMON_FILES))
 # 文件列表
 GO_PROTO_FILES = $(wildcard $(PROTO_DIR)/*.proto)
-PY_PROTO_FILES = $(wildcard $(PROTO_DIR)/common/*.proto)
+PY_PROTO_FILES = $(wildcard $(PY_PROTO_DIR)/common/*.proto)
 TS_PROTO_FILES = $(wildcard $(PROTO_DIR)/common/*.proto)
-COMMON_ARGS = options.proto common.proto
 # 通用参数
 GO_ARGS = --go_out=$(OUTPUT_DIR) --go_opt=paths=source_relative \
           --go-grpc_out=$(OUTPUT_DIR) --grpc-gateway_out=$(OUTPUT_DIR) \
           --grpc-gateway_opt=paths=source_relative --go-grpc_opt=paths=source_relative
-PY_ARGS = -m grpc_tools.protoc -I=$(PROTO_DIR) --python_out=$(PY_OUTPUT_DIR) \
+PY_ARGS = -m grpc_tools.protoc -I=$(PY_PROTO_DIR) -I=$(PY_PROTO_DIR) --python_out=$(PY_OUTPUT_DIR) \
           --pyi_out=$(PY_OUTPUT_DIR) --grpc_python_out=$(PY_OUTPUT_DIR) 
 TS_ARGS = --plugin="protoc-gen-ts=$(TS_PROTO_PLUGIN)" \
           --ts_proto_opt=esModuleInterop=true --ts_proto_opt=paths=source_relative \
@@ -44,10 +45,13 @@ go: make_dir
 
 # 生成 Python 代码
 py: $(PY_PROTO_FILES) | make_py_dir
-	touch $(PY_OUTPUT_DIR)/common/__init__.py
-	echo "#!/usr/bin/env python" > $(PY_OUTPUT_DIR)/common/__init__.py
+	touch $(PY_OUTPUT_DIR)/__init__.py
+	echo "#!/usr/bin/env python" > $(PY_OUTPUT_DIR)/__init__.py
 	$(PYTHON) $(PY_ARGS) $?
-	sed -i '/from/!s/import \(.*\) as/from . import \1 as/g' $(PY_OUTPUT_DIR)/common/*.py*
+	sed -i '/from/!s/import \(.*\) as/from . import \1 as/g' $(PY_OUTPUT_DIR)/*.py*
+	mv $(PY_OUTPUT_DIR)/common/* $(PY_OUTPUT_DIR)
+	rm -rf $(PY_OUTPUT_DIR)/common
+	
 
 # 生成 TypeScript 代码
 ts: $(TS_PROTO_FILES) | make_dir
