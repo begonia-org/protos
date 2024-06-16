@@ -8,9 +8,11 @@ define make-common
 	@$(MAKE) -f ./common.mk $(1)
 endef
 go: desc
+	$(call make-common,go)
 	$(call make-api,go)
 
 ts:
+	$(call make-common,ts)
 	$(call make-api,ts)
 
 py:
