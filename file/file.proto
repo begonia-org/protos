@@ -108,6 +108,7 @@ message MakeBucketResponse{
 message UploadFileResponse {
 	string uri = 1 [json_name="uri"];
 	string version = 2;
+    string uid=3;
 
 }
 message CompleteMultipartUploadRequest {
@@ -132,6 +133,7 @@ message CompleteMultipartUploadResponse {
 
 	string sha256 = 2;
 	string version = 3;
+    string uid =4;
 }
 message AbortMultipartUploadRequest{
 	// upload_id 标识本次分块上传的 ID，使用 Initiate Multipart Upload 接口初始化分块上传时得到的 UploadId。
@@ -150,13 +152,14 @@ message UploadAPIResponse {
 }
 
 message DownloadRequest {
-	// @gotags: validate:"required" doc:"文件名,仅支持相对路径，例如test/a.txt,不支持/开头的绝对路径"
+	// @gotags: validate:"required_if=FileId" doc:"文件名,仅支持相对路径，例如test/a.txt,不支持/开头的绝对路径"
 	string key = 1;
 	string version=2;
-    // @gotags: validate:"required" doc:"bucket名称"
+    // @gotags: validate:"required_if=FileId" doc:"bucket名称"
     string bucket=3;
-    // @gotags: validate:"required,oneof=FILE_ENGINE_LOCAL FILE_ENGINE_MINIO FILE_ENGINE_S3 FILE_ENGINE_OSS" doc:"存储引擎"
+    // @gotags: validate:"required_if=FileId,oneof=FILE_ENGINE_LOCAL FILE_ENGINE_MINIO FILE_ENGINE_S3 FILE_ENGINE_OSS" doc:"存储引擎"
     string engine=6;
+    string file_id=7[json_name="file_id"];
 }
 message DownloadResponse {
 	bytes content = 1;
@@ -170,6 +173,8 @@ message DeleteRequest {
     string bucket=3;
     // @gotags: validate:"required,oneof=FILE_ENGINE_LOCAL FILE_ENGINE_MINIO FILE_ENGINE_S3 FILE_ENGINE_OSS" doc:"存储引擎"
     string engine=6;
+    string file_id=7[json_name="file_id"];
+
 }
 message DeleteResponse {
 
@@ -182,6 +187,8 @@ message FileMetadataRequest {
     string bucket=3;
     // @gotags: validate:"required,oneof=FILE_ENGINE_LOCAL FILE_ENGINE_MINIO FILE_ENGINE_S3 FILE_ENGINE_OSS" doc:"存储引擎"
     string engine=6;
+    string file_id=7[json_name="file_id"];
+
 }
 message FileMetadataResponse {
 	// @gotags: validate:"required" doc:"文件名,仅支持相对路径，例如test/a.txt,不支持/开头的绝对路径"
@@ -198,17 +205,18 @@ message FileMetadataResponse {
 	int64 modify_time = 6;
 	string name = 7;
 	string version = 8;
+    string uid=9;
 }
 message Files{
     // @gotags: gorm:"primaryKey;autoIncrement;comment:自增id"
     int64 ID = 1;
     // @gotags: json:"uid"  primary:"uid" gorm:"column:uid;type:varchar(36);not null;unique;comment:uid"
     string uid = 2;
-    // @gotags: json:"key" owner:"key" gorm:"index:idx_key_bucket_engine,unique;column:key;type:varchar(512);not null;comment:key"
+    // @gotags: json:"key" old_column:"key" gorm:"index:idx_key_bucket_engine,unique;column:file_key;type:varchar(512);not null;comment:key"
     string key=3;
     // @gotags: json:"bucket" gorm:"index:idx_key_bucket_engine,unique;column:bucket;type:varchar(64);comment:bucket"
     string bucket=4;
-    // @gotags: json:"engine" gorm:"index:idx_key_bucket_engine,unique;column:engine;type:varchar(64);comment:存储引擎"
+    // @gotags: json:"engine" old_column:"engine" gorm:"index:idx_key_bucket_engine,unique;column:fs_engine;type:varchar(64);comment:存储引擎"
     string engine=5;
 
     // @gotags: json:"is_deleted" gorm:"column:is_deleted;type:tinyint;comment:proto服务是否删除"
