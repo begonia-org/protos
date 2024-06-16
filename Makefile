@@ -4,6 +4,9 @@ define make-api
 		$(MAKE) -f ./api.mk PROTO_DIR="$$dir" OUTPUT_DIR="../api/$$dir/v1" $(1); \
 	done
 endef
+define make-common
+	@$(MAKE) -f ./common.mk $(1)
+endef
 go: desc
 	$(call make-api,go)
 
@@ -11,6 +14,7 @@ ts:
 	$(call make-api,ts)
 
 py:
+	$(call make-common,py)
 	$(call make-api,py)
 desc:
 	@mkdir -p ./tmp
