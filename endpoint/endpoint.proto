@@ -14,9 +14,9 @@ enum EndpointStatus{
 }
 enum EndpointSvrStatus{
 ENDPOINT_UNKNOW = 0;
-NOT_SUPPORT_BALANCE = 7101[(.begonia.org.sdk.common.msg) = "Not support balance"];
-SERVICE_NAME_DUPLICATE = 7102[(.begonia.org.sdk.common.msg) = "Service name duplicate"];
-ENDPOINT_NOT_FOUND = 7103[(.begonia.org.sdk.common.msg) = "Endpoint not found"];
+NOT_SUPPORT_BALANCE = 7101[(.begonia.org.sdk.common.api.v1.msg) = "Not support balance"];
+SERVICE_NAME_DUPLICATE = 7102[(.begonia.org.sdk.common.api.v1.msg) = "Service name duplicate"];
+ENDPOINT_NOT_FOUND = 7103[(.begonia.org.sdk.common.api.v1.msg) = "Endpoint not found"];
 }
 message EndpointMeta {
     // @gotags: json:"addr" gorm:"column:addr;type:varchar(128);comment:服务地址"
@@ -168,8 +168,8 @@ message SvrStatus{
 }
 
 service EndpointService{
-    option (.begonia.org.sdk.common.auth_reqiured)=true;
-    option (.begonia.org.sdk.common.http_response)="begonia.org.sdk.common.HttpResponse";
+    option (.begonia.org.sdk.common.api.v1.auth_reqiured)=true;
+    option (.begonia.org.sdk.common.api.v1.http_response)="begonia.org.sdk.common.HttpResponse";
 
     rpc Post(EndpointSrvConfig) returns (AddEndpointResponse){
         option (google.api.http) = {

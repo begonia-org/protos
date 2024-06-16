@@ -1,5 +1,5 @@
 syntax = "proto3";
-package begonia.org.sdk.common;
+package begonia.org.sdk.common.api.v1;
 option go_package = "github.com/begonia-org/go-sdk/common/api/v1";
 import "google/protobuf/descriptor.proto";
 import "google/protobuf/struct.proto";

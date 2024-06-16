@@ -1018,6 +1018,84 @@
       "http_response": "begonia.org.sdk.common.HttpResponse"
     }
   ],
+  "/begonia.org.sdk.FileService/ListFiles": [
+    {
+      "FullMethodName": "/begonia.org.sdk.FileService/ListFiles",
+      "HttpMethod": "GET",
+      "HttpUri": "/api/v1/files/list",
+      "InName": "ListFilesRequest",
+      "InPkg": "begonia.org.sdk",
+      "IsClientStream": false,
+      "IsServerStream": false,
+      "OutName": "ListFilesResponse",
+      "OutPkg": "begonia.org.sdk",
+      "PathParams": [],
+      "Pattern": {},
+      "Pkg": "begonia.org.sdk",
+      "Template": {
+        "Fields": null,
+        "OpCodes": [
+          2,
+          0,
+          2,
+          1,
+          2,
+          2,
+          2,
+          3
+        ],
+        "Pool": [
+          "api",
+          "v1",
+          "files",
+          "list"
+        ],
+        "Template": "/api/v1/files/list",
+        "Verb": "",
+        "Version": 1
+      },
+      "http_response": "begonia.org.sdk.common.HttpResponse"
+    }
+  ],
+  "/begonia.org.sdk.FileService/MakeBucket": [
+    {
+      "FullMethodName": "/begonia.org.sdk.FileService/MakeBucket",
+      "HttpMethod": "POST",
+      "HttpUri": "/api/v1/files/buckets",
+      "InName": "MakeBucketRequest",
+      "InPkg": "begonia.org.sdk",
+      "IsClientStream": false,
+      "IsServerStream": false,
+      "OutName": "MakeBucketResponse",
+      "OutPkg": "begonia.org.sdk",
+      "PathParams": [],
+      "Pattern": {},
+      "Pkg": "begonia.org.sdk",
+      "Template": {
+        "Fields": null,
+        "OpCodes": [
+          2,
+          0,
+          2,
+          1,
+          2,
+          2,
+          2,
+          3
+        ],
+        "Pool": [
+          "api",
+          "v1",
+          "files",
+          "buckets"
+        ],
+        "Template": "/api/v1/files/buckets",
+        "Verb": "",
+        "Version": 1
+      },
+      "http_response": "begonia.org.sdk.common.HttpResponse"
+    }
+  ],
   "/begonia.org.sdk.FileService/Metadata": [
     {
       "FullMethodName": "/begonia.org.sdk.FileService/Metadata",
