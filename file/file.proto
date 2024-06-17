@@ -67,7 +67,7 @@ message UploadFileRequest {
 	string content_type = 3[json_name="content_type"];
 	// @gotags: validate:"required,sha256" doc:"文件sha256"
 	string sha256 = 4;
-	bool use_version = 5[json_name="use_version"];
+	// bool use_version = 5[json_name="use_version"];
     string bucket = 6;
     // @gotags: validate:"required,oneof=FILE_ENGINE_LOCAL FILE_ENGINE_MINIO FILE_ENGINE_S3 FILE_ENGINE_OSS" doc:"存储引擎"
     string engine=7;
@@ -97,11 +97,12 @@ message ListFilesResponse{
 message MakeBucketRequest{
     // @gotags: validate:"required" doc:"bucket名称"
     string bucket=1;
-    string Region=2;
+    string region=2;
 
     bool object_locking=3[json_name="object_locking"];
     // @gotags: validate:"required,oneof=FILE_ENGINE_LOCAL FILE_ENGINE_MINIO FILE_ENGINE_S3 FILE_ENGINE_OSS" doc:"存储引擎"
    string engine=4;
+   bool enable_version=5[json_name="enable_version"];
 }
 message MakeBucketResponse{
 }
@@ -120,7 +121,7 @@ message CompleteMultipartUploadRequest {
 	string content_type = 3[json_name="content_type"];
 	// @gotags: validate:"required,sha256" doc:"文件sha256"
 	string sha256 = 4;
-	bool use_version = 5[json_name="use_version"];
+	// bool use_version = 5[json_name="use_version"];
     // @gotags: validate:"required" doc:"bucket名称"
     string bucket = 6;
     // @gotags: validate:"required,oneof=FILE_ENGINE_LOCAL FILE_ENGINE_MINIO FILE_ENGINE_S3 FILE_ENGINE_OSS" doc:"存储引擎"
