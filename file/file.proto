@@ -206,6 +206,7 @@ message FileMetadataResponse {
 	string name = 7;
 	string version = 8;
     string uid=9;
+    string bucket=10;
 }
 message Files{
     // @gotags: gorm:"primaryKey;autoIncrement;comment:自增id"
