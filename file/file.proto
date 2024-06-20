@@ -181,12 +181,12 @@ message DeleteResponse {
 
 }
 message FileMetadataRequest {
-	// @gotags: validate:"required" doc:"文件名,仅支持相对路径，例如test/a.txt,不支持/开头的绝对路径"
+	// @gotags: validate:"required_if=FileId" doc:"文件名,仅支持相对路径，例如test/a.txt,不支持/开头的绝对路径"
 	string key = 1;
 	string version=2;
-    // @gotags: validate:"required" doc:"bucket名称"
+    // @gotags: validate:"required_if=FileId" doc:"bucket名称"
     string bucket=3;
-    // @gotags: validate:"required,oneof=FILE_ENGINE_LOCAL FILE_ENGINE_MINIO FILE_ENGINE_S3 FILE_ENGINE_OSS" doc:"存储引擎"
+    // @gotags: validate:"required_if=FileId",oneof=FILE_ENGINE_LOCAL FILE_ENGINE_MINIO FILE_ENGINE_S3 FILE_ENGINE_OSS" doc:"存储引擎"
     string engine=6;
     string file_id=7[json_name="file_id"];
 
