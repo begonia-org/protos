@@ -62,6 +62,8 @@ message Users {
     Role role = 8;
     // @gotags: doc:"account status" gorm:"comment:Users account status"
     USER_STATUS status = 9;
+    // @gotags: json:"tenant_id" gorm:"column:tenant_id;type:varchar(36);not null;comment:tenant_id"
+    string tenant_id=15[json_name="tenant_id"];
     // @gotags: json:"is_deleted" gorm:"column:is_deleted;type:tinyint;comment:proto服务是否删除"
     bool is_deleted=12 [json_name="is_deleted"];
     // @gotags: doc:"完成时间" gorm:"column:created_at;type:datetime;serializer:timepb;comment:定时任务的最近一次完成时间"
@@ -96,6 +98,8 @@ message PostUserRequest{
     string owner = 8;
     // @gotags: doc:"account avatar" gorm:"type:varchar(512);comment:Users account avatar"
     string avatar = 9;
+    // @gotags: validate:"required"
+    string tenant_id=10[json_name="tenant_id"];
     // @gotags: gorm:"-" json:"-"
     google.protobuf.FieldMask update_mask = 18;
 
@@ -110,7 +114,7 @@ message DeleteUserResponse{
     string uid=1;
 }
 message PatchUserRequest{
-    string uid=1;
+    string uid=1[(.begonia.org.sdk.common.api.v1.un_updatable)=true];
     string name = 2;
     string password = 3;
     string email = 4;

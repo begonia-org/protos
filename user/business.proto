@@ -1,0 +1,103 @@
+syntax = "proto3";
+package begonia.org.sdk;
+option go_package = "github.com/begonia-org/go-sdk/api/user/v1";
+import "google/protobuf/timestamp.proto";
+import "common/options.proto";
+import "google/protobuf/field_mask.proto";
+import "google/api/annotations.proto";
+
+message Business {
+    // @gotags: json:"business_id"  primary:"business_id" gorm:"primaryKey;column:business_id;type:varchar(36);not null;unique;comment:business_id"
+    string business_id=1[json_name="business_id"];
+    // @gotags: json:"business_name" gorm:"column:business_name;type:varchar(128);not null;unique;comment:business_name"
+    string business_name=2[json_name="business_name"];
+    // @gotags: gorm:"column:tags;type:json;serializer:json;comment:tags"
+    repeated string tags=3;
+    // @gotags: json:"description" gorm:"column:description;type:text;comment:business描述"
+    string description=4;
+    // @gotags: json:"created_by"  gorm:"column:created_by;type:varchar(36);not null;comment:创建者"
+    string created_by=5[json_name="created_by"];
+    // @gotags: json:"is_deleted" gorm:"column:is_deleted;type:tinyint;comment:proto服务是否删除"
+    bool is_deleted=12 [json_name="is_deleted"];
+    // @gotags: doc:"完成时间" gorm:"column:created_at;type:datetime;serializer:timepb;comment:定时任务的最近一次完成时间"
+    google.protobuf.Timestamp created_at = 10[json_name="created_at"];
+    // @gotags: doc:"更新时间" gorm:"column:updated_at;type:datetime;serializer:timepb;comment:定时任务的更新时间"
+    google.protobuf.Timestamp updated_at = 11[json_name="updated_at"];
+    // @gotags: gorm:"-" json:"-"
+    google.protobuf.FieldMask update_mask = 18[json_name="update_mask"];
+
+}
+message PostBusinessRequest{
+    // @gotags: validate:"required" json:"business_name" gorm:"column:business_name;type:varchar(128);not null;unique;comment:business名称"
+    string business_name = 1;
+    // @gotags: json:"description" gorm:"column:description;type:text;comment:business描述"
+    string description = 2;
+    // @gotags: json:"tags" gorm:"column:tags;type:json;comment:business服务标签"
+    repeated string tags = 3;
+
+}
+message PatchBusinessRequest{
+    // @gotags: json:"business_name" gorm:"column:business_name;type:varchar(128);not null;unique;comment:business名称"
+    string business_name = 1[json_name="business_name"];
+    // @gotags: json:"description" gorm:"column:description;type:text;comment:business描述"
+    string description = 2;
+    // @gotags: json:"tags" gorm:"column:tags;type:json;comment:business服务标签"
+    repeated string tags = 3;
+    // @gotags: validate:"required" json:"business_id"  primary:"business_id" gorm:"primaryKey;column:business_id;type:varchar(36);not null;unique;comment:business_id"
+    string business_id=4[json_name="business_id",(.begonia.org.sdk.common.api.v1.un_updatable)=true];
+    string name = 5;
+    // @gotags: gorm:"-" json:"-"
+    google.protobuf.FieldMask update_mask = 18[json_name="-"];
+}
+message GetBusinessRequest{
+    // @gotags: validate:"required"
+    string business=1[json_name="business"];
+}
+message DeleteBusinessRequest{
+// @gotags: validate:"required"
+    string business=1[json_name="business"];
+}
+message ListBusinessRequest{
+    repeated string tags = 1;
+    // @gotags: validate:"gte=1" doc:"每页数量"
+    int32 page = 2;
+    // @gotags: validate:"gte=1" doc:"每页数量"
+    int32 page_size = 3[json_name="page_size"];
+}
+message ListBusinessResponse{
+    repeated Business business = 1;
+}
+message DeleteBusinessResponse{
+}
+service BusinessService{
+    option (.begonia.org.sdk.common.api.v1.auth_reqiured)=true;
+
+	option (.begonia.org.sdk.common.api.v1.http_response)="begonia.org.sdk.common.api.v1.HttpResponse";
+	rpc Add(PostBusinessRequest) returns (Business){
+        option (google.api.http)={
+            post:"/api/v1/business"
+            body:"*"
+        };
+    };
+    rpc Update(PatchBusinessRequest) returns (Business){
+        option (google.api.http)={
+            put:"/api/v1/business/{business_id}"
+            body:"*"
+        };
+    };
+    rpc Get(GetBusinessRequest) returns (Business){
+        option (google.api.http)={
+            get:"/api/v1/business/{business}"
+        };
+    };
+    rpc Delete(DeleteBusinessRequest) returns (DeleteBusinessResponse){
+        option (google.api.http)={
+            delete:"/api/v1/business/{business}"
+        };
+    };
+    rpc List(ListBusinessRequest) returns (ListBusinessResponse){
+        option (google.api.http)={
+            get:"/api/v1/business"
+        };
+    };
+}

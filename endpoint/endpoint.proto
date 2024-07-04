@@ -136,7 +136,7 @@ message EndpointSrvConfig {
     
 }
 message EndpointSrvUpdateRequest{
-    string unique_key=9[json_name="unique_key"];
+    string unique_key=9[json_name="unique_key",(.begonia.org.sdk.common.api.v1.un_updatable)=true];
     bytes descriptor_set=1 [json_name="descriptor_set"];
     string name=2;
     string description=4;

@@ -82,7 +82,7 @@ message DeleteAppRequest{
 message DeleteAppResponse{
 }
 message AppsRequest {
-	string appid = 6 [json_name="appid"];
+	string appid = 6 [json_name="appid",(.begonia.org.sdk.common.api.v1.un_updatable)=true];
 	 // @gotags: json:"name" gorm:"column:name;type:varchar(128);unique;comment:app服务名称"
 	 string name = 2;
 	 // @gotags: json:"description" gorm:"column:description;type:varchar(256);comment:app描述服务"
@@ -103,11 +103,6 @@ message AppsListRequest{
 	// @gotags: json:"page_size" gorm:"column:page_size;type:int;comment:每页数量"
 	int32 page_size = 2;
     repeated string tags = 3;
-    // repeated string name = 4;
-    // repeated string appid = 5;
-    // repeated string owner = 6;
-    // // @gotags: json:"access_key"
-    // repeated string access_key = 7;
     // // @gotags: json:"status" gorm:"column:status;type:tinyint;comment:app服务状态"
     repeated	APPStatus status = 8;
 }
