@@ -85,12 +85,14 @@ message HelloRequestWithValidator{
     // @gotags: validate:"required"
     string name = 2;
     int32 age = 3[(.begonia.org.sdk.common.api.v1.validate)="required,gte=18,lte=35"];
-    // @gotags: validate:"required"
     HelloSubRequest sub = 4;
     // @gotags: validate:"required,dive"
     repeated HelloSubRequest subs = 5;
+
     google.protobuf.FieldMask update_mask = 6[json_name="update_mask"];
+    // @gotags: validate:"required,dive"
     map<string, HelloSubRequest> sub_map = 7[json_name="sub_map",(.begonia.org.sdk.common.api.v1.validate)="required,dive"];
+    // @gotags: validate:"required"
     map<string, string> sub_map2 = 8[json_name="sub_map2",(.begonia.org.sdk.common.api.v1.validate)="required"];
 
 
