@@ -2,7 +2,7 @@ syntax = "proto3";
 package begonia.org.sdk;
 option go_package = "github.com/begonia-org/go-sdk/api/user/v1";
 import "google/protobuf/timestamp.proto";
-import "common/options.proto";
+import "begonia/api/v1/options.proto";
 import "google/protobuf/field_mask.proto";
 import "google/api/annotations.proto";
 
@@ -23,20 +23,20 @@ enum USER_STATUS {
 
 enum UserSvrCode{
     USER_UNKNOWN = 0;
-    USER_LOGIN_ERR=4107[(.begonia.org.sdk.common.api.v1.msg) = "login fail"];
-    USER_TOKEN_EXPIRE_ERR=4108[(.begonia.org.sdk.common.api.v1.msg) = "token expire"];
-    USER_DISABLED_ERR=4119[(.begonia.org.sdk.common.api.v1.msg) = "user disabled"];
+    USER_LOGIN_ERR=4107[(.begonia.api.v1.msg) = "login fail"];
+    USER_TOKEN_EXPIRE_ERR=4108[(.begonia.api.v1.msg) = "token expire"];
+    USER_DISABLED_ERR=4119[(.begonia.api.v1.msg) = "user disabled"];
     // 非法的token
-    USER_TOKEN_INVALIDATE_ERR=4109[(.begonia.org.sdk.common.api.v1.msg) = "invalidate token"];
-    USER_TOKEN_NOT_ACTIVTE_ERR=4114[(.begonia.org.sdk.common.api.v1.msg) = "invaildate token"];
-    USER_AUTH_DECRYPT_ERR=4110[(.begonia.org.sdk.common.api.v1.msg) = "invaildate token"];
-    USER_ACCOUNT_ERR=4111[(.begonia.org.sdk.common.api.v1.msg) = "username or password error"];
-    USER_PASSWORD_ERR=4112[(.begonia.org.sdk.common.api.v1.msg) = "username or password error"];
-    USER_NOT_FOUND_ERR=4113[(.begonia.org.sdk.common.api.v1.msg) = "username or password error"];
-    USER_AUTH_MISSING_ERR=4115[(.begonia.org.sdk.common.api.v1.msg) = "authorization header missing"];
-    USER_IDENTITY_MISSING_ERR=4116[(.begonia.org.sdk.common.api.v1.msg) = "identity missing"];
-    USER_APIKEY_NOT_MATCH_ERR=4117[(.begonia.org.sdk.common.api.v1.msg) = "apikey not match"];
-    USER_USERNAME_DUPLICATE_ERR=4118[(.begonia.org.sdk.common.api.v1.msg) = "username duplicate"];
+    USER_TOKEN_INVALIDATE_ERR=4109[(.begonia.api.v1.msg) = "invalidate token"];
+    USER_TOKEN_NOT_ACTIVTE_ERR=4114[(.begonia.api.v1.msg) = "invaildate token"];
+    USER_AUTH_DECRYPT_ERR=4110[(.begonia.api.v1.msg) = "invaildate token"];
+    USER_ACCOUNT_ERR=4111[(.begonia.api.v1.msg) = "username or password error"];
+    USER_PASSWORD_ERR=4112[(.begonia.api.v1.msg) = "username or password error"];
+    USER_NOT_FOUND_ERR=4113[(.begonia.api.v1.msg) = "username or password error"];
+    USER_AUTH_MISSING_ERR=4115[(.begonia.api.v1.msg) = "authorization header missing"];
+    USER_IDENTITY_MISSING_ERR=4116[(.begonia.api.v1.msg) = "identity missing"];
+    USER_APIKEY_NOT_MATCH_ERR=4117[(.begonia.api.v1.msg) = "apikey not match"];
+    USER_USERNAME_DUPLICATE_ERR=4118[(.begonia.api.v1.msg) = "username duplicate"];
 
 }
 message Users {
@@ -114,7 +114,7 @@ message DeleteUserResponse{
     string uid=1;
 }
 message PatchUserRequest{
-    string uid=1[(.begonia.org.sdk.common.api.v1.un_updatable)=true];
+    string uid=1[(.begonia.api.v1.un_updatable)=true];
     string name = 2;
     string password = 3;
     string email = 4;
@@ -129,9 +129,9 @@ message PatchUserRequest{
     google.protobuf.FieldMask update_mask = 18;
 }
 service UserService{
-    option (.begonia.org.sdk.common.api.v1.auth_reqiured)=true;
+    option (.begonia.api.v1.auth_reqiured)=true;
 
-	option (.begonia.org.sdk.common.api.v1.http_response)="begonia.org.sdk.common.api.v1.HttpResponse";
+	option (.begonia.api.v1.http_response)="begonia.api.v1.HttpResponse";
 	rpc Register(PostUserRequest) returns (Users){
         option (google.api.http)={
             post:"/api/v1/users"

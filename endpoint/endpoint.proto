@@ -6,7 +6,7 @@ import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/field_mask.proto";
 
-import "common/options.proto";
+import "begonia/api/v1/options.proto";
 
 enum EndpointStatus{
     ENABLED = 0;
@@ -14,9 +14,9 @@ enum EndpointStatus{
 }
 enum EndpointSvrStatus{
 ENDPOINT_UNKNOW = 0;
-NOT_SUPPORT_BALANCE = 7101[(.begonia.org.sdk.common.api.v1.msg) = "Not support balance"];
-SERVICE_NAME_DUPLICATE = 7102[(.begonia.org.sdk.common.api.v1.msg) = "Service name duplicate"];
-ENDPOINT_NOT_FOUND = 7103[(.begonia.org.sdk.common.api.v1.msg) = "Endpoint not found"];
+NOT_SUPPORT_BALANCE = 7101[(.begonia.api.v1.msg) = "Not support balance"];
+SERVICE_NAME_DUPLICATE = 7102[(.begonia.api.v1.msg) = "Service name duplicate"];
+ENDPOINT_NOT_FOUND = 7103[(.begonia.api.v1.msg) = "Endpoint not found"];
 }
 message EndpointMeta {
     // @gotags: json:"addr" gorm:"column:addr;type:varchar(128);comment:服务地址"
@@ -136,7 +136,7 @@ message EndpointSrvConfig {
     
 }
 message EndpointSrvUpdateRequest{
-    string unique_key=9[json_name="unique_key",(.begonia.org.sdk.common.api.v1.un_updatable)=true];
+    string unique_key=9[json_name="unique_key",(.begonia.api.v1.un_updatable)=true];
     bytes descriptor_set=1 [json_name="descriptor_set"];
     string name=2;
     string description=4;
@@ -168,8 +168,8 @@ message SvrStatus{
 }
 
 service EndpointService{
-    option (.begonia.org.sdk.common.api.v1.auth_reqiured)=true;
-    option (.begonia.org.sdk.common.api.v1.http_response)="begonia.org.sdk.common.api.v1.HttpResponse";
+    option (.begonia.api.v1.auth_reqiured)=true;
+    option (.begonia.api.v1.http_response)="begonia.api.v1.HttpResponse";
 
     rpc Post(EndpointSrvConfig) returns (AddEndpointResponse){
         option (google.api.http) = {

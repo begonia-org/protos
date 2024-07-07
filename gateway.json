@@ -32,7 +32,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.go.access.control.api.v1.ABACService/PolicyDelete": [
@@ -79,7 +79,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.go.access.control.api.v1.ABACService/PolicyGet": [
@@ -126,7 +126,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.go.access.control.api.v1.ABACService/PolicyList": [
@@ -165,7 +165,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.go.access.control.api.v1.ABACService/PolicyPatch": [
@@ -201,7 +201,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.go.access.control.api.v1.ABACService/PolicyPut": [
@@ -237,7 +237,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.AppsService/Delete": [
@@ -284,7 +284,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.AppsService/Get": [
@@ -331,7 +331,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.AppsService/List": [
@@ -367,7 +367,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.AppsService/Post": [
@@ -403,7 +403,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.AppsService/Update": [
@@ -439,7 +439,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.AuthService/AuthSeed": [
@@ -489,7 +489,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.AuthService/Login": [
@@ -528,7 +528,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.AuthService/Logout": [
@@ -567,7 +567,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.BusinessService/Add": [
@@ -603,7 +603,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.BusinessService/Delete": [
@@ -649,7 +649,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.BusinessService/Get": [
@@ -695,7 +695,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.BusinessService/List": [
@@ -731,7 +731,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.BusinessService/Update": [
@@ -778,7 +778,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.EndpointService/Delete": [
@@ -825,7 +825,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.EndpointService/Get": [
@@ -872,7 +872,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.EndpointService/List": [
@@ -908,7 +908,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.EndpointService/Post": [
@@ -944,7 +944,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.EndpointService/Update": [
@@ -991,7 +991,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.FileService/AbortMultipartUpload": [
@@ -1033,7 +1033,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.FileService/CompleteMultipartUpload": [
@@ -1075,7 +1075,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.FileService/Delete": [
@@ -1111,7 +1111,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.FileService/Download": [
@@ -1226,7 +1226,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.FileService/ListFiles": [
@@ -1265,7 +1265,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.FileService/MakeBucket": [
@@ -1304,7 +1304,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.FileService/Metadata": [
@@ -1343,7 +1343,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.FileService/Upload": [
@@ -1379,7 +1379,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.FileService/UploadMultipartFile": [
@@ -1418,7 +1418,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.PluginService/Apply": [
@@ -1521,7 +1521,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.TenantsService/AddTenantBusiness": [
@@ -1560,7 +1560,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.TenantsService/Delete": [
@@ -1607,7 +1607,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.TenantsService/DeleteTenantBusiness": [
@@ -1666,7 +1666,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.TenantsService/Get": [
@@ -1713,7 +1713,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.TenantsService/List": [
@@ -1749,7 +1749,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.TenantsService/ListTenantBusiness": [
@@ -1799,7 +1799,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.TenantsService/Register": [
@@ -1835,7 +1835,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.TenantsService/Update": [
@@ -1882,7 +1882,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.UserService/Delete": [
@@ -1929,7 +1929,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.UserService/Get": [
@@ -1976,7 +1976,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.UserService/Register": [
@@ -2012,7 +2012,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/begonia.org.sdk.UserService/Update": [
@@ -2059,7 +2059,7 @@
         "Verb": "",
         "Version": 1
       },
-      "http_response": "begonia.org.sdk.common.api.v1.HttpResponse"
+      "http_response": "begonia.api.v1.HttpResponse"
     }
   ],
   "/helloworld.Greeter/SayHello": [

@@ -8,14 +8,14 @@ TS_PROTO_PLUGIN = $(shell which protoc-gen-ts_proto)
 PROTO_DIR ?= .
 OUTPUT_DIR ?= ../api/v1
 COMMON_PROTOS_DIR ?= ./common
-GOOGLE_PROTOS_DIR ?= ./
+GOOGLE_PROTOS_DIR ?= ./common
 PARENT_DIR_NAME ?= $(notdir $(patsubst %/,%,$(dir $(CURDIR))))
 
 # 文件列表
 GO_PROTO_FILES = $(wildcard $(PROTO_DIR)/*.proto)
 PY_PROTO_FILES = $(wildcard $(PROTO_DIR)/*.proto)
 TS_PROTO_FILES = $(wildcard $(PROTO_DIR)/*.proto)
-COMMON_FILES = $(wildcard $(COMMON_PROTOS_DIR)/*.proto)
+COMMON_FILES = $(wildcard $(COMMON_PROTOS_DIR)/begonia/api/v1/*.proto)
 COMMON_PROTO_FILES = $(notdir $(COMMON_FILES))
 
 # 通用参数

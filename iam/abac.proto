@@ -6,7 +6,7 @@ import "google/protobuf/descriptor.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/field_mask.proto";
 import "google/api/annotations.proto";
-import "common/options.proto";
+import "begonia/api/v1/options.proto";
 // Resource is a resource that can be accessed by a user.
 // A resource is defined by ABAC (Attribute-Based Access Control) model.
 message Resource {
@@ -132,8 +132,8 @@ message PatchPolicyResponse{
 
 }
 service ABACService {
-	option (.begonia.org.sdk.common.api.v1.auth_reqiured)=true;
-	option (.begonia.org.sdk.common.api.v1.http_response)="begonia.org.sdk.common.api.v1.HttpResponse";
+	option (.begonia.api.v1.auth_reqiured)=true;
+	option (.begonia.api.v1.http_response)="begonia.api.v1.HttpResponse";
 	rpc Auth (AccessContext) returns (AccessResponse) {
 		option (google.api.http) = {
 			post: "/v1/abac/authz"

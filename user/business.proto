@@ -2,7 +2,7 @@ syntax = "proto3";
 package begonia.org.sdk;
 option go_package = "github.com/begonia-org/go-sdk/api/user/v1";
 import "google/protobuf/timestamp.proto";
-import "common/options.proto";
+import "begonia/api/v1/options.proto";
 import "google/protobuf/field_mask.proto";
 import "google/api/annotations.proto";
 
@@ -44,7 +44,7 @@ message PatchBusinessRequest{
     // @gotags: json:"tags" gorm:"column:tags;type:json;comment:business服务标签"
     repeated string tags = 3;
     // @gotags: validate:"required" json:"business_id"  primary:"business_id" gorm:"primaryKey;column:business_id;type:varchar(36);not null;unique;comment:business_id"
-    string business_id=4[json_name="business_id",(.begonia.org.sdk.common.api.v1.un_updatable)=true];
+    string business_id=4[json_name="business_id",(.begonia.api.v1.un_updatable)=true];
     string name = 5;
     // @gotags: gorm:"-" json:"-"
     google.protobuf.FieldMask update_mask = 18[json_name="-"];
@@ -70,9 +70,9 @@ message ListBusinessResponse{
 message DeleteBusinessResponse{
 }
 service BusinessService{
-    option (.begonia.org.sdk.common.api.v1.auth_reqiured)=true;
+    option (.begonia.api.v1.auth_reqiured)=true;
 
-	option (.begonia.org.sdk.common.api.v1.http_response)="begonia.org.sdk.common.api.v1.HttpResponse";
+	option (.begonia.api.v1.http_response)="begonia.api.v1.HttpResponse";
 	rpc Add(PostBusinessRequest) returns (Business){
         option (google.api.http)={
             post:"/api/v1/business"

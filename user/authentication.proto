@@ -4,7 +4,7 @@ option go_package = "github.com/begonia-org/go-sdk/api/user/v1";
 import "google/api/annotations.proto";
 import "google/protobuf/descriptor.proto";
 import "user.proto";
-import "common/options.proto";
+import "begonia/api/v1/options.proto";
 message LoginAPIRequest{
   string auth=1;
   int64 seed=2;
@@ -53,9 +53,9 @@ message AuthLogAPIResponse{
 	string timestamp=2;
 }
 service AuthService{
-	option (.begonia.org.sdk.common.api.v1.auth_reqiured)=true;
+	option (.begonia.api.v1.auth_reqiured)=true;
 
-	option (.begonia.org.sdk.common.api.v1.http_response)="begonia.org.sdk.common.api.v1.HttpResponse";
+	option (.begonia.api.v1.http_response)="begonia.api.v1.HttpResponse";
 rpc Login (LoginAPIRequest) returns (LoginAPIResponse) {
 	option (google.api.http) = {
    post: "/api/v1/auth/login"

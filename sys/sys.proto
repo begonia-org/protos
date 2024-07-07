@@ -4,7 +4,7 @@ option go_package = "github.com/begonia-org/go-sdk/api/sys/v1";
 import "google/protobuf/descriptor.proto";
 
 import "google/api/annotations.proto";
-import "common/options.proto";
+import "begonia/api/v1/options.proto";
 
 message InfoRequest {
 }
@@ -16,8 +16,8 @@ message InfoResponse {
 }
 
 service SystemService {
-    option (.begonia.org.sdk.common.api.v1.auth_reqiured)=true;
-    option (.begonia.org.sdk.common.api.v1.http_response)="begonia.org.sdk.common.api.v1.HttpResponse";
+    option (.begonia.api.v1.auth_reqiured)=true;
+    option (.begonia.api.v1.http_response)="begonia.api.v1.HttpResponse";
 
     rpc Get(InfoRequest) returns (InfoResponse) {
         option (google.api.http) = {

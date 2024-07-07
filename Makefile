@@ -25,8 +25,7 @@ desc:
 		cp ./$$dir/*.proto ./tmp; \
 	done
 	@cp -r ./common tmp
-	@cp -r ./google tmp
-	protoc --descriptor_set_out="api.bin" --include_imports --proto_path=./tmp ./tmp/*.proto ./tmp/common/*.proto 
+	protoc --descriptor_set_out="api.bin" --include_imports --proto_path=./tmp --proto_path=./tmp/common ./tmp/*.proto 
 	@rm -rf ./tmp
 all: go ts py desc
 	@echo "All done"
