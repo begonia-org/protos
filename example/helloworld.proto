@@ -13,6 +13,7 @@ import "google/protobuf/field_mask.proto";
 import "google/protobuf/descriptor.proto";
 import "google/api/httpbody.proto";
 import "google/protobuf/timestamp.proto";
+import "common/options.proto";
 
 // The greeting service definition.
 // The greeting service definition.
@@ -71,10 +72,11 @@ message HelloRequest {
   string name = 2;
 }
 message HelloSubRequest{
-    // @gotags: validate:"required"
     string sub_msg = 1[json_name="sub_msg"];
     // @gotags: validate:"required"
     string sub_name = 2[json_name="sub_name"];
+    // @gotags: validate:"required,gte=18,lte=35"
+    int32 sub_age = 4[json_name="sub_age",(.begonia.org.sdk.common.api.v1.validate)="required,gte=18,lte=35"];
     google.protobuf.FieldMask update_mask = 3[json_name="update_mask"];
 }
 message HelloRequestWithValidator{
@@ -82,13 +84,14 @@ message HelloRequestWithValidator{
     string msg = 1;
     // @gotags: validate:"required"
     string name = 2;
-    // @gotags: validate:"gte=18,lte=35"
-    int32 age = 3;
+    int32 age = 3[(.begonia.org.sdk.common.api.v1.validate)="required,gte=18,lte=35"];
     // @gotags: validate:"required"
     HelloSubRequest sub = 4;
-    // @gotags: validate:"dive,required"
+    // @gotags: validate:"required,dive"
     repeated HelloSubRequest subs = 5;
     google.protobuf.FieldMask update_mask = 6[json_name="update_mask"];
+    map<string, HelloSubRequest> sub_map = 7[json_name="sub_map",(.begonia.org.sdk.common.api.v1.validate)="required,dive"];
+    map<string, string> sub_map2 = 8[json_name="sub_map2",(.begonia.org.sdk.common.api.v1.validate)="required"];
 
 
 }
