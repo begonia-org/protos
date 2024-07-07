@@ -8,7 +8,7 @@ TS_PROTO_PLUGIN = $(shell which protoc-gen-ts_proto)
 # 目标文件夹
 PROTO_DIR = ./common/begonia/api/v1
 OUTPUT_DIR = ../api/common/v1
-PY_PROTO_DIR = ./
+PY_PROTO_DIR = ./common
 
 PY_OUTPUT_DIR = ../api/v1
 COMMON_FILES = $(wildcard $(PROTO_DIR)/*.proto)
@@ -51,6 +51,7 @@ py: $(PY_PROTO_FILES) | make_py_dir
 	sed -i '/from/!s/import \(.*\) as/from . import \1 as/g' $(PY_OUTPUT_DIR)/*.py*
 	mv $(PY_OUTPUT_DIR)/begonia/api/v1/* $(PY_OUTPUT_DIR)
 	rm -rf $(PY_OUTPUT_DIR)/common
+	rm -rf $(PY_OUTPUT_DIR)/begonia
 	
 
 # 生成 TypeScript 代码
