@@ -7,7 +7,7 @@ TS_PROTO_PLUGIN = $(shell which protoc-gen-ts_proto)
 
 # 目标文件夹
 PROTO_DIR = ./common/begonia/api/v1
-OUTPUT_DIR = ../api/common/v1
+OUTPUT_DIR = ../common/api/v1
 PY_PROTO_DIR = ./common
 
 PY_OUTPUT_DIR = ../api/v1

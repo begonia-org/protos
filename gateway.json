@@ -1488,6 +1488,41 @@
       }
     }
   ],
+  "/begonia.org.sdk.PluginService/Metadata": [
+    {
+      "FullMethodName": "/begonia.org.sdk.PluginService/Metadata",
+      "HttpMethod": "GET",
+      "HttpUri": "/v1/plugin/metadata",
+      "InName": "Empty",
+      "InPkg": "google.protobuf",
+      "IsClientStream": false,
+      "IsServerStream": false,
+      "OutName": "Empty",
+      "OutPkg": "google.protobuf",
+      "PathParams": [],
+      "Pattern": {},
+      "Pkg": "begonia.org.sdk",
+      "Template": {
+        "Fields": null,
+        "OpCodes": [
+          2,
+          0,
+          2,
+          1,
+          2,
+          2
+        ],
+        "Pool": [
+          "v1",
+          "plugin",
+          "metadata"
+        ],
+        "Template": "/v1/plugin/metadata",
+        "Verb": "",
+        "Version": 1
+      }
+    }
+  ],
   "/begonia.org.sdk.SystemService/Get": [
     {
       "FullMethodName": "/begonia.org.sdk.SystemService/Get",

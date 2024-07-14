@@ -25,7 +25,7 @@ desc:
 		cp ./$$dir/*.proto ./tmp; \
 	done
 	@cp -r ./common tmp
-	protoc --descriptor_set_out="api.bin" --include_imports --proto_path=./tmp --proto_path=./tmp/common ./tmp/*.proto 
+	protoc --descriptor_set_out="api.bin" --include_imports --proto_path=./tmp --proto_path=./tmp/common ./tmp/*.proto  ./tmp/common/begonia/api/v1/web.proto
 	@rm -rf ./tmp
 all: go ts py desc
 	@echo "All done"
