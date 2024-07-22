@@ -25,6 +25,8 @@ service Greeter {
 		body:"*"
 	};
   }
+  rpc SayHelloRPC (HelloRequest) returns (HelloReply) {
+  }
     rpc SayHelloGet (HelloRequest) returns (HelloReply) {
     option (google.api.http)={
 		get:"/api/v1/example/{name}"
