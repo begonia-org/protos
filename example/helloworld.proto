@@ -74,10 +74,16 @@ message HelloRequest {
 message HelloSubRequest{
     string sub_msg = 1[json_name="sub_msg"];
     // @gotags: validate:"required"
-    string sub_name = 2[json_name="sub_name"];
+    string sub_name = 2[json_name="sub_name",(.begonia.api.v1.validate)="required"];
     // @gotags: validate:"required,gte=18,lte=35"
     int32 sub_age = 4[json_name="sub_age",(.begonia.api.v1.validate)="required,gte=18,lte=35"];
     google.protobuf.FieldMask update_mask = 3[json_name="update_mask"];
+}
+enum ExampleEnum {
+  EX_UNKNOWN = 0;
+  EX_STARTED = 1;
+  EX_RUNNING = 2;
+  EX_STOPPED = 3;
 }
 message HelloRequestWithValidator{
     // @gotags: validate:"required"
@@ -85,15 +91,29 @@ message HelloRequestWithValidator{
     // @gotags: validate:"required"
     string name = 2;
     int32 age = 3[(.begonia.api.v1.validate)="required,gte=18,lte=35"];
-    HelloSubRequest sub = 4;
+    uint64 age2 = 15[(.begonia.api.v1.validate)="required,gte=18,lte=35"];
+    double float_num = 16[(.begonia.api.v1.validate)="required"];
+    bool bool_data = 17[json_name="bool_data",(.begonia.api.v1.validate)="required"];
+    bytes bytes_data=18[json_name="bytes_data",(.begonia.api.v1.validate)="required"];
+    HelloSubRequest sub = 4[(.begonia.api.v1.validate)="required"];
+    HelloRequest  sub2=14[(.begonia.api.v1.validate)="required_if=Name hello"];
     // @gotags: validate:"required,dive"
-    repeated HelloSubRequest subs = 5;
+    repeated HelloSubRequest subs = 5[json_name="subs",(.begonia.api.v1.validate)="required,dive"];
 
     google.protobuf.FieldMask update_mask = 6[json_name="update_mask"];
     // @gotags: validate:"required,dive"
     map<string, HelloSubRequest> sub_map = 7[json_name="sub_map",(.begonia.api.v1.validate)="required,dive"];
     // @gotags: validate:"required"
-    map<string, string> sub_map2 = 8[json_name="sub_map2",(.begonia.api.v1.validate)="required"];
+    map<string, string> sub_map2 = 8[json_name="sub_map2",(.begonia.api.v1.validate)="required,dive"];
+    // @gotags: validate:"required"
+    ExampleEnum ex_enum = 9[json_name="ex_enum",(.begonia.api.v1.validate)="required,oneof=EX_STARTED EX_RUNNING EX_STOPPED"];
+    // @gotags: validate:"required"
+    repeated ExampleEnum ex_enums = 10[json_name="ex_enums",(.begonia.api.v1.validate)="required"];
+    // @gotags: validate:"required"
+    repeated string strs = 11[json_name="strs",(.begonia.api.v1.validate)="required"];
+    map<string, ExampleEnum> enum_map = 12[json_name="str_map",(.begonia.api.v1.validate)="required"];
+    map<string, ExampleEnum> enum_map2 = 13[json_name="enum_map2"];
+
 
 
 }
