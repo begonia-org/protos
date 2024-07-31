@@ -37,6 +37,8 @@ service Greeter {
     option (google.api.http) = {
         get: "/api/v1/example/server/sse/{name}"
       };
+    option (.begonia.api.v1.dont_use_http_response) = true;
+
   }
 
   rpc SayHelloClientStream (stream HelloRequest) returns (RepeatedReply) {

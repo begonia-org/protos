@@ -2301,6 +2301,7 @@
       }
     }
   ],
+  "/helloworld.Greeter/SayHelloRPC": [],
   "/helloworld.Greeter/SayHelloServerSideEvent": [
     {
       "FullMethodName": "/helloworld.Greeter/SayHelloServerSideEvent",
