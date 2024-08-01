@@ -56,7 +56,7 @@ py: $(PY_PROTO_FILES) | common
 	echo "Current path: $(shell pwd)"
 	sed -i '/from/!s/import \(.*\) as/from . import \1 as/g' $(OUTPUT_DIR)/$\*.py*
 	echo "Parent path: $(PARENT_DIR_NAME)"
-	sed -i 's/from common import \(.*\) as/from $(PARENT_DIR_NAME).api.common.v1 import \1 as/' $(OUTPUT_DIR)/$\*.py*
+	sed -i 's/from begonia import \(.*\) as/from $(PARENT_DIR_NAME).api.begonia.v1 import \1 as/' $(OUTPUT_DIR)/$\*.py*
 
 desc:
 	protoc --descriptor_set_out="api.bin" --include_imports --proto_path=./ --proto_path=./common ./*.proto 
