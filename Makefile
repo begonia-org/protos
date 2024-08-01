@@ -7,7 +7,7 @@ TS_PROTO_PLUGIN = $(shell which protoc-gen-ts_proto)
 # 默认目标文件夹和参数
 PROTO_DIR ?= .
 OUTPUT_DIR ?= ../api/v1
-COMMON_OUT_DIR ?= ../common
+COMMON_OUT_DIR ?= ..
 COMMON_PROTOS_DIR ?= ./common
 GOOGLE_PROTOS_DIR ?= ./common
 PARENT_DIR_NAME ?= $(notdir $(patsubst %/,%,$(dir $(CURDIR))))
@@ -15,6 +15,7 @@ PARENT_DIR_NAME ?= $(notdir $(patsubst %/,%,$(dir $(CURDIR))))
 # 文件列表
 GO_PROTO_FILES = $(wildcard $(PROTO_DIR)/*.proto)
 PY_PROTO_FILES = $(wildcard $(PROTO_DIR)/*.proto)
+
 TS_PROTO_FILES = $(wildcard $(PROTO_DIR)/*.proto)
 COMMON_FILES = $(wildcard $(COMMON_PROTOS_DIR)/begonia/api/v1/*.proto)
 COMMON_PROTO_FILES = $(notdir $(COMMON_FILES))
@@ -28,6 +29,15 @@ PY_ARGS = --python_out=$(OUTPUT_DIR) \
 TS_ARGS = --plugin="protoc-gen-ts=$(TS_PROTO_PLUGIN)" \
           --ts_proto_opt=esModuleInterop=true --ts_proto_opt=paths=source_relative \
           --ts_proto_opt=snakeToCamel=false --ts_proto_opt=oneof=unions \
+		  --ts_proto_opt=Mgoogle/protobuf/field_mask.proto=../../google/protobuf/field_mask \
+		  --ts_proto_opt=Mgoogle/protobuf/timestamp.proto=../../google/protobuf/timestamp \
+		  --ts_proto_opt=Mgoogle/protobuf/any.proto=../../google/protobuf/any \
+		  --ts_proto_opt=Mgoogle/protobuf/descriptor.proto=../../google/protobuf/descriptor \
+		  --ts_proto_opt=Mgoogle/protobuf/struct.proto=../../google/protobuf/struct \
+		  --ts_proto_opt=Mgoogle/protobuf/empty.proto=../../google/protobuf/empty \
+		  --ts_proto_opt=Mgoogle/api/annotations.proto=../../google/api/annotations \
+		  --ts_proto_opt=Mgoogle/api/http.proto=../../google/api/http \
+		  --ts_proto_opt=Mgoogle/api/httpbody.proto=../../google/api/httpbody \
           --ts_proto_out=$(OUTPUT_DIR)
 
 
@@ -46,8 +56,8 @@ go: $(GO_PROTO_FILES) | common
 	$(PROTOC) -I=$(PROTO_DIR) -I=$(COMMON_PROTOS_DIR) -I=$(GOOGLE_PROTOS_DIR) $(GO_ARGS) $?
 	protoc-go-inject-tag -input="$(OUTPUT_DIR)/*.pb.go"
 
-ts: $(TS_PROTO_FILES) $(COMMON_FILES) | common
-	$(PROTOC) -I=$(PROTO_DIR) -I=$(COMMON_PROTOS_DIR) -I=$(GOOGLE_PROTOS_DIR) -I=./common $(TS_ARGS) $?
+ts: $(TS_PROTO_FILES) | common
+	$(PROTOC) -I=$(PROTO_DIR) -I=./common $(TS_ARGS) $?
 
 py: $(PY_PROTO_FILES) | common
 	$(PYTHON) -m grpc_tools.protoc -I=$(PROTO_DIR) -I=$(GOOGLE_PROTOS_DIR) $(PY_ARGS) $?
