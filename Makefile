@@ -69,7 +69,7 @@ py: $(PY_PROTO_FILES) | common
 	sed -i 's/from begonia import \(.*\) as/from $(PARENT_DIR_NAME).api.begonia.v1 import \1 as/' $(OUTPUT_DIR)/$\*.py*
 
 desc:
-	protoc --descriptor_set_out="api.bin" --include_imports --proto_path=./ --proto_path=./common ./*.proto 
+	protoc --descriptor_set_out="api.bin" --include_imports --include_source_info --proto_path=./ --proto_path=./common ./*.proto
 all: go ts py desc
 	@echo "All done"
 	@echo "Go to the api directory and run make all"
